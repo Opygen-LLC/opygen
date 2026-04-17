@@ -1,9 +1,24 @@
-import Image from "next/image";
+import ContactSection from "@/src/components/marketing/ContactSection";
+import Footer from "@/src/components/marketing/Footer";
+import HeroSection from "@/src/components/marketing/HeroSection";
+import MissionVision from "@/src/components/marketing/MissionVision";
+import Navbar from "@/src/components/marketing/Navbar";
+import ProductsSection from "@/src/components/marketing/ProductsSection";
+import TeamSection from "@/src/components/marketing/TeamSection";
 
-export default function Home() {
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <h1>Home Page</h1>
-    </div>
+    <>
+      <Navbar />
+      <main>
+        <HeroSection />
+      <MissionVision />
+        <ProductsSection />
+        <TeamSection />
+        <ContactSection />  
+      </main>
+      <Footer />
+    </>
   );
 }
