@@ -78,9 +78,7 @@ export default function Navbar() {
           {/* 3. Actions (Right) */}
           <div className="flex items-center gap-3">
             <div className="hidden md:flex items-center gap-2">
-               <Button variant="ghost" asChild className="text-[11px] font-bold uppercase tracking-widest">
-                <Link href="/signin">Sign in</Link>
-              </Button>
+              
               <Button asChild size="sm" className="bg-[#0A0A0A] text-white hover:bg-[#1A1A1A] rounded-none px-6">
                 <Link href="/get-started" className="flex items-center gap-2">
                   Get started
@@ -135,9 +133,7 @@ export default function Navbar() {
               <Button asChild size="lg" className="w-full bg-[#0A0A0A] text-white py-8 rounded-none text-xs uppercase tracking-[0.2em] font-bold">
                 <Link href="/get-started">Get started</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="w-full py-8 border-[#E8E8E8] rounded-none text-xs uppercase tracking-[0.2em] font-bold">
-                <Link href="/signin">Sign in</Link>
-              </Button>
+            
             </div>
             <p className="text-center text-[10px] uppercase tracking-widest text-[#6B6B6B] font-bold pt-4">
               Operational Engine v1.0

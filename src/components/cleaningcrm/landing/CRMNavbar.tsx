@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "../../ui/button"; 
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { ChevronRight, Menu, ShieldCheck, X, ArrowRight } from "lucide-react";
+import { ChevronRight, Menu,  X, } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const OpygenLogo = () => (
   <div className="flex items-center gap-2 sm:gap-3 bg-transparent py-1">
-    <svg viewBox="0 0 64 64" width="28" height="28" fill="none" className="flex-shrink-0">
+    <svg viewBox="0 0 64 64" width="28" height="28" fill="none" className="shrink-0">
       <path d="M32 6 A26 26 0 1 1 53.5 45.5" stroke="#3ECFB2" strokeWidth="5" strokeLinecap="round" fill="none"></path>
       <path d="M32 58 A26 26 0 1 1 10.5 18.5" stroke="#000000" strokeWidth="5" strokeLinecap="round" fill="none" opacity="0.55"></path>
       <circle cx="32" cy="32" r="4" fill="#3ECFB2"></circle>
@@ -57,7 +57,7 @@ export default function CRMNavbar() {
       <motion.div
         style={{ width: navWidth, top: navTop, left: "50%", x: "-50%" }}
         className={cn(
-          "fixed z-[100] transition-all duration-500 antialiased font-sora",
+          "fixed z-100 transition-all duration-500 antialiased font-sora",
           isScrolled || isOpen
             ? "bg-white/90 backdrop-blur-xl border border-black/5 shadow-sm rounded-2xl" 
             : "bg-transparent border-b border-transparent"
@@ -67,7 +67,7 @@ export default function CRMNavbar() {
           
           {/* 1. LEFT: Logo (Takes up 1/3 space) */}
           <div className="flex-[1] flex justify-start">
-            <Link href="/cleaningcrm" className="flex-shrink-0">
+            <Link href="/cleaningcrm" className="shrink-0">
               <OpygenLogo />
             </Link>
           </div>
