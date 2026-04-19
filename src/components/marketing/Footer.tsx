@@ -14,8 +14,8 @@ const links = {
     { label: "Contact", href: "#contact" },
   ],
   Legal: [
-    { label: "Privacy policy", href: "#" },
-    { label: "Terms of service", href: "#" },
+    { label: "Privacy policy", href: "/privacypolicy" },
+    { label: "Terms of service", href: "/termsofservice" },
   ],
 };
 
@@ -23,17 +23,29 @@ export default function Footer() {
   return (
     <footer className="bg-[#0A0A0A] text-white pt-20 pb-10">
       <div className="container mx-auto px-6">
-        
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
-          
           {/* Brand Identity: Spans 5 columns on desktop */}
           <div className="md:col-span-5 space-y-6">
             <Link href="/" className="flex items-center gap-3 group">
               <div className="relative size-8 group-hover:rotate-12 transition-transform duration-500">
-                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M32 6 A26 26 0 1 1 53.5 45.5" stroke="white" strokeWidth="6" strokeLinecap="square" />
-                  <path d="M32 58 A26 26 0 1 1 10.5 18.5" stroke="white" strokeWidth="6" strokeLinecap="square" />
+                <svg
+                  viewBox="0 0 64 64"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M32 6 A26 26 0 1 1 53.5 45.5"
+                    stroke="white"
+                    strokeWidth="6"
+                    strokeLinecap="square"
+                  />
+                  <path
+                    d="M32 58 A26 26 0 1 1 10.5 18.5"
+                    stroke="white"
+                    strokeWidth="6"
+                    strokeLinecap="square"
+                  />
                   <rect x="28" y="28" width="8" height="8" fill="white" />
                 </svg>
               </div>
@@ -47,8 +59,9 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-sm text-[#6B6B6B] leading-relaxed max-w-xs">
-              The high-performance operations engine for modern service businesses. 
-              Engineered for growth, stability, and absolute consistency.
+              The high-performance operations engine for modern service
+              businesses. Engineered for growth, stability, and absolute
+              consistency.
             </p>
           </div>
 
@@ -82,20 +95,18 @@ export default function Footer() {
             <p className="text-[11px] text-[#6B6B6B] uppercase tracking-widest font-bold">
               © {new Date().getFullYear()} Opygen Operational Systems
             </p>
-         
-        
           </div>
 
           <div className="flex items-center gap-4">
-             <div className="flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10">
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
-                </span>
-                <span className="text-[9px] uppercase tracking-tighter text-[#6B6B6B] font-black">
-                  Core v1.0.4-LTS
-                </span>
-             </div>
+            <div className="flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
+              </span>
+              <span className="text-[9px] uppercase tracking-tighter text-[#6B6B6B] font-black">
+                Core v1.0.4-LTS
+              </span>
+            </div>
           </div>
         </div>
       </div>
