@@ -14,8 +14,10 @@ const links = {
     { label: "Contact", href: "#contact" },
   ],
   Legal: [
-    { label: "Privacy policy", href: "#" },
-    { label: "Terms of service", href: "#" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Terms of Service", href: "/terms-of-service" },
+    { label: "Refund Policy", href: "/refund-policy" },
+    { label: "Security", href: "/security" },
   ],
 };
 
