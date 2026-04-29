@@ -1,143 +1,145 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Check, Zap, Shield, Crown } from "lucide-react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { CheckCircle } from "lucide-react";
 
-const PLANS = [
+const plans = [
   {
     name: "STARTER",
-    price: "19",
-    description: "SOLO PROFESSIONAL OPS",
-    features: ["3 Staff Accounts", "Manual Dispatch", "Stripe Integration", "Email Alerts"],
-    highlight: false,
+    price: "49",
+    tagline: "Perfect for solo cleaners or small teams just starting out.",
+    features: ["Up to 3 staff members", "Online booking page", "Basic dispatch & scheduling", "Stripe payment integration", "Email support", "Standard reporting"],
+    cta: "Start Free Trial",
+    highlighted: false
   },
   {
     name: "BUSINESS",
-    price: "49",
-    description: "SCALABLE AGENCY ENGINE",
-    features: ["Unlimited Staff", "Kanban Job Board", "SMS Notifications", "Page Builder", "Automated Payouts"],
-    highlight: true,
+    price: "99",
+    tagline: "Everything you need to scale a growing cleaning agency.",
+    features: ["Up to 15 staff members", "Custom domain booking page", "Automated SMS reminders", "Staff mobile portal", "Advanced analytics & profit tracking", "Zapier integration", "Priority email & chat support", "Customizable checklists", "Review generation"],
+    cta: "Start Free Trial",
+    highlighted: true
   },
   {
     name: "ENTERPRISE",
-    price: "149",
-    description: "MARKET TITAN INFRASTRUCTURE",
-    features: ["White-label Portal", "Custom Domain", "API Access", "24/7 Support", "Multi-location"],
-    highlight: false,
-  },
+    price: "249",
+    tagline: "For large franchises and multi-location cleaning businesses.",
+    features: ["Unlimited staff members", "Multiple locations/zones", "API access", "White-labeled app", "Dedicated account manager", "Custom onboarding", "SLA guarantees", "Advanced role permissions"],
+    cta: "Book a Demo",
+    highlighted: false
+  }
 ];
 
 export default function PricingSection() {
+  const [annual, setAnnual] = useState(false);
+
   return (
-    <section className="py-24 bg-white font-sora antialiased">
-      <div className="container mx-auto px-6">
-        
-        {/* Sharp Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 border-b border-slate-100 pb-12">
-          <div className="max-w-2xl">
-            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-[#1A7A5E] mb-4">Phase 1 / Pricing Protocol</p>
-            <h2 className="text-5xl md:text-7xl font-black text-[#0A0A0A] tracking-tighter uppercase leading-[0.85]">
-              Simple Tiers. <br />
-              <span className="text-slate-300 font-light italic">No Friction.</span>
-            </h2>
+    <section id="pricing" className="bg-background py-24 lg:py-32">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center"
+        >
+          <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest justify-center w-full" style={{ color: '#1A7A5E' }}>
+            <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#1A7A5E' }}></div>
+            Pricing
           </div>
-          <div className="text-left md:text-right">
-            <p className="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">Risk Assessment</p>
-            <p className="text-xl font-black text-[#1A7A5E] uppercase tracking-tighter">7-Day Free Trial Active</p>
-          </div>
-        </div>
+          <h2 className="text-4xl lg:text-5xl font-bold tracking-tight mt-4 text-foreground" style={{ fontFamily: 'Sora, sans-serif' }}>
+            Transparent pricing. No surprises.
+          </h2>
+          <p className="text-muted-foreground text-lg mt-4 max-w-2xl mx-auto">
+            14-day free trial on all plans. No credit card required.
+          </p>
 
-        {/* Sharp Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 border-t border-l border-slate-100">
-          {PLANS.map((plan, i) => (
-            <motion.div
-              key={plan.name}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: i * 0.1 }}
-              className={`flex flex-col p-10 border-r border-b border-slate-100 transition-colors duration-300 relative ${
-                plan.highlight ? "bg-slate-50/30" : "bg-white"
-              }`}
+          <div className="flex items-center justify-center gap-3 mt-10">
+            <span className={`text-sm font-medium ${!annual ? 'text-foreground' : 'text-muted-foreground'}`}>Monthly</span>
+            <div 
+              className="w-12 h-6 rounded-full relative cursor-pointer transition-colors"
+              style={{ backgroundColor: annual ? '#1A7A5E' : '#e8e8e8' }}
+              onClick={() => setAnnual(!annual)}
             >
-              {/* Highlight Bar */}
-              {plan.highlight && (
-                <div className="absolute top-0 left-0 w-full h-1 bg-[#1A7A5E]" />
+              <div 
+                className="w-5 h-5 rounded-full bg-white absolute top-[2px] transition-all shadow-sm"
+                style={{ left: annual ? 'calc(100% - 22px)' : '2px' }}
+              ></div>
+            </div>
+            <span className={`text-sm font-medium ${annual ? 'text-foreground' : 'text-muted-foreground'}`}>Annual</span>
+            <span className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold text-white ml-2" style={{ backgroundColor: '#1A7A5E' }}>
+              Save 20%
+            </span>
+          </div>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-3 gap-6 mt-12 items-start max-w-5xl mx-auto">
+          {plans.map((plan, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className={`rounded-2xl p-8 relative flex flex-col h-full transition-transform hover:-translate-y-1 ${
+                plan.highlighted ? "shadow-xl border-none" : "bg-background border border-border"
+              }`}
+              style={plan.highlighted ? { backgroundColor: '#1A7A5E' } : {}}
+            >
+              {plan.highlighted && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white rounded-full px-4 py-1 text-xs font-bold shadow-sm" style={{ color: '#1A7A5E' }}>
+                  Most Popular
+                </div>
               )}
-
-              <div className="mb-12">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xs font-black tracking-[0.3em] text-slate-400 uppercase">
-                    {plan.name}
-                  </h3>
-                  {plan.highlight && (
-                    <span className="text-[9px] font-black text-[#1A7A5E] uppercase tracking-widest bg-[#E8F5F0] px-2 py-0.5">
-                      Recommended
+              
+              <div className={`text-sm font-semibold uppercase tracking-wider ${plan.highlighted ? 'text-white/70' : 'text-muted-foreground'}`}>
+                {plan.name}
+              </div>
+              
+              <div className="mt-2 flex items-baseline gap-1">
+                <span className={`text-5xl font-bold tracking-tight ${plan.highlighted ? 'text-white' : 'text-foreground'}`} style={{ fontFamily: 'Sora, sans-serif' }}>
+                  ${annual ? Math.floor(parseInt(plan.price) * 0.8) : plan.price}
+                </span>
+                <span className={`text-xl font-normal ${plan.highlighted ? 'text-white/70' : 'text-muted-foreground'}`}>
+                  /mo
+                </span>
+              </div>
+              
+              <p className={`text-sm mt-2 mb-6 ${plan.highlighted ? 'text-white/70' : 'text-muted-foreground'}`}>
+                {plan.tagline}
+              </p>
+              
+              <div className={`border-t mb-6 ${plan.highlighted ? 'border-white/20' : 'border-border'}`}></div>
+              
+              <div className="space-y-3 flex-1">
+                {plan.features.map((feature, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <CheckCircle size={18} className="shrink-0 mt-0.5" style={{ color: plan.highlighted ? '#ffffff' : '#1A7A5E' }} />
+                    <span className={`text-sm ${plan.highlighted ? 'text-white/90' : 'text-foreground'}`}>
+                      {feature}
                     </span>
-                  )}
-                </div>
-                <p className="text-sm font-bold text-[#0A0A0A] tracking-tight">{plan.description}</p>
-              </div>
-
-              {/* Price Block */}
-              <div className="mb-12">
-                <div className="flex items-baseline gap-1">
-                  <span className="text-sm font-black text-slate-400">$</span>
-                  <span className="text-6xl font-black text-[#0A0A0A] tracking-tighter">{plan.price}</span>
-                  <span className="text-slate-300 font-bold text-xs uppercase tracking-widest">/mo</span>
-                </div>
-                <div className="inline-block mt-4 px-3 py-1 bg-[#0A0A0A] text-white text-[9px] font-black uppercase tracking-[0.2em]">
-                  7 Days Free
-                </div>
-              </div>
-
-              {/* Feature List */}
-              <div className="space-y-5 mb-16 flex-grow">
-                {plan.features.map((feature) => (
-                  <div key={feature} className="flex items-center gap-3">
-                    <div className="size-1 bg-[#1A7A5E]" /> {/* Square Bullet */}
-                    <span className="text-[11px] font-black text-slate-600 uppercase tracking-tight">{feature}</span>
                   </div>
                 ))}
               </div>
-
-              {/* Sharp CTA Button */}
-              <Button 
-                asChild
-                className={`h-16 w-full rounded-none font-black uppercase tracking-[0.2em] transition-all border-none text-xs shadow-none ${
-                  plan.highlight 
-                  ? "bg-[#1A7A5E] hover:bg-[#145d48] text-white" 
-                  : "bg-[#0A0A0A] hover:bg-slate-800 text-white"
+              
+              <button 
+                className={`w-full py-3 rounded-full text-sm font-semibold mt-8 transition-all ${
+                  plan.highlighted 
+                    ? 'bg-white hover:bg-white/90' 
+                    : 'bg-transparent border border-border text-foreground hover:border-foreground'
                 }`}
+                style={plan.highlighted ? { color: '#1A7A5E' } : {}}
               >
-                <Link href="/register" className="flex items-center justify-center gap-3">
-                  Start Trial
-                  <ArrowRight className="size-4" />
-                </Link>
-              </Button>
+                {plan.cta}
+              </button>
             </motion.div>
           ))}
         </div>
 
-        {/* Sharp Quote Section */}
-        <div className="mt-20 border border-slate-100 p-8 flex flex-col md:flex-row items-center justify-between gap-8 group hover:border-[#1A7A5E] transition-colors duration-500">
-          <div>
-            <h4 className="text-xl font-black text-[#0A0A0A] uppercase tracking-tighter mb-1">
-              Custom Quote & Estimates
-            </h4>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-              Scaling beyond 100+ squads? Let's build your enterprise bridge.
-            </p>
-          </div>
-          <Button 
-            variant="outline" 
-            className="h-14 px-10 rounded-none border-[#0A0A0A] text-[#0A0A0A] font-black uppercase tracking-widest hover:bg-[#0A0A0A] hover:text-white transition-all text-xs"
-          >
-            Get Estimation
-          </Button>
-        </div>
-
+        <p className="text-center mt-8 text-sm text-muted-foreground">
+          7-day free trial on all plans · No credit card required · Cancel anytime
+        </p>
       </div>
     </section>
   );
