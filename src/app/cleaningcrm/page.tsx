@@ -1,37 +1,33 @@
 "use client";
 
-import CRMFooter from "@/src/components/cleaningcrm/landing/CRMFooter";
-import CRMHero from "@/src/components/cleaningcrm/landing/CRMHero";
-import CRMNavbar from "@/src/components/cleaningcrm/landing/CRMNavbar";
-import FeaturesSection from "@/src/components/cleaningcrm/landing/FeaturesSection";
+import NavBar from "@/src/components/cleaningcrm/landing/NavBar";
+import HeroSection from "@/src/components/cleaningcrm/landing/HeroSection";
+import SocialProofBar from "@/src/components/cleaningcrm/landing/SocialProofBar";
+import ProblemSolution from "@/src/components/cleaningcrm/landing/ProblemSolution";
+import FeatureShowcase from "@/src/components/cleaningcrm/landing/FeatureShowcase";
+import WhoItsFor from "@/src/components/cleaningcrm/landing/WhoItsFor";
+import Testimonials from "@/src/components/cleaningcrm/landing/Testimonials";
+import HowItWorks from "@/src/components/cleaningcrm/landing/HowItWorks";
 import PricingSection from "@/src/components/cleaningcrm/landing/PricingSection";
-import TestimonialsSection from "@/src/components/cleaningcrm/landing/WorkflowSection";
-import { motion } from "framer-motion";
+import FaqSection from "@/src/components/cleaningcrm/landing/FaqSection";
+import FinalCta from "@/src/components/cleaningcrm/landing/FinalCta";
+import Footer from "@/src/components/cleaningcrm/landing/Footer";
 
 export default function CleaningCRMLandingPage() {
   return (
     <div className="relative overflow-x-hidden">
-      {/* Navigation */}
-      <CRMNavbar />
-
-      {/* Hero Section: The "Hook" */}
-      <CRMHero />
-
-    
-
-      {/* Features: The "Engine" */}
-      <FeaturesSection />
-
-      {/* Pricing: The "Conversion" */}
+      <NavBar />
+      <HeroSection />
+      <SocialProofBar />
+      <ProblemSolution />
+      <FeatureShowcase />
+      <WhoItsFor />
+      <Testimonials />
+      <HowItWorks />
       <PricingSection />
-
-      {/* Testimonials */}
-      <TestimonialsSection />
-
-      {/* Final CTA Section */}
-
-      {/* Footer */}
-      <CRMFooter />
+      <FaqSection />
+      <FinalCta />
+      <Footer />
     </div>
   );
 }
