@@ -5,13 +5,13 @@ import Link from "next/link";
 const links = {
   Products: [
     { label: "Cleaning CRM", href: "/cleaningcrm" },
-    { label: "Maintenance CRM", href: "#" },
-    { label: "Landscaping CRM", href: "#" },
+    { label: "Maintenance CRM", href: "/#" },
+    { label: "Landscaping CRM", href: "/#" },
   ],
   Company: [
-    { label: "Mission", href: "#mission" },
-    { label: "Team", href: "#team" },
-    { label: "Contact", href: "#contact" },
+    { label: "Mission", href: "/#mission" },
+    { label: "Team", href: "/#team" },
+    { label: "Contact", href: "/#contact" },
   ],
   Legal: [
 <<<<<<< HEAD
