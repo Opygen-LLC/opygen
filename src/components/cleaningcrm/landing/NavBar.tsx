@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
 
-export default function NavBar() {
+export default function CleaningCRMNavBar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 

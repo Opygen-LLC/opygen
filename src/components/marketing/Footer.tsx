@@ -14,15 +14,12 @@ const links = {
     { label: "Contact", href: "/#contact" },
   ],
   Legal: [
-<<<<<<< HEAD
     { label: "Privacy Policy", href: "/privacy-policy" },
     { label: "Terms of Service", href: "/terms-of-service" },
     { label: "Refund Policy", href: "/refund-policy" },
     { label: "Security", href: "/security" },
-=======
     { label: "Privacy policy", href: "/privacypolicy" },
     { label: "Terms of service", href: "/termsofservice" },
->>>>>>> origin/muhib
   ],
 };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import NavBar from "@/src/components/cleaningcrm/landing/NavBar";
+import CleaningCRMNavBar from "@/src/components/cleaningcrm/landing/NavBar";
 import HeroSection from "@/src/components/cleaningcrm/landing/HeroSection";
 import SocialProofBar from "@/src/components/cleaningcrm/landing/SocialProofBar";
 import ProblemSolution from "@/src/components/cleaningcrm/landing/ProblemSolution";
@@ -11,12 +11,12 @@ import HowItWorks from "@/src/components/cleaningcrm/landing/HowItWorks";
 import PricingSection from "@/src/components/cleaningcrm/landing/PricingSection";
 import FaqSection from "@/src/components/cleaningcrm/landing/FaqSection";
 import FinalCta from "@/src/components/cleaningcrm/landing/FinalCta";
-import Footer from "@/src/components/cleaningcrm/landing/Footer";
+import CleaningCRMFooter from "@/src/components/cleaningcrm/landing/Footer";
 
 export default function CleaningCRMLandingPage() {
   return (
     <div className="relative overflow-x-hidden">
-      <NavBar />
+      <CleaningCRMNavBar />
       <HeroSection />
       <SocialProofBar />
       <ProblemSolution />
@@ -27,7 +27,7 @@ export default function CleaningCRMLandingPage() {
       <PricingSection />
       <FaqSection />
       <FinalCta />
-      <Footer />
+      <CleaningCRMFooter />
     </div>
   );
 }

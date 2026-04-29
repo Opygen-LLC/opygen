@@ -1,6 +1,6 @@
 "use client";
 
-export default function Footer() {
+export default function CleaningCRMFooter() {
   return (
     <footer className="bg-foreground text-white border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16 grid grid-cols-2 md:grid-cols-5 gap-10">
