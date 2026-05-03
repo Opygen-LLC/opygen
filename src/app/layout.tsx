@@ -1,8 +1,16 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
+import { Syne, Urbanist } from "next/font/google";
 
 
+const synFont = Syne({
+  subsets: ["latin"],
+});
+
+const satoshi = Urbanist({
+  subsets: ["latin"],
+})
 
 export const metadata: Metadata = {
   title: "Opygen — Operations Engine",
@@ -27,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-      
+        className={satoshi.className}
       >
         {children}
       </body>

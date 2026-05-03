@@ -2,141 +2,337 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle } from "lucide-react";
 
 const plans = [
   {
-    name: "STARTER",
-    price: "49",
-    tagline: "Perfect for solo cleaners or small teams just starting out.",
-    features: ["Up to 3 staff members", "Online booking page", "Basic dispatch & scheduling", "Stripe payment integration", "Email support", "Standard reporting"],
-    cta: "Start Free Trial",
-    highlighted: false
+    name: "Starter Plan",
+    tagline: "Ideal for solo cleaners getting started",
+    monthlyPrice: 49,
+    features: [
+      "Up to 3 staff members",
+      "Online booking page",
+      "Stripe payment integration",
+      "Basic dispatch & scheduling",
+      "Email support",
+    ],
+    highlighted: false,
+    cta: "Get Started",
   },
   {
-    name: "BUSINESS",
-    price: "99",
-    tagline: "Everything you need to scale a growing cleaning agency.",
-    features: ["Up to 15 staff members", "Custom domain booking page", "Automated SMS reminders", "Staff mobile portal", "Advanced analytics & profit tracking", "Zapier integration", "Priority email & chat support", "Customizable checklists", "Review generation"],
-    cta: "Start Free Trial",
-    highlighted: true
+    name: "Business Plan",
+    tagline: "Perfect for growing cleaning agencies",
+    monthlyPrice: 99,
+    features: [
+      "Up to 15 staff members",
+      "Custom domain booking page",
+      "Automated SMS reminders",
+      "Staff mobile portal",
+      "Advanced analytics & profit tracking",
+      "Priority email & chat support",
+    ],
+    highlighted: true,
+    cta: "Get Started",
   },
   {
-    name: "ENTERPRISE",
-    price: "249",
-    tagline: "For large franchises and multi-location cleaning businesses.",
-    features: ["Unlimited staff members", "Multiple locations/zones", "API access", "White-labeled app", "Dedicated account manager", "Custom onboarding", "SLA guarantees", "Advanced role permissions"],
-    cta: "Book a Demo",
-    highlighted: false
-  }
+    name: "Enterprise Plan",
+    tagline: "Built to scale for large operations",
+    monthlyPrice: 249,
+    features: [
+      "Unlimited staff members",
+      "Multiple locations & zones",
+      "API access & white-label",
+      "Dedicated account manager",
+      "Custom onboarding & SLA",
+      "Advanced role permissions",
+    ],
+    highlighted: false,
+    cta: "Get Started",
+  },
 ];
+
+/* ── Circle checkmark icon ── */
+function CheckIcon({ white }: { white?: boolean }) {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      style={{ flexShrink: 0, marginTop: "1px" }}
+    >
+      <circle
+        cx="9"
+        cy="9"
+        r="8.25"
+        stroke={white ? "rgba(255,255,255,0.5)" : "#1A7A5E"}
+        strokeWidth="1.5"
+      />
+      <path
+        d="M5.5 9l2.5 2.5 4.5-4.5"
+        stroke={white ? "white" : "#1A7A5E"}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export default function PricingSection() {
   const [annual, setAnnual] = useState(false);
 
+  const getPrice = (base: number) =>
+    annual ? Math.floor(base * 0.8) : base;
+
   return (
     <section id="pricing" className="bg-background py-24 lg:py-32">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="max-w-6xl mx-auto px-6 lg:px-12">
+
+        {/* ── Header ── */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center"
+          className="flex flex-col items-center text-center"
         >
-          <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest justify-center w-full" style={{ color: '#1A7A5E' }}>
-            <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#1A7A5E' }}></div>
-            Pricing
+          {/* Pill badge */}
+          <div
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary border border-border mb-6"
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <circle cx="7" cy="7" r="7" fill="#1A7A5E" />
+              <path
+                d="M4 7l2 2 4-4"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span className="text-xs font-semibold text-foreground tracking-wide">
+              Pricing Plan
+            </span>
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold tracking-tight mt-4 text-foreground" style={{ fontFamily: 'Sora, sans-serif' }}>
-            Transparent pricing. No surprises.
+
+          {/* Headline */}
+          <h2
+            className="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-foreground leading-[1.08] max-w-2xl"
+           
+          >
+            Explore our pricing plans
           </h2>
-          <p className="text-muted-foreground text-lg mt-4 max-w-2xl mx-auto">
-            14-day free trial on all plans. No credit card required.
+
+          {/* Subtext */}
+          <p className="text-muted-foreground mt-4 text-base leading-relaxed max-w-lg">
+            Start free for 7 days — no credit card needed. Pick the plan that fits
+            your cleaning business and scale anytime.
           </p>
 
-          <div className="flex items-center justify-center gap-3 mt-10">
-            <span className={`text-sm font-medium ${!annual ? 'text-foreground' : 'text-muted-foreground'}`}>Monthly</span>
-            <div 
-              className="w-12 h-6 rounded-full relative cursor-pointer transition-colors"
-              style={{ backgroundColor: annual ? '#1A7A5E' : '#e8e8e8' }}
-              onClick={() => setAnnual(!annual)}
+          {/* ── Toggle — pill switcher style like reference ── */}
+          <div
+            className="flex items-center mt-10 rounded-full p-1"
+            style={{ backgroundColor: "#f0f0f0" }}
+          >
+            {/* Monthly */}
+            <button
+              onClick={() => setAnnual(false)}
+              className="px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200"
+              style={
+                !annual
+                  ? { backgroundColor: "#0a0a0a", color: "white" }
+                  : { backgroundColor: "transparent", color: "#6b6b6b" }
+              }
             >
-              <div 
-                className="w-5 h-5 rounded-full bg-white absolute top-[2px] transition-all shadow-sm"
-                style={{ left: annual ? 'calc(100% - 22px)' : '2px' }}
-              ></div>
-            </div>
-            <span className={`text-sm font-medium ${annual ? 'text-foreground' : 'text-muted-foreground'}`}>Annual</span>
-            <span className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold text-white ml-2" style={{ backgroundColor: '#1A7A5E' }}>
-              Save 20%
-            </span>
+              Monthly
+            </button>
+
+            {/* Yearly + save badge */}
+            <button
+              onClick={() => setAnnual(true)}
+              className="flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200"
+              style={
+                annual
+                  ? { backgroundColor: "#0a0a0a", color: "white" }
+                  : { backgroundColor: "transparent", color: "#6b6b6b" }
+              }
+            >
+              Yearly
+              <span
+                className="text-[10px] font-bold px-1.5 py-0.5 rounded-full"
+                style={{ backgroundColor: "#22c55e", color: "white" }}
+              >
+                20% SAVE
+              </span>
+            </button>
           </div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-6 mt-12 items-start max-w-5xl mx-auto">
+        {/* ── Pricing cards ── */}
+        <div className="grid lg:grid-cols-3 gap-5 mt-14 items-stretch">
           {plans.map((plan, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className={`rounded-2xl p-8 relative flex flex-col h-full transition-transform hover:-translate-y-1 ${
-                plan.highlighted ? "shadow-xl border-none" : "bg-background border border-border"
-              }`}
-              style={plan.highlighted ? { backgroundColor: '#1A7A5E' } : {}}
+              className="relative flex flex-col rounded-3xl overflow-hidden"
+              style={
+                plan.highlighted
+                  ? {
+                    background:
+                      "linear-gradient(160deg, #0f5c43 0%, #1A7A5E 45%, #22a876 100%)",
+                  }
+                  : {
+                    backgroundColor: "white",
+                    border: "1px solid #e8e8e8",
+                  }
+              }
             >
+              {/* Decorative light rays on highlighted card — like reference */}
               {plan.highlighted && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white rounded-full px-4 py-1 text-xs font-bold shadow-sm" style={{ color: '#1A7A5E' }}>
-                  Most Popular
-                </div>
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background:
+                      "radial-gradient(ellipse at 60% 0%, rgba(255,255,255,0.18) 0%, transparent 55%)",
+                  }}
+                />
               )}
-              
-              <div className={`text-sm font-semibold uppercase tracking-wider ${plan.highlighted ? 'text-white/70' : 'text-muted-foreground'}`}>
-                {plan.name}
+
+              {/* ── Card content ── */}
+              <div className="relative z-10 p-7 flex flex-col flex-1">
+
+                {/* Plan name */}
+                <h3
+                  className="text-xl font-bold leading-tight"
+                  style={{
+                    color: plan.highlighted ? "white" : "#0a0a0a",
+                  }}
+                >
+                  {plan.name}
+                </h3>
+
+                {/* Tagline */}
+                <p
+                  className="text-sm mt-1 mb-6"
+                  style={{
+                    color: plan.highlighted
+                      ? "rgba(255,255,255,0.65)"
+                      : "#6b6b6b",
+                  }}
+                >
+                  {plan.tagline}
+                </p>
+
+                {/* Price */}
+                <div className="mb-1">
+                  <span
+                    className="text-5xl font-bold tracking-tight"
+                    style={{
+                      color: plan.highlighted ? "white" : "#0a0a0a",
+                    }}
+                  >
+                    ${getPrice(plan.monthlyPrice)}
+                  </span>
+                </div>
+                <p
+                  className="text-sm mb-6"
+                  style={{
+                    color: plan.highlighted
+                      ? "rgba(255,255,255,0.55)"
+                      : "#6b6b6b",
+                  }}
+                >
+                  {annual ? "Annual subscription" : "Monthly subscription"}
+                </p>
+
+                {/* CTA button */}
+                <button
+                  className="w-full py-3.5 rounded-2xl text-sm font-semibold flex items-center justify-center gap-2 transition-all duration-200 mb-7"
+                  style={
+                    plan.highlighted
+                      ? {
+                        backgroundColor: "white",
+                        color: "#1A7A5E",
+                      }
+                      : {
+                        backgroundColor: "#0a0a0a",
+                        color: "white",
+                      }
+                  }
+                  onMouseEnter={(e) => {
+                    if (!plan.highlighted) {
+                      (e.currentTarget as HTMLElement).style.backgroundColor = "#1A7A5E";
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!plan.highlighted) {
+                      (e.currentTarget as HTMLElement).style.backgroundColor = "#0a0a0a";
+                    }
+                  }}
+                >
+                  {plan.cta}
+                  <span
+                    className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold"
+                    style={{
+                      backgroundColor: plan.highlighted ? "#1A7A5E" : "rgba(255,255,255,0.15)",
+                      color: plan.highlighted ? "white" : "white",
+                    }}
+                  >
+                    ↗
+                  </span>
+                </button>
+
+                {/* Includes label */}
+                <p
+                  className="text-xs font-semibold uppercase tracking-wider mb-4"
+                  style={{
+                    color: plan.highlighted
+                      ? "rgba(255,255,255,0.50)"
+                      : "#9a9a9a",
+                  }}
+                >
+                  Includes
+                </p>
+
+                {/* Feature list */}
+                <ul className="space-y-3 flex-1">
+                  {plan.features.map((f, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <CheckIcon white={plan.highlighted} />
+                      <span
+                        className="text-sm leading-relaxed"
+                        style={{
+                          color: plan.highlighted
+                            ? "rgba(255,255,255,0.85)"
+                            : "#333",
+                        }}
+                      >
+                        {f}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Cancel note */}
+                <p
+                  className="text-xs mt-8"
+                  style={{
+                    color: plan.highlighted
+                      ? "rgba(255,255,255,0.38)"
+                      : "#bbb",
+                  }}
+                >
+                  You can easily cancel anytime
+                </p>
               </div>
-              
-              <div className="mt-2 flex items-baseline gap-1">
-                <span className={`text-5xl font-bold tracking-tight ${plan.highlighted ? 'text-white' : 'text-foreground'}`} style={{ fontFamily: 'Sora, sans-serif' }}>
-                  ${annual ? Math.floor(parseInt(plan.price) * 0.8) : plan.price}
-                </span>
-                <span className={`text-xl font-normal ${plan.highlighted ? 'text-white/70' : 'text-muted-foreground'}`}>
-                  /mo
-                </span>
-              </div>
-              
-              <p className={`text-sm mt-2 mb-6 ${plan.highlighted ? 'text-white/70' : 'text-muted-foreground'}`}>
-                {plan.tagline}
-              </p>
-              
-              <div className={`border-t mb-6 ${plan.highlighted ? 'border-white/20' : 'border-border'}`}></div>
-              
-              <div className="space-y-3 flex-1">
-                {plan.features.map((feature, idx) => (
-                  <div key={idx} className="flex items-start gap-3">
-                    <CheckCircle size={18} className="shrink-0 mt-0.5" style={{ color: plan.highlighted ? '#ffffff' : '#1A7A5E' }} />
-                    <span className={`text-sm ${plan.highlighted ? 'text-white/90' : 'text-foreground'}`}>
-                      {feature}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              
-              <button 
-                className={`w-full py-3 rounded-full text-sm font-semibold mt-8 transition-all ${
-                  plan.highlighted 
-                    ? 'bg-white hover:bg-white/90' 
-                    : 'bg-transparent border border-border text-foreground hover:border-foreground'
-                }`}
-                style={plan.highlighted ? { color: '#1A7A5E' } : {}}
-              >
-                {plan.cta}
-              </button>
             </motion.div>
           ))}
         </div>
 
+        {/* Bottom note */}
         <p className="text-center mt-8 text-sm text-muted-foreground">
           7-day free trial on all plans · No credit card required · Cancel anytime
         </p>

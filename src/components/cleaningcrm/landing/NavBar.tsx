@@ -1,82 +1,126 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Menu } from "lucide-react";
+import { useState } from "react";
+import { OpygenLogo } from "../../shared/Logo";
+import Link from "next/link";
 
-export default function CleaningCRMNavBar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+export default function NavBar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [active, setActive] = useState("home");
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const links = [
+    { id: "home", label: "Home", href: "#" },
+    { id: "features", label: "Features", href: "#features" },
+    { id: "pricing", label: "Pricing", href: "#pricing" },
+    { id: "how-it-works", label: "How It Works", href: "#how-it-works" },
+    { id: "testimonials", label: "Testimonials", href: "#testimonials" },
+  ];
 
   return (
     <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-          scrolled ? "bg-white border-b border-border" : "bg-white/90 backdrop-blur-md"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          {/* LEFT */}
-          <div className="flex items-center gap-2">
-            <div className="w-2.5 h-2.5 rounded flex items-center justify-center" style={{ backgroundColor: '#1A7A5E' }}>
-              <div className="w-1 h-1 bg-white rounded-full"></div>
-            </div>
-            <span className="font-bold text-foreground text-xl" style={{ fontFamily: 'Sora, sans-serif' }}>
-              Opygen <span style={{ color: '#1A7A5E' }}>Clean</span>
-            </span>
+      {/* ── Fixed nav — transparent, rides on hero gradient ── */}
+      <nav className="fixed top-0 left-0 right-0 z-50 pt-3 px-3">
+        {/*
+          Inner bar sits inside the rounded hero card.
+          No background of its own — hero gradient shows through.
+        */}
+        <div className="flex items-center justify-between px-6 md:px-10 h-16 rounded-t-[20px] pt-3 max-w-8xl mx-auto">
+          {/* ── Logo ── */}
+          <Link href={"/"}>
+            <OpygenLogo textClass="text-white" />
+          </Link>
+
+          {/* ── Center pill nav ── */}
+          <div className="hidden md:flex items-center gap-0.5 rounded-full px-1.5 py-1.5 bg-white shadow-[0_2px_14px_rgba(0,0,0,0.06)]">
+            {links.map((link) => (
+              <a
+                key={link.id}
+                href={link.href}
+                onClick={() => setActive(link.id)}
+                className={`
+                  px-[18px] py-[6px] rounded-full text-[13.5px] transition-all duration-150 ease-out inline-block tracking-[-0.01em]
+                  ${active === link.id
+                    ? "font-semibold text-white bg-[#1A7A5E] shadow-[0_1px_6px_rgba(0,0,0,0.13)]"
+                    : "font-medium text-[#475467] bg-transparent hover:text-[#101828] hover:bg-black/5"
+                  }
+                `}
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
 
-          {/* CENTER */}
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-sm text-muted-foreground hover:text-foreground font-medium transition-colors">Features</a>
-            <a href="#pricing" className="text-sm text-muted-foreground hover:text-foreground font-medium transition-colors">Pricing</a>
-            <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground font-medium transition-colors">How It Works</a>
-            <a href="#testimonials" className="text-sm text-muted-foreground hover:text-foreground font-medium transition-colors">Testimonials</a>
-          </div>
-
-          {/* RIGHT */}
-          <div className="hidden md:flex items-center gap-4">
-            <button className="text-sm font-medium text-foreground px-4 py-2 hover:bg-secondary rounded-lg transition-colors">
-              Log In
+          {/* ── Right buttons ── */}
+          <div className="hidden md:flex items-center gap-1 rounded-full p-1.5 bg-white shadow-[0_2px_14px_rgba(0,0,0,0.06)]">
+            <button className="text-[13.5px] font-semibold text-[#475467] bg-transparent hover:text-[#101828] hover:bg-black/5 rounded-full px-5 py-2 transition-all duration-150 tracking-[-0.01em]">
+              Log in
             </button>
-            <button
-              className="rounded-full px-5 py-2 text-sm font-semibold text-white hover:opacity-90 transition-opacity"
-              style={{ backgroundColor: '#1A7A5E' }}
-            >
-              Start Free Trial
+            <button className="text-[13.5px] font-semibold text-white bg-[#0d4a38] hover:opacity-90 rounded-full px-[22px] py-2 transition-opacity shadow-[0_2px_8px_rgba(13,74,56,0.3)] tracking-[-0.01em]">
+              Sign Up
             </button>
           </div>
 
-          {/* MOBILE TOGGLE */}
+          {/* ── Mobile hamburger ── */}
           <button
-            className="md:hidden text-foreground"
-            onClick={() => setMobileMenuOpen(true)}
+            className="md:hidden flex items-center justify-center w-[38px] h-[38px] rounded-full bg-white/10 border border-white/20"
+            onClick={() => setMobileOpen(true)}
           >
-            <Menu size={24} />
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+              <path
+                d="M0 1h16M0 6h16M0 11h16"
+                stroke="white"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+              />
+            </svg>
           </button>
         </div>
       </nav>
 
-      {/* MOBILE DRAWER */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-white flex flex-col p-6">
-          <div className="flex justify-end mb-8">
-            <button onClick={() => setMobileMenuOpen(false)} className="text-foreground text-2xl font-bold">&times;</button>
+      {/* ── Mobile full-screen drawer ── */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-50 flex flex-col bg-[#0d4a38]">
+          <div className="flex items-center justify-between px-6 h-[68px]">
+            <span className="font-bold text-[17px] text-white">
+              Opygen Clean
+            </span>
+            <button
+              onClick={() => setMobileOpen(false)}
+              className="w-9 h-9 rounded-full bg-white/10 border border-white/20 text-white text-xl flex items-center justify-center cursor-pointer"
+            >
+              ×
+            </button>
           </div>
-          <div className="flex flex-col gap-6 text-xl font-medium" style={{ fontFamily: 'Sora, sans-serif' }}>
-            <a href="#features" onClick={() => setMobileMenuOpen(false)} className="text-foreground">Features</a>
-            <a href="#pricing" onClick={() => setMobileMenuOpen(false)} className="text-foreground">Pricing</a>
-            <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="text-foreground">How It Works</a>
-            <a href="#testimonials" onClick={() => setMobileMenuOpen(false)} className="text-foreground">Testimonials</a>
+
+          <div className="px-4 py-2 flex-1">
+            {links.map((link) => (
+              <a
+                key={link.id}
+                href={link.href}
+                onClick={() => {
+                  setActive(link.id);
+                  setMobileOpen(false);
+                }}
+                className={`
+                  block px-4 py-3.5 rounded-xl text-base font-medium mb-0.5
+                  ${active === link.id
+                    ? "text-white bg-white/10"
+                    : "text-white/70 bg-transparent hover:bg-white/5"
+                  }
+                `}
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
-          <div className="mt-auto flex flex-col gap-4">
-            <button className="text-foreground font-semibold py-3 border border-border rounded-full w-full">Log In</button>
-            <button className="text-white font-semibold py-3 rounded-full w-full" style={{ backgroundColor: '#1A7A5E' }}>Start Free Trial</button>
+
+          <div className="px-5 pb-11 flex flex-col gap-3">
+            <button className="w-full p-3.5 rounded-full text-[15px] font-semibold text-white bg-white/10 border border-white/25 cursor-pointer hover:bg-white/20 transition-colors">
+              Log In
+            </button>
+            <button className="w-full p-3.5 rounded-full text-[15px] font-semibold text-[#1A7A5E] bg-white border-none cursor-pointer hover:bg-gray-50 transition-colors">
+              Start Free Trial
+            </button>
           </div>
         </div>
       )}
