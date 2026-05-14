@@ -1,195 +1,200 @@
 "use client";
 
+/*
+Previous HeroSection implementation commented out as requested.
+
+"use client";
+
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, Terminal, Cpu } from "lucide-react";
+import { ArrowRight, Cpu } from "lucide-react";
 import { Button } from "../ui/button";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { gsap } from "gsap";
 
 export default function HeroSection() {
-  const [text, setText] = useState("");
-  const fullText = "SERVICE GROWTH.";
-  const [index, setIndex] = useState(0);
-  const gridRef = useRef(null);
-  const containerRef = useRef(null);
+    const [text, setText] = useState("");
+    const fullText = "SERVICE GROWTH.";
+    const [index, setIndex] = useState(0);
+    const containerRef = useRef(null);
 
-  // 1. Typewriter Logic (Framer-compatible)
-  useEffect(() => {
-    if (index < fullText.length) {
-      const timeout = setTimeout(() => {
-        setText((prev) => prev + fullText[index]);
-        setIndex((prev) => prev + 1);
-      }, 70);
-      return () => clearTimeout(timeout);
-    }
-  }, [index, fullText]);
+    useEffect(() => {
+        if (index < fullText.length) {
+            const timeout = setTimeout(() => {
+                setText((prev) => prev + fullText[index]);
+                setIndex((prev) => prev + 1);
+            }, 70);
+            return () => clearTimeout(timeout);
+        }
+    }, [index, fullText]);
 
-  // 2. GSAP: Interactive Background Grid & Parallax
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      const xPos = (clientX / window.innerWidth - 0.5) * 30;
-      const yPos = (clientY / window.innerHeight - 0.5) * 30;
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            const { clientX, clientY } = e;
+            const xPos = (clientX / window.innerWidth - 0.5) * 30;
+            const yPos = (clientY / window.innerHeight - 0.5) * 30;
 
-      gsap.to(".hero-grid", {
-        x: xPos,
-        y: yPos,
-        duration: 2,
-        ease: "power2.out",
-      });
-    };
+            gsap.to(".hero-grid", {
+                x: xPos,
+                y: yPos,
+                duration: 2,
+                ease: "power2.out",
+            });
+        };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+        window.addEventListener("mousemove", handleMouseMove);
+        return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, []);
 
+    return (
+        <section
+            ref={containerRef}
+            className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-white pt-24 pb-12 px-4"
+        >
+            ...previous hero markup...
+        </section>
+    );
+}
+*/
+
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Button } from "../ui/button";
+
+const services = ["Web", "Apps", "UI/UX", "Marketing", "Consultation"];
+
+export default function HeroSection() {
   return (
-    <section 
-      ref={containerRef}
-      className="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden bg-white pt-24 pb-12 px-4"
-    >
-      
-      {/* GSAP Managed Grid: Moving slightly with mouse */}
-      <div 
-        className="hero-grid absolute inset-0 pointer-events-none opacity-[0.2]"
+    <section className="relative overflow-hidden bg-white px-6 pb-20 pt-28 md:pt-32">
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.35]"
         style={{
-          backgroundImage: `linear-gradient(#E8E8E8 1px, transparent 1px), linear-gradient(90deg, #E8E8E8 1px, transparent 1px)`,
-          backgroundSize: '80px 80px',
-          width: '110%',
-          height: '110%',
-          top: '-5%',
-          left: '-5%',
-          maskImage: 'radial-gradient(circle at center, black, transparent 70%)',
-          WebkitMaskImage: 'radial-gradient(circle at center, black, transparent 70%)'
+          backgroundImage:
+            "linear-gradient(#F0F0F0 1px, transparent 1px), linear-gradient(90deg, #F0F0F0 1px, transparent 1px)",
+          backgroundSize: "72px 72px",
         }}
       />
 
-      <div className="relative z-10 w-full max-w-5xl flex flex-col items-center">
-        
-        {/* Top Badge: Framer Motion Entrance */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "circOut" }}
-          className="mb-8"
-        >
-          <div className="flex items-center gap-3 bg-[#F5F5F5] border border-[#E8E8E8] px-4 py-2 text-[10px] font-bold tracking-[0.2em] uppercase text-[#6B6B6B]">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-            </span>
-            <Cpu className="size-3 animate-spin-slow" />
-            Core Status: Optimal
-          </div>
-        </motion.div>
-
-        {/* Headline: Staggered Entrance */}
-        <motion.h1 
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-center text-[#0A0A0A] text-[clamp(2.2rem,9vw,5.5rem)] font-bold leading-[0.9] tracking-[-0.05em] mb-8"
-        >
-          THE ENGINE FOR <br />
-          <span className="text-[#6B6B6B]">
-            {text}
-            <motion.span 
-              animate={{ opacity: [1, 0] }}
-              transition={{ repeat: Infinity, duration: 0.8 }}
-              className="inline-block w-[3px] h-[0.8em] bg-[#0A0A0A] ml-1 align-middle"
-            />
-          </span>
-        </motion.h1>
-
-        {/* Subtext */}
-        <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="text-center text-[#6B6B6B] text-sm md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed px-2 font-medium"
-        >
-          Opygen is the operating system for cleaning and service teams. 
-          Replace manual chaos with a high-performance system for scheduling, 
-          payments, and team management.
-        </motion.p>
-
-        {/* Action Buttons: GSAP Hover Effects */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto px-4"
-        >
-          <Button 
-            asChild 
-            className="w-full sm:w-auto bg-[#0A0A0A] text-white hover:bg-black rounded-none h-14 px-10 text-[11px] font-bold uppercase tracking-[0.2em] relative overflow-hidden group"
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,1fr)_360px]">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "circOut" }}
+            className="max-w-4xl"
           >
-            <Link href="/get-started">
-              <span className="relative z-10 flex items-center">
-                Initialize System
-                <ArrowRight className="ml-2 size-4 group-hover:translate-x-2 transition-transform duration-300" />
+            <div className="mb-8 flex items-center gap-3">
+              <span className="h-2 w-2 bg-[#0A0A0A]" />
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#6B6B6B]">
+                Opygen Digital Studio
               </span>
-            </Link>
-          </Button>
-          
-          <Button 
-            asChild 
-            variant="outline" 
-            className="w-full sm:w-auto border-[#E8E8E8] rounded-none h-14 px-10 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-[#F9F9F9] transition-all"
-          >
-            <Link href="/demo">Request System Demo</Link>
-          </Button>
-        </motion.div>
+            </div>
 
-        {/* Feature Grid: Framer Motion Staggered Children */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.4 }}
-          className="mt-24 w-full grid grid-cols-2 md:grid-cols-4 gap-px bg-[#E8E8E8] border border-[#E8E8E8]"
-        >
-          {[
-            { label: "Stability", val: "99.9%" },
-            { label: "Automation", val: "Active" },
-            { label: "Onboarding", val: "15 Min" },
-            { label: "Security", val: "AES-256" },
-          ].map((item, i) => (
-            <motion.div 
-              key={i} 
-              whileHover={{ backgroundColor: "#F9F9F9" }}
-              className="bg-white p-6 md:p-10 flex flex-col items-center justify-center group"
+            <h1 className="text-[clamp(3rem,7vw,6.5rem)] font-bold leading-[0.9] tracking-tighter text-[#0A0A0A]">
+              Clean digital systems for modern businesses.
+            </h1>
+
+            <p className="mt-8 max-w-2xl border-l-2 border-[#0A0A0A] pl-6 text-base font-medium leading-8 text-[#6B6B6B] md:text-lg">
+              We design and build websites, apps, interfaces, and growth systems
+              with clear strategy and careful execution.
+            </p>
+
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <Button
+                asChild
+                className="h-14 rounded-none bg-[#0A0A0A] px-8 text-white hover:bg-[#1A1A1A]"
+              >
+                <Link href="#contact" className="flex items-center gap-2">
+                  Start a project
+                  <ArrowRight className="size-4" />
+                </Link>
+              </Button>
+
+              <Button
+                asChild
+                variant="outline"
+                className="h-14 rounded-none border-[#DADADA] bg-white px-8 hover:border-[#0A0A0A] hover:bg-white"
+              >
+                <Link href="#services">Explore services</Link>
+              </Button>
+            </div>
+
+            {/* <div className="mt-12 flex flex-wrap gap-2">
+              {services.map((service) => (
+                <span
+                  key={service}
+                  className="border border-[#E8E8E8] bg-white px-4 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-[#6B6B6B]"
+                >
+                  {service}
+                </span>
+              ))}
+            </div> */}
+          </motion.div>
+
+          <HeroServicePanel />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HeroServicePanel() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, delay: 0.15, ease: "circOut" }}
+      className="hidden lg:block"
+      aria-hidden="true"
+    >
+      <div className="border border-[#E8E8E8] bg-white">
+        <div className="border-b border-[#E8E8E8] p-6">
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#ADADAD]">
+            Studio Scope
+          </p>
+          <p className="mt-3 text-2xl font-bold leading-tight tracking-tight text-[#0A0A0A]">
+            Strategy, design, build, and growth.
+          </p>
+        </div>
+
+        <div className="grid gap-px bg-[#E8E8E8]">
+          {services.map((service, index) => (
+            <motion.div
+              key={service}
+              className="flex items-center justify-between bg-white p-5"
+              animate={{ x: index % 2 === 0 ? [0, 4, 0] : [0, -4, 0] }}
+              transition={{
+                duration: 5 + index,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
             >
-              <motion.p 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.6 + (i * 0.1) }}
-                className="text-[9px] uppercase tracking-[0.2em] text-[#ADADAD] group-hover:text-[#6B6B6B] mb-2 font-black transition-colors"
-              >
-                {item.label}
-              </motion.p>
-              <motion.p 
-                 initial={{ opacity: 0 }}
-                 animate={{ opacity: 1 }}
-                 transition={{ delay: 1.8 + (i * 0.1) }}
-                className="text-lg md:text-xl font-bold text-[#0A0A0A]"
-              >
-                {item.val}
-              </motion.p>
+              <span className="text-sm font-bold text-[#0A0A0A]">
+                {service}
+              </span>
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#ADADAD]">
+                0{index + 1}
+              </span>
             </motion.div>
           ))}
-        </motion.div>
-      </div>
+        </div>
 
-      <style jsx global>{`
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        .animate-spin-slow {
-          animation: spin-slow 8s linear infinite;
-        }
-      `}</style>
-    </section>
+        <div className="grid grid-cols-2 gap-px bg-[#E8E8E8] border-t border-[#E8E8E8]">
+          <div className="bg-[#0A0A0A] p-5">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40">
+              Process
+            </p>
+            <p className="mt-2 text-sm font-bold text-white">Clear first</p>
+          </div>
+          <div className="bg-[#FAFAFA] p-5">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#ADADAD]">
+              Output
+            </p>
+            <p className="mt-2 text-sm font-bold text-[#0A0A0A]">Launch ready</p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
   );
 }

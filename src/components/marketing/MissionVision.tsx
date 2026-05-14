@@ -8,7 +8,7 @@ export default function MissionVision() {
       {/* Structural Accent: Vertical Line */}
       <div className="absolute left-1/2 top-0 h-full w-px bg-[var(--border)] hidden lg:block opacity-50" />
 
-      <div className="container py-20 max-w-7xl mx-auto relative z-10">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
         {/* Header Logic */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-xl">

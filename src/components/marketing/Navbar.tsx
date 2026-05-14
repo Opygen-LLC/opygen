@@ -9,6 +9,7 @@ import { Button } from "../ui/button";
 const navLinks = [
   { label: "Mission", href: "#mission" },
   { label: "Products", href: "#products" },
+  { label: "Services", href: "#services" },
   { label: "Team", href: "#team" },
   { label: "Contact", href: "#contact" },
 ];
@@ -37,13 +38,13 @@ export default function Navbar() {
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-[120] transition-all duration-300 border-b",
+          "fixed top-0 left-0 right-0 z-120 transition-all duration-300 border-b",
           scrolled
             ? "bg-white/90 backdrop-blur-md border-[#E8E8E8] py-3"
             : "bg-transparent border-transparent py-5"
         )}
       >
-        <div className=" max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-6">
           
           {/* 1. Logo (Left) */}
           <Link 
@@ -103,9 +104,9 @@ export default function Navbar() {
       {/* Mobile Menu Overlay */}
       <div
         className={cn(
-          "fixed inset-0 bg-white z-[110] md:hidden transition-all duration-500 ease-in-out",
-          menuOpen 
-            ? "opacity-100 pointer-events-auto translate-y-0" 
+          "fixed inset-0 bg-white z-110 md:hidden transition-all duration-500 ease-in-out",
+          menuOpen
+            ? "opacity-100 pointer-events-auto translate-y-0"
             : "opacity-0 pointer-events-none -translate-y-4"
         )}
       >

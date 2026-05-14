@@ -25,7 +25,7 @@ const links = {
 export default function Footer() {
   return (
     <footer className="bg-[#0A0A0A] text-white pt-20 pb-10">
-      <div className="container mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
           {/* Brand Identity: Spans 5 columns on desktop */}

@@ -50,6 +50,17 @@
   --radius-sm: 4px;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 /* Redesigned Base Styles */
 body {
   font-family: var(--font-sans);
