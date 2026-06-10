@@ -24,7 +24,7 @@ export default function PrivacyPolicy() {
         <div className="container mx-auto px-6 max-w-4xl">
           {/* Header */}
           <div className="mb-20 space-y-6">
-            <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-bold leading-[1] tracking-[-0.05em] font-syne text-[#0A0A0A]">
+            <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-bold leading-[1] tracking-[-0.05em] font-sans text-[#0A0A0A]">
               Privacy Policy
             </h1>
             <div className="flex items-center gap-4">
@@ -38,7 +38,7 @@ export default function PrivacyPolicy() {
           {/* Content */}
           <div className="space-y-16">
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 1. Introduction
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -49,7 +49,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 2. Information We Collect
               </h2>
               <div className="space-y-4">
@@ -76,7 +76,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 3. How We Use Your Information
               </h2>
               <ul className="space-y-4 list-none text-[#6B6B6B] font-medium">
@@ -100,7 +100,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 4. How We Share Your Information
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -123,7 +123,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 5. Data Retention
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -132,7 +132,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 6. User Rights
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -141,7 +141,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 7. Cookies
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -150,7 +150,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 8. Security
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -159,7 +159,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 9. Children's Privacy
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -168,7 +168,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 10. Changes to This Policy
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -177,7 +177,7 @@ export default function PrivacyPolicy() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 11. Contact Us
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">

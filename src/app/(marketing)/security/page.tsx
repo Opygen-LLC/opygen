@@ -24,7 +24,7 @@ export default function Security() {
         <div className="container mx-auto px-6 max-w-4xl">
           {/* Header */}
           <div className="mb-20 space-y-6">
-            <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-bold leading-[1] tracking-[-0.05em] font-syne text-[#0A0A0A]">
+            <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-bold leading-[1] tracking-[-0.05em] font-sans text-[#0A0A0A]">
               Security
             </h1>
             <div className="flex items-center gap-4">
@@ -38,7 +38,7 @@ export default function Security() {
           {/* Content */}
           <div className="space-y-16">
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 1. Our Commitment to Security
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -47,7 +47,7 @@ export default function Security() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 2. Data Encryption
               </h2>
               <div className="space-y-4">
@@ -64,7 +64,7 @@ export default function Security() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 3. Data Storage and Infrastructure
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -73,7 +73,7 @@ export default function Security() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 4. Payment Security
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -82,7 +82,7 @@ export default function Security() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 5. Access Controls
               </h2>
               <ul className="space-y-4 list-none text-[#6B6B6B] font-medium">
@@ -102,7 +102,7 @@ export default function Security() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 6. Security Testing and Monitoring
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -111,7 +111,7 @@ export default function Security() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 7. Incident Response
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -120,7 +120,7 @@ export default function Security() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 8. Responsible Disclosure
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -129,7 +129,7 @@ export default function Security() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 9. Contact Us
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">

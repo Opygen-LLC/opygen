@@ -9,8 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        // This is the bridge between CSS and Tailwind
-        sora: ["var(--font-sora)", "sans-serif"],
+        sans: ["var(--font-space-grotesk)", "sans-serif"],
       },
       colors: {
         brand: {

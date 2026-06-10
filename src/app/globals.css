@@ -4,100 +4,191 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Opygen Core Palette */
-  --carbon: #0a0a0a;
-  --off-black: #1a1a1a;
-  --mid-gray: #6b6b6b;
-  --light-gray: #e8e8e8;
-  --surface: #f6f6f6;
-  --white: #ffffff;
+    color-scheme: light;
 
-  /* Typography */
-  --font-sans: var(--font-geist), sans-serif;
-  --font-sora: "Sora", sans-serif;
+    /* Opygen Premium Light Core Palette */
+    --carbon: #0a0a0a;
+    --off-black: #262626;
+    --mid-gray: #6b7280;
+    --light-gray: rgba(10, 10, 10, 0.08);
+    --surface: #f7f8f7;
+    --white: #ffffff;
+    --paper: #ffffff;
 
-  /* Semantic Tokens for Tailwind v4 */
-  --background: var(--white);
-  --foreground: var(--carbon);
-  --primary: var(--carbon);
-  --primary-foreground: var(--white);
-  --secondary: var(--surface);
-  --secondary-foreground: var(--mid-gray);
-  --muted: var(--surface);
-  --muted-foreground: var(--mid-gray);
-  --accent: var(--surface);
-  --accent-foreground: var(--carbon);
-  --border: var(--light-gray);
-  --input: var(--light-gray);
-  --ring: var(--carbon);
+    /* Typography */
+    --font-sans: var(--font-space-grotesk), sans-serif;
+
+    /* Semantic Tokens for Tailwind v4 */
+    --background: var(--paper);
+    --foreground: var(--carbon);
+    --primary: var(--carbon);
+    --primary-foreground: var(--white);
+    --secondary: var(--surface);
+    --secondary-foreground: var(--mid-gray);
+    --muted: var(--surface);
+    --muted-foreground: var(--mid-gray);
+    --accent: rgba(10, 10, 10, 0.06);
+    --accent-foreground: var(--carbon);
+    --border: var(--light-gray);
+    --input: var(--light-gray);
+    --ring: #0a0a0a;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-border: var(--border);
-  --color-ring: var(--ring);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-border: var(--border);
+    --color-ring: var(--ring);
 
-  --radius-xl: 20px;
-  --radius-lg: 12px;
-  --radius-md: 8px;
-  --radius-sm: 4px;
+    --font-sans: var(--font-space-grotesk), sans-serif;
+
+    --radius-xl: 20px;
+    --radius-lg: 12px;
+    --radius-md: 8px;
+    --radius-sm: 4px;
+
+    --animate-blob: float-blob 20s infinite ease-in-out;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+    background-color: var(--background);
+    color: var(--foreground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(10, 10, 10, 0.12);
+    border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(10, 10, 10, 0.22);
 }
 
 /* Redesigned Base Styles */
 body {
-  font-family: var(--font-sans);
-  background-color: var(--white);
-  color: var(--carbon);
-  -webkit-font-smoothing: antialiased;
-  letter-spacing: -0.01em;
+    font-family: var(--font-sans);
+    background-color: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.01em;
+    overflow-x: hidden;
+}
+
+.marketing-selection ::selection {
+    background: #f24202;
+    color: #ffffff;
+}
+
+.marketing-section-container {
+    padding: 5rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .marketing-section-container {
+        padding-inline: 2.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .marketing-section-container {
+        padding: 7rem 3.5rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .marketing-section-container {
+        padding-inline: 5rem;
+    }
 }
 
 /* Refined Label Pill */
 .label-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border: 1px solid var(--border);
-  background: var(--white);
-  color: var(--mid-gray);
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border-radius: 2px; /* Sharper, more professional look */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border: 1px solid rgba(10, 10, 10, 0.18);
+    background: #ffffff;
+    color: #0a0a0a;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    border-radius: 99px;
+    backdrop-blur-sm: 4px;
 }
 
 .container {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 80 24px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 24px;
 }
 
 /* Section Spacing */
 .section-padding {
-  padding: 120px 24px;
+    padding: 120px 24px;
 }
 
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Animations */
+@keyframes float-blob {
+    0% {
+        transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.95);
+    }
+    100% {
+        transform: translate(0px, 0px) scale(1);
+    }
 }
 
-.animate-fade-up {
-  animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+.animate-blob {
+    animation: float-blob 25s infinite ease-in-out;
+}
+
+/* Premium Spotlight Card effect classes */
+.spotlight-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(10, 10, 10, 0.08);
+    backdrop-filter: blur(12px);
+    overflow: hidden;
+    transition: border-color 0.5s ease;
+}
+
+.spotlight-card:hover {
+    border-color: rgba(10, 10, 10, 0.32);
+}
+
+/* High-Impact Animated Text Gradient */
+.text-glow-gradient {
+    background: linear-gradient(135deg, #0a0a0a 0%, #0a0a0a 48%, #737373 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
