@@ -1,5 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import Logo from "../../../public/logo/Opygen.png";
+import Image from "next/image";
+import {
+    FacebookLogo,
+    InstagramLogo,
+    LinkedinLogo,
+    TwitterLogo,
+} from "@phosphor-icons/react";
 
 const navLinks = [
     { label: "Home", href: "#home" },
@@ -14,18 +24,17 @@ const resourceLinks = [
 ];
 
 const socials = [
-    { label: "X", href: "https://x.com", symbol: "𝕏" },
-    { label: "LinkedIn", href: "https://linkedin.com", symbol: "in" },
-    { label: "Dribbble", href: "https://dribbble.com", symbol: "⊕" },
-    { label: "Instagram", href: "https://instagram.com", symbol: "◎" },
-    { label: "YouTube", href: "https://youtube.com", symbol: "▶" },
+    { label: "Facebook", href: "https://facebook.com", icon: FacebookLogo },
+    { label: "Twitter", href: "https://twitter.com", icon: TwitterLogo },
+    { label: "Instagram", href: "https://instagram.com", icon: InstagramLogo },
+    { label: "LinkedIn", href: "https://linkedin.com", icon: LinkedinLogo },
 ];
 
 export default function Footer() {
     return (
-        <footer className="relative overflow-hidden bg-[#e8e8e8] text-black border-t border-dashed border-gray-300">
+        <footer className="relative overflow-hidden bg-[#e8e8e8] text-black">
             {/* Top content row */}
-            <div className="mx-auto max-w-7xl border-x border-dashed border-gray-300">
+            <div className="mx-auto container max-w-8xl border-x border-dashed border-gray-300 !py-0">
                 <div className="grid grid-cols-1 gap-10 border-b border-dashed border-gray-300 px-6 py-14 sm:px-8 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
                     {/* Newsletter + socials */}
                     <div className="flex flex-col gap-8">
@@ -39,9 +48,7 @@ export default function Footer() {
                             </p>
 
                             {/* Email input */}
-                            <form
-                                className="flex items-center gap-0 overflow-hidden rounded-full border border-black/15 bg-white/70 pr-1"
-                            >
+                            <form className="flex items-center gap-0 overflow-hidden rounded-full border border-black/15 bg-white/70 pr-1">
                                 <input
                                     type="email"
                                     placeholder="Your Email"
@@ -49,7 +56,7 @@ export default function Footer() {
                                 />
                                 <button
                                     type="submit"
-                                    className="flex items-center gap-1.5 rounded-full bg-black px-4 py-2 text-[11px] font-black text-white transition hover:bg-zinc-800"
+                                    className="flex items-center gap-1.5 rounded-full bg-black px-4 py-2 text-[11px] font-black text-white transition hover:bg-zinc-800 cursor-pointer"
                                 >
                                     Send
                                     <ArrowUpRight className="size-3" />
@@ -63,16 +70,22 @@ export default function Footer() {
                                 /Follow us
                             </p>
                             <div className="flex items-center gap-2">
-                                {socials.map((s) => (
-                                    <Link
-                                        key={s.label}
-                                        href={s.href}
-                                        aria-label={s.label}
-                                        className="flex size-9 items-center justify-center rounded-full border border-black/12 bg-white/60 text-[11px] font-black text-black/60 transition hover:border-black/30 hover:bg-white hover:text-black"
-                                    >
-                                        {s.symbol}
-                                    </Link>
-                                ))}
+                                {socials.map((s) => {
+                                    const Icon = s.icon;
+
+                                    return (
+                                        <Link
+                                            key={s.label}
+                                            href={s.href}
+                                            aria-label={s.label}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="flex size-9 items-center justify-center rounded-full border border-black/12 bg-white/60 text-black/60 transition hover:border-black/30 hover:bg-white hover:text-black"
+                                        >
+                                            <Icon className="size-4" weight="bold" />
+                                        </Link>
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>
@@ -134,17 +147,32 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* Giant wordmark */}
-                <div className="overflow-hidden border-b border-dashed border-gray-300 py-5">
-                    <p
-                        className="select-none whitespace-nowrap text-center font-black uppercase leading-none text-black"
-                        style={{
-                            fontSize: "clamp(4rem, 12vw, 10rem)",
-                            lineHeight: 0.70,
-                        }}
+                {/* Brand lockup */}
+                <div className="overflow-hidden border-b border-dashed border-gray-300 px-6 py-7 sm:px-8 md:py-9">
+                    <Link
+                        href="/"
+                        aria-label="Opygen home"
+                        className="group flex min-w-0 items-center justify-center gap-3 sm:gap-5 md:gap-7"
                     >
-                        Opygen
-                    </p>
+                        <span className="flex size-14 shrink-0 items-center justify-center p-2.5 transition sm:size-20 sm:p-3 md:size-24 md:rounded-[1.6rem] lg:size-28">
+                            <Image
+                                src={Logo}
+                                alt=""
+                                width={96}
+                                height={96}
+                                className="h-full w-full object-contain"
+                            />
+                        </span>
+                        <span
+                            className="select-none whitespace-nowrap text-center font-black leading-none tracking-tight text-black"
+                            style={{
+                                fontSize: "clamp(4rem, 11vw, 9.5rem)",
+                                lineHeight: 0.82,
+                            }}
+                        >
+                            Opygen
+                        </span>
+                    </Link>
                 </div>
 
                 {/* Bottom bar */}

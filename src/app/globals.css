@@ -16,8 +16,7 @@
     --paper: #ffffff;
 
     /* Typography */
-    --font-sans: var(--font-urbanist), sans-serif;
-    --font-syne: var(--font-syne), sans-serif;
+    --font-sans: var(--font-space-grotesk), sans-serif;
 
     /* Semantic Tokens for Tailwind v4 */
     --background: var(--paper);
@@ -47,8 +46,7 @@
     --color-border: var(--border);
     --color-ring: var(--ring);
 
-    --font-sans: var(--font-sans);
-    --font-syne: var(--font-syne);
+    --font-sans: var(--font-space-grotesk), sans-serif;
 
     --radius-xl: 20px;
     --radius-lg: 12px;
@@ -95,6 +93,33 @@ body {
     -webkit-font-smoothing: antialiased;
     letter-spacing: -0.01em;
     overflow-x: hidden;
+}
+
+.marketing-selection ::selection {
+    background: #f24202;
+    color: #ffffff;
+}
+
+.marketing-section-container {
+    padding: 5rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .marketing-section-container {
+        padding-inline: 2.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .marketing-section-container {
+        padding: 7rem 3.5rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .marketing-section-container {
+        padding-inline: 5rem;
+    }
 }
 
 /* Refined Label Pill */

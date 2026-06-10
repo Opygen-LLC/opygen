@@ -29,7 +29,7 @@ const steps = [
     },
 ];
 
-export default function ProcessSection() {
+export default function Process() {
     const [active, setActive] = useState(0);
 
     // Auto-cycle every 2 seconds, infinite
@@ -45,7 +45,7 @@ export default function ProcessSection() {
             id="process"
             className="relative text-black border-b border-dashed border-gray-300"
         >
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 border-x border-dashed border-gray-300 py-10">
+            <div className="mx-auto container max-w-8xl marketing-section-container border-x border-dashed border-gray-300">
                 <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16 lg:items-start">
                     {/* LEFT — sticky on desktop */}
                     <div className="lg:sticky lg:top-28">
@@ -68,7 +68,7 @@ export default function ProcessSection() {
                                 duration: 0.6,
                                 ease: [0.16, 1, 0.3, 1],
                             }}
-                            className="mb-6 text-[clamp(2.8rem,5.5vw,4.8rem)] font-black leading-[0.93] tracking-tight"
+                            className="mb-6 text-[clamp(2.8rem,5.5vw,5rem)] font-black leading-[0.93] tracking-tight"
                         >
                             Getting Design
                             <br />

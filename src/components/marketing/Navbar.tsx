@@ -10,8 +10,8 @@ import Logo from "../../../public/logo/Opygen.png"
 const navLinks = [
     { label: "Home", href: "#home" },
     { label: "Services", href: "#services" },
-    { label: "Projects", href: "#projects" },
-    { label: "Pricing", href: "#pricing" },
+    { label: "Products", href: "#products" },
+    { label: "Benefits", href: "#benefits" },
     { label: "Contact", href: "#contact" },
 ];
 
@@ -60,7 +60,7 @@ export default function Navbar() {
     return (
         <>
             <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-dashed border-gray-300">
-                <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
+                <div className="mx-auto flex h-16 container max-w-8xl items-center justify-between !px-6 !py-0 lg:!px-8">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2 shrink-0">
                         <Image

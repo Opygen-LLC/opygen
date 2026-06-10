@@ -89,7 +89,7 @@ const services = [
     },
 ];
 
-export default function ServicesSection() {
+export default function Services() {
     const containerRef = useRef<HTMLDivElement>(null);
     const [activeIndex, setActiveIndex] = useState(0);
     const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -114,7 +114,7 @@ export default function ServicesSection() {
             id="services"
             className="relative text-black border-b border-dashed border-gray-300"
         >
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 border-x border-dashed border-gray-300 py-10">
+            <div className="mx-auto container max-w-8xl marketing-section-container border-x border-dashed border-gray-300">
                 {/* Section header */}
                 <div className="mb-14 grid gap-6 lg:grid-cols-[1fr_400px] lg:items-end">
                     <div>
@@ -124,7 +124,7 @@ export default function ServicesSection() {
                             viewport={{ once: true }}
                             className="mb-5 inline-flex items-center gap-2 rounded-full border border-black/15 bg-white/60 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-black/50"
                         >
-                            / 003 / Services
+                            / 002 / Services
                         </motion.div>
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
@@ -134,7 +134,7 @@ export default function ServicesSection() {
                                 duration: 0.6,
                                 ease: [0.16, 1, 0.3, 1],
                             }}
-                            className="text-[clamp(2.6rem,5.5vw,5rem)] font-black leading-[0.93] tracking-tight"
+                            className="text-[clamp(2.8rem,5.5vw,5rem)] font-black leading-[0.93] tracking-tight"
                         >
                             One Subscription,
                             <br />

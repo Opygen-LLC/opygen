@@ -1,10 +1,23 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle2, Mail, Phone, Send } from "lucide-react";
+import { CheckCircle2, Mail, Phone } from "lucide-react";
 import { motion } from "framer-motion";
+import {
+    FacebookLogo,
+    InstagramLogo,
+    LinkedinLogo,
+    TwitterLogo,
+} from "@phosphor-icons/react";
 
 const budgetOptions = ["$500–$1000", "$1000–$3000", "$3000–$5000", "$5000+"];
+
+const socialLinks = [
+    { label: "Facebook", href: "https://facebook.com", icon: FacebookLogo },
+    { label: "Twitter", href: "https://twitter.com", icon: TwitterLogo },
+    { label: "Instagram", href: "https://instagram.com", icon: InstagramLogo },
+    { label: "LinkedIn", href: "https://linkedin.com", icon: LinkedinLogo },
+];
 
 export default function ContactSection() {
     const [form, setForm] = useState({
@@ -26,7 +39,7 @@ export default function ContactSection() {
             id="contact"
             className="relative text-black border-b border-dashed border-gray-300"
         >
-            <div className="mx-auto max-w-7xl border-x border-dashed border-gray-300 px-4 sm:px-6 py-20 md:py-28">
+            <div className="mx-auto container max-w-8xl marketing-section-container border-x border-dashed border-gray-300">
                 <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16 lg:items-start">
                     {/* LEFT — info */}
                     <div className="flex flex-col justify-between gap-12 lg:sticky lg:top-28">
@@ -75,35 +88,61 @@ export default function ContactSection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.15 }}
-                            className="flex flex-col gap-3"
+                            className="flex flex-col gap-5"
                         >
-                            {[
-                                {
-                                    icon: Mail,
-                                    label: "/Chat to sales",
-                                    value: "hello@formix.com",
-                                    href: "mailto:hello@formix.com",
-                                },
-                                {
-                                    icon: Phone,
-                                    label: "/Call us",
-                                    value: "+359-123-45678",
-                                    href: "tel:+35912345678",
-                                },
-                            ].map((item, i) => (
-                                <a
-                                    key={i}
-                                    href={item.href}
-                                    className="group flex flex-col gap-1.5 rounded-2xl border border-black/8 bg-white/80 px-6 py-5 backdrop-blur-sm transition hover:border-black/20 hover:shadow-sm"
-                                >
-                                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-black/35">
-                                        {item.label}
-                                    </span>
-                                    <span className="text-[15px] font-black text-black transition group-hover:text-black/70">
-                                        {item.value}
-                                    </span>
-                                </a>
-                            ))}
+                            <div className="flex flex-col gap-3">
+                                {[
+                                    {
+                                        icon: Mail,
+                                        label: "/Chat to sales",
+                                        value: "hello@formix.com",
+                                        href: "mailto:hello@formix.com",
+                                    },
+                                    {
+                                        icon: Phone,
+                                        label: "/Call us",
+                                        value: "+359-123-45678",
+                                        href: "tel:+35912345678",
+                                    },
+                                ].map((item, i) => (
+                                    <a
+                                        key={i}
+                                        href={item.href}
+                                        className="group flex flex-col gap-1.5 rounded-2xl border border-black/8 bg-white/80 px-6 py-5 backdrop-blur-sm transition hover:border-black/20 hover:shadow-sm"
+                                    >
+                                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-black/35">
+                                            {item.label}
+                                        </span>
+                                        <span className="text-[15px] font-black text-black transition group-hover:text-black/70">
+                                            {item.value}
+                                        </span>
+                                    </a>
+                                ))}
+                            </div>
+
+                            <div>
+                                <p className="mb-3 text-[10px] font-black uppercase tracking-[0.2em] text-black/35">
+                                    /Social media
+                                </p>
+                                <div className="flex items-center gap-2">
+                                    {socialLinks.map((social) => {
+                                        const Icon = social.icon;
+
+                                        return (
+                                            <a
+                                                key={social.label}
+                                                href={social.href}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                aria-label={social.label}
+                                                className="flex size-10 items-center justify-center rounded-full border border-black/10 bg-white/80 text-black/55 transition hover:border-black/25 hover:bg-white hover:text-black"
+                                            >
+                                                <Icon className="size-4" weight="bold" />
+                                            </a>
+                                        );
+                                    })}
+                                </div>
+                            </div>
                         </motion.div>
                     </div>
 

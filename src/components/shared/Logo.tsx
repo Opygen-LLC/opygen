@@ -8,7 +8,7 @@
 //       <circle cx="10.5" cy="18.5" r="2.5" fill="#ffffff" opacity="0.3"></circle>
 //     </svg>
 //     <div className="flex flex-col justify-center text-left">
-//       <div className="font-sora font-extrabold text-[15px] sm:text-[17px] tracking-tight text-[#0A0A0A] leading-none">
+//       <div className="font-sans font-extrabold text-[15px] sm:text-[17px] tracking-tight text-[#0A0A0A] leading-none">
 //         Opygen <span className="text-[#1A7A5E]">Clean</span>
 //       </div>
 //       <div className="text-[8px] sm:text-[9px] text-slate-400 font-bold uppercase tracking-[0.15em] mt-1 leading-none">
@@ -31,7 +31,7 @@ export const OpygenLogo = ({ textClass = "text-[#0A0A0A]" }) => (
     </svg>
 
     <div className="flex flex-col justify-center text-left">
-      <div className={`font-sora font-extrabold text-[15px] sm:text-[17px] tracking-tight leading-none ${textClass}`}>
+      <div className={`font-sans font-extrabold text-[15px] sm:text-[17px] tracking-tight leading-none ${textClass}`}>
         Opygen <span className="text-[#1A7A5E]">Clean</span>
       </div>
 

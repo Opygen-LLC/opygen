@@ -50,8 +50,7 @@ export default function TeamSection() {
             id="team"
             className="relative text-black border-b border-dashed border-gray-300"
         >
-            <div className="mx-auto max-w-7xl border-x border-dashed border-gray-300 px-4 sm:px-6 py-10">
-
+            <div className="mx-auto container max-w-8xl marketing-section-container border-x border-dashed border-gray-300">
                 {/* Section header */}
                 <div className="mb-14 grid gap-6 lg:grid-cols-[1fr_400px] lg:items-end">
                     <div>
@@ -61,14 +60,14 @@ export default function TeamSection() {
                             viewport={{ once: true }}
                             className="mb-5 inline-flex items-center rounded-full border border-black/15 bg-white/60 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-black/50"
                         >
-                            / 005 / Team
+                            / Team
                         </motion.div>
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-[clamp(2.6rem,5.5vw,5rem)] font-black leading-[0.93] tracking-tight"
+                            className="text-[clamp(2.8rem,5.5vw,5rem)] font-black leading-[0.93] tracking-tight"
                         >
                             Built by Founders,
                             <br />

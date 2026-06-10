@@ -27,12 +27,12 @@ const values = [
     },
 ];
 
-export default function MissionVision() {
+export default function WhyUs() {
     return (
         <section id="mission" className="relative overflow-hidden bg-white text-black border-y border-dashed border-gray-300">
             {/* ── WHY FORMIX STATEMENT BLOCK ── */}
-            <div className="relative mx-auto max-w-7xl border-x border-dashed border-gray-300">
-                <div className="px-4 py-24 sm:px-6 md:py-32">
+            <div className="relative mx-auto container max-w-8xl marketing-section-container border-x border-dashed border-gray-300">
+                <div>
                     {/* Eyebrow */}
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
@@ -42,7 +42,7 @@ export default function MissionVision() {
                         className="mb-10 flex justify-center"
                     >
                         <span className="rounded-full border border-black/15 px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-black/45">
-                            / 002 / Why Formix
+                            / 002 / Why Opygen
                         </span>
                     </motion.div>
 
@@ -102,7 +102,7 @@ function MissionPanel({
     return (
         <div className={dark ? "bg-black p-8 text-white md:p-12" : "bg-white p-8 text-black md:p-12"}>
             <p className="mb-6 text-[10px] font-black uppercase tracking-[0.2em] opacity-45">{eyebrow}</p>
-            <h3 className="max-w-md font-syne text-3xl font-black leading-tight">{title}</h3>
+            <h3 className="max-w-md font-sans text-3xl font-black leading-tight">{title}</h3>
             <p className="mt-6 max-w-md text-sm font-semibold leading-relaxed opacity-62">{children}</p>
         </div>
     );

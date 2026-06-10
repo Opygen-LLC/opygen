@@ -1,11 +1,14 @@
 import ContactSection from "@/src/components/marketing/ContactSection";
 import Footer from "@/src/components/marketing/Footer";
 import HeroSection from "@/src/components/marketing/HeroSection";
-import MissionVision from "@/src/components/marketing/MissionVision";
 import Navbar from "@/src/components/marketing/Navbar";
-import ProductsSection from "@/src/components/marketing/ProductsSection";
-import ServicesSection from "@/src/components/marketing/ServicesSection";
+import Services from "@/src/components/marketing/Services";
+import Process from "@/src/components/marketing/Process";
 import TeamSection from "@/src/components/marketing/TeamSection";
+import Benefits from "../../components/marketing/Benefits";
+import Reviews from "../../components/marketing/Reviews";
+import WhyUs from "@/src/components/marketing/WhyUs";
+import Products from "../../components/marketing/Products";
 
 export default function HomePage() {
     return (
@@ -13,9 +16,12 @@ export default function HomePage() {
             <Navbar />
             <main>
                 <HeroSection />
-                <MissionVision />
-                <ProductsSection />
-                <ServicesSection />
+                <WhyUs />
+                <Services />
+                <Products />
+                <Process />
+                <Benefits />
+                <Reviews />
                 <TeamSection />
                 <ContactSection />
             </main>

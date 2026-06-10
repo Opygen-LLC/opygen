@@ -24,7 +24,7 @@ export default function RefundPolicy() {
         <div className="container mx-auto px-6 max-w-4xl">
           {/* Header */}
           <div className="mb-20 space-y-6">
-            <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-bold leading-[1] tracking-[-0.05em] font-syne text-[#0A0A0A]">
+            <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-bold leading-[1] tracking-[-0.05em] font-sans text-[#0A0A0A]">
               Refund Policy
             </h1>
             <div className="flex items-center gap-4">
@@ -38,7 +38,7 @@ export default function RefundPolicy() {
           {/* Content */}
           <div className="space-y-16">
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 1. Overview
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -47,7 +47,7 @@ export default function RefundPolicy() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 2. Free Trial
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -56,7 +56,7 @@ export default function RefundPolicy() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 3. Monthly Subscriptions
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -65,7 +65,7 @@ export default function RefundPolicy() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 4. Annual Subscriptions
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -74,7 +74,7 @@ export default function RefundPolicy() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 5. Exceptions
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -93,7 +93,7 @@ export default function RefundPolicy() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 6. How to Request a Refund
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -102,7 +102,7 @@ export default function RefundPolicy() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 7. Chargebacks
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
@@ -111,7 +111,7 @@ export default function RefundPolicy() {
             </section>
 
             <section className="space-y-6">
-              <h2 className="text-xl font-bold tracking-tight font-syne text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
+              <h2 className="text-xl font-bold tracking-tight font-sans text-[#0A0A0A] border-l-2 border-[#0A0A0A] pl-4 py-1">
                 8. Contact Us
               </h2>
               <p className="text-[#6B6B6B] leading-relaxed font-medium">
