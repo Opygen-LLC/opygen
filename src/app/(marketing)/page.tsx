@@ -8,18 +8,18 @@ import ServicesSection from "@/src/components/marketing/ServicesSection";
 import TeamSection from "@/src/components/marketing/TeamSection";
 
 export default function HomePage() {
-  return (
-    <>
-      <Navbar />
-      <main>
-        <HeroSection />
-        <MissionVision />
-        <ProductsSection />
-        <ServicesSection />
-        <TeamSection />
-        <ContactSection />
-      </main>
-      <Footer />
-    </>
-  );
+    return (
+        <>
+            <Navbar />
+            <main>
+                <HeroSection />
+                <MissionVision />
+                <ProductsSection />
+                <ServicesSection />
+                <TeamSection />
+                <ContactSection />
+            </main>
+            <Footer />
+        </>
+    );
 }

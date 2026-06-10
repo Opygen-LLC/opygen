@@ -1,243 +1,272 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { Button } from "../ui/button";
-import { ArrowRight, Bell, Zap, Layers, Wind } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
-import { gsap } from "gsap";
+import {
+    ArrowUpRight,
+    Bell,
+    CheckCircle2,
+    Layers,
+    Wind,
+    Zap,
+} from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 
-const products = [
+const services = [
     {
-        name: "Cleaning CRM",
+        number: "001",
+        category: "Brand Identity",
+        name: "Identities That Get Noticed",
         slug: "cleaningcrm",
-        status: "live",
+        status: "Live",
         icon: Wind,
-        accent: "#1A7A5E",
         description:
-            "The primary module for residential and commercial cleaning squads. Automate team sync and recurring schedules.",
-        features: [
-            "Job dispatching",
-            "Recurring bookings",
-            "GPS tracking",
-            "Instant invoicing",
+            "Logos, visual systems, and brand guidelines built to give your startup a voice that scales.",
+        tags: [
+            "Brand Strategy",
+            "Logo Design",
+            "Art Direction",
+            "Color Systems",
+            "Brand Strategy",
         ],
+        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80&auto=format&fit=crop",
     },
     {
-        name: "Maintenance CRM",
+        number: "002",
+        category: "Web Design",
+        name: "Design That Moves Users",
         slug: null,
-        status: "soon",
+        status: "Soon",
         icon: Zap,
-        accent: "#C45E10",
         description:
-            "Work order flow and technician assignments for property maintenance. Control the chaos of facility management.",
-        features: [
-            "Work order flow",
-            "Technician portal",
-            "Asset history",
-            "Preventive alerts",
+            "From landing pages to full product UI – we design digital experiences that convert visitors.",
+        tags: [
+            "UI/UX Design",
+            "Prototyping",
+            "Design Systems",
+            "Rebranding",
+            "UI/UX Design",
+            "Proto...",
         ],
+        image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=900&q=80&auto=format&fit=crop",
     },
     {
-        name: "Landscaping CRM",
+        number: "003",
+        category: "Motion & 3D",
+        name: "Visuals That Stop the Scroll",
         slug: null,
-        status: "soon",
+        status: "Soon",
         icon: Layers,
-        accent: "#3A7A1A",
         description:
-            "Route optimization and seasonal planning for lawn care. Engineered for high-volume terrain management.",
-        features: [
-            "Route optimization",
-            "Crew management",
-            "Equipment logs",
-            "Seasonal planning",
+            "Animated explainers, product reveals, and 3D assets that make your brand impossible to ignore.",
+        tags: [
+            "Motion Design",
+            "3D Rendering",
+            "Video Editing",
+            "After Effects",
+            "Lottie",
         ],
+        image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=900&q=80&auto=format&fit=crop",
+    },
+    {
+        number: "004",
+        category: "Conversion Design",
+        name: "Pages Built to Convert",
+        slug: null,
+        status: "Soon",
+        icon: Layers,
+        description:
+            "High-impact landing pages, pricing pages, and funnels designed to turn traffic into revenue.",
+        tags: [
+            "Landing Pages",
+            "A/B Testing",
+            "Copywriting",
+            "CRO",
+            "Funnel Design",
+        ],
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80&auto=format&fit=crop",
     },
 ];
 
-export default function ProductsSection() {
-    const gridRef = useRef(null);
+export default function ServicesSection() {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [activeIndex, setActiveIndex] = useState(0);
+    const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-    // GSAP: Background grid movement on mouse move
     useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            const { clientX, clientY } = e;
-            const xPos = (clientX / window.innerWidth - 0.5) * 20;
-            const yPos = (clientY / window.innerHeight - 0.5) * 20;
-
-            gsap.to(".blueprint-grid", {
-                x: xPos,
-                y: yPos,
-                duration: 2,
-                ease: "power2.out",
-            });
-        };
-
-        window.addEventListener("mousemove", handleMouseMove);
-        return () => window.removeEventListener("mousemove", handleMouseMove);
+        const observers = cardRefs.current.map((card, i) => {
+            if (!card) return null;
+            const obs = new IntersectionObserver(
+                ([entry]) => {
+                    if (entry.isIntersecting) setActiveIndex(i);
+                },
+                { threshold: 0.5, rootMargin: "-20% 0px -20% 0px" },
+            );
+            obs.observe(card);
+            return obs;
+        });
+        return () => observers.forEach((obs) => obs?.disconnect());
     }, []);
 
     return (
         <section
-            id="products"
-            className="relative py-32 bg-white overflow-hidden"
+            id="services"
+            className="relative text-black border-b border-dashed border-gray-300"
         >
-            {/* GSAP Managed Background Grid */}
-            <div
-                className="blueprint-grid absolute inset-0 pointer-events-none opacity-[0.3]"
-                style={{
-                    backgroundImage: `linear-gradient(#F0F0F0 1px, transparent 1px), linear-gradient(90deg, #F0F0F0 1px, transparent 1px)`,
-                    backgroundSize: "50px 50px",
-                    width: "110%",
-                    height: "110%",
-                    top: "-5%",
-                    left: "-5%",
-                }}
-            />
-
-            <div className="relative z-10 max-w-7xl mx-auto px-6">
-                {/* Header with Framer Motion Entrance */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, ease: "circOut" }}
-                    className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 mb-20"
-                >
-                    <div className="max-w-2xl">
-                        <span className="label-pill mb-8">
-                            Vertical Deployment
-                        </span>
-                        {/* <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#F5F5F5] border border-[#E8E8E8] mb-6">
-                            <Target className="size-3 text-[#0A0A0A]" />
-                            <span className="text-[10px] uppercase tracking-[0.2em] text-[#6B6B6B] font-black">
-                                Vertical Deployment
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 border-x border-dashed border-gray-300 py-10">
+                {/* Section header */}
+                <div className="mb-14 grid gap-6 lg:grid-cols-[1fr_400px] lg:items-end">
+                    <div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="mb-5 inline-flex items-center gap-2 rounded-full border border-black/15 bg-white/60 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-black/50"
+                        >
+                            / 003 / Services
+                        </motion.div>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{
+                                duration: 0.6,
+                                ease: [0.16, 1, 0.3, 1],
+                            }}
+                            className="text-[clamp(2.6rem,5.5vw,5rem)] font-black leading-[0.93] tracking-tight"
+                        >
+                            One Subscription,
+                            <br />
+                            <span className="text-black/35">
+                                Every Discipline.
                             </span>
-                        </div> */}
-                        <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-[#0A0A0A] leading-[0.9]">
-                            CORE <br />
-                            <span className="text-[#ADADAD]">SOLUTIONS.</span>
-                        </h2>
+                        </motion.h2>
                     </div>
-                    <p className="max-w-70 text-xs font-bold uppercase tracking-widest text-[#6B6B6B] leading-loose border-l-2 border-[#0A0A0A] pl-6">
-                        Standardizing service operations through
-                        industry-specific logic layers.
-                    </p>
-                </motion.div>
+                    <motion.p
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                        className="max-w-sm text-[13.5px] leading-relaxed text-black/55 lg:text-right"
+                    >
+                        We combine strategy, speed, and skill to deliver
+                        exceptional design – every time.
+                    </motion.p>
+                </div>
 
-                {/* Product Grid */}
+                {/* Sticky scroll layout */}
                 <div
-                    ref={gridRef}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#E8E8E8] border border-[#E8E8E8]"
+                    ref={containerRef}
+                    className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-6"
                 >
-                    {products.map((product, i) => {
-                        const Icon = product.icon;
-                        const isLive = product.status === "live";
-
-                        return (
-                            <motion.div
-                                key={product.name}
-                                initial={{ opacity: 0, scale: 0.98 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1, duration: 0.5 }}
-                                className={cn(
-                                    "group relative bg-white p-10 md:p-14 flex flex-col min-h-145 overflow-hidden",
-                                )}
-                            >
-                                {/* GSAP Number Reveal on Hover */}
-                                <span className="absolute top-10 right-10 text-6xl font-black text-[#F5F5F5] group-hover:text-[#0A0A0A]/5 transition-colors duration-500">
-                                    0{i + 1}
-                                </span>
-
-                                <div className="relative z-10 flex flex-col h-full">
-                                    {/* Framer Motion Icon Hover */}
-                                    <motion.div
-                                        whileHover={{ rotate: -10, scale: 1.1 }}
-                                        className="size-16 flex items-center justify-center mb-12 border shadow-sm"
-                                        style={{
-                                            borderColor: `${product.accent}30`,
-                                            backgroundColor: `${product.accent}05`,
-                                        }}
-                                    >
-                                        <Icon
-                                            className="size-7"
-                                            style={{ color: product.accent }}
-                                        />
-                                    </motion.div>
-
-                                    <div className="mb-auto">
-                                        <h3 className="text-2xl font-bold text-[#0A0A0A] tracking-tight mb-4 flex items-center gap-2">
-                                            {product.name}
-                                            {isLive && (
-                                                <span className="size-1.5 rounded-full bg-green-500 animate-pulse" />
-                                            )}
+                    {/* LEFT: scrolling service cards */}
+                    <div className="flex flex-col gap-4">
+                        {services.map((service, i) => {
+                            const Icon = service.icon;
+                            return (
+                                <motion.div
+                                    key={service.number}
+                                    ref={(el) => {
+                                        cardRefs.current[i] = el;
+                                    }}
+                                    initial={{ opacity: 0, y: 24 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: "-10%" }}
+                                    transition={{
+                                        duration: 0.5,
+                                        delay: i * 0.05,
+                                    }}
+                                    className="overflow-hidden rounded-2xl border border-black/8 bg-white/80 backdrop-blur-sm"
+                                >
+                                    {/* Card top: badge + title + desc */}
+                                    <div className="p-6 pb-5">
+                                        <div className="mb-4 inline-flex items-center rounded-full border border-black/12 bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-black/50">
+                                            {service.number} /{" "}
+                                            {service.category}
+                                        </div>
+                                        <h3 className="mb-2 text-[1.35rem] font-black leading-tight tracking-tight">
+                                            {service.name}
                                         </h3>
-                                        <p className="text-[#6B6B6B] text-sm leading-relaxed mb-10">
-                                            {product.description}
+                                        <p className="text-[13px] leading-relaxed text-black/55">
+                                            {service.description}
                                         </p>
+                                    </div>
 
-                                        <div
-                                            className="space-y-3 mb-12 border-l-2 pl-6"
-                                            style={{
-                                                borderColor: isLive
-                                                    ? product.accent
-                                                    : "#E8E8E8",
-                                            }}
-                                        >
-                                            {product.features.map(
-                                                (feat) => (
-                                                    <motion.div
-                                                        key={feat}
-                                                        whileHover={{ x: 5 }}
-                                                        className="text-[10px] uppercase tracking-[0.15em] font-bold text-[#ADADAD] hover:text-[#0A0A0A] cursor-default transition-colors"
-                                                    >
-                                                        {feat}
-                                                    </motion.div>
-                                                ),
-                                            )}
+                                    {/* Mobile image — only visible below lg */}
+                                    <div className="relative mx-4 mb-4 aspect-[16/9] overflow-hidden rounded-xl lg:hidden">
+                                        <Image
+                                            src={service.image}
+                                            alt={service.name}
+                                            fill
+                                            sizes="100vw"
+                                            className="object-cover"
+                                            unoptimized
+                                        />
+                                    </div>
+
+                                    {/* What's included */}
+                                    <div className="border-t border-dashed border-black/10 px-6 py-4">
+                                        <p className="mb-3 text-[11px] font-black uppercase tracking-[0.18em] text-black/40">
+                                            What&apos;s included
+                                        </p>
+                                        <div className="flex flex-wrap gap-2">
+                                            {service.tags.map((tag, t) => (
+                                                <span
+                                                    key={t}
+                                                    className="rounded-full border border-black/12 bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-black/55"
+                                                >
+                                                    {tag}
+                                                </span>
+                                            ))}
                                         </div>
                                     </div>
 
-                                    <div className="mt-8">
-                                        {isLive ? (
-                                            <Button
-                                                asChild
-                                                className="w-full h-14 bg-[#0A0A0A] text-white hover:bg-[#1A1A1A] rounded-none font-bold uppercase tracking-widest text-[10px]"
-                                            >
-                                                <Link
-                                                    href={`/${product.slug}`}
-                                                    className="flex items-center justify-center gap-2"
-                                                >
-                                                    Initialize System
-                                                    <motion.div
-                                                        animate={{
-                                                            x: [0, 5, 0],
-                                                        }}
-                                                        transition={{
-                                                            repeat: Infinity,
-                                                            duration: 1.5,
-                                                        }}
-                                                    >
-                                                        <ArrowRight className="size-4" />
-                                                    </motion.div>
-                                                </Link>
-                                            </Button>
-                                        ) : (
-                                            <Button
-                                                variant="outline"
-                                                className="w-full h-14 border-[#E8E8E8] text-[#ADADAD] rounded-none font-bold uppercase tracking-widest text-[10px] opacity-50"
-                                            >
-                                                <Bell className="size-4 mr-2" />
-                                                Queue Deployment
-                                            </Button>
-                                        )}
-                                    </div>
-                                </div>
+                                    {/* Scroll progress bar (active service) */}
+                                    {activeIndex === i && (
+                                        <motion.div
+                                            layoutId="active-bar"
+                                            className="h-0.5 bg-green-500"
+                                            transition={{
+                                                type: "spring",
+                                                stiffness: 300,
+                                                damping: 30,
+                                            }}
+                                        />
+                                    )}
+                                </motion.div>
+                            );
+                        })}
+                    </div>
+
+                    {/* RIGHT: sticky image panel — desktop only */}
+                    <div className="sticky top-24 hidden h-[calc(100vh-8rem)] max-h-[700px] overflow-hidden rounded-2xl lg:block">
+                        {services.map((service, i) => (
+                            <motion.div
+                                key={service.number}
+                                animate={{
+                                    opacity: activeIndex === i ? 1 : 0,
+                                    scale: activeIndex === i ? 1 : 1.04,
+                                }}
+                                transition={{
+                                    duration: 0.5,
+                                    ease: [0.16, 1, 0.3, 1],
+                                }}
+                                className="absolute inset-0"
+                            >
+                                <Image
+                                    src={service.image}
+                                    alt={service.name}
+                                    fill
+                                    sizes="50vw"
+                                    className="object-cover"
+                                    unoptimized
+                                />
+                                {/* subtle dark overlay at top */}
+                                <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-transparent" />
                             </motion.div>
-                        );
-                    })}
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

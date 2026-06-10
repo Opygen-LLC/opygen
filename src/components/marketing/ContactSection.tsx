@@ -1,158 +1,238 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle2, Send, Mail, MapPin, Clock } from "lucide-react";
-import { Button } from "../ui/button";
+import { CheckCircle2, Mail, Phone, Send } from "lucide-react";
+import { motion } from "framer-motion";
+
+const budgetOptions = ["$500–$1000", "$1000–$3000", "$3000–$5000", "$5000+"];
 
 export default function ContactSection() {
-    const [form, setForm] = useState({ name: "", email: "", message: "" });
+    const [form, setForm] = useState({
+        name: "",
+        email: "",
+        website: "",
+        budget: "",
+        message: "",
+    });
     const [submitted, setSubmitted] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        // Simulate API call
+    const handleSubmit = (event: React.FormEvent) => {
+        event.preventDefault();
         setSubmitted(true);
     };
-
-    const contactInfo = [
-        { icon: Mail, label: "Email", value: "hello@opygen.com" },
-        { icon: MapPin, label: "Base Operations", value: "Dhaka, Bangladesh" },
-        { icon: Clock, label: "Response Window", value: "Within 24 hours" },
-    ];
 
     return (
         <section
             id="contact"
-            className="py-24 bg-white border-t border-[#E8E8E8]"
+            className="relative text-black border-b border-dashed border-gray-300"
         >
-            <div className="max-w-7xl mx-auto px-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-                    {/* Left Column: Context */}
-                    <div className="space-y-8">
+            <div className="mx-auto max-w-7xl border-x border-dashed border-gray-300 px-4 sm:px-6 py-20 md:py-28">
+                <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16 lg:items-start">
+                    {/* LEFT — info */}
+                    <div className="flex flex-col justify-between gap-12 lg:sticky lg:top-28">
                         <div>
-                            <span className="label-pill mb-8">
-                                Communications
-                            </span>
-                            <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-[#0A0A0A] mt-6 mb-6">
-                                Initialize <br />
-                                <span className="text-[#6B6B6B]">
-                                    Consultation.
-                                </span>
-                            </h2>
-                            <p className="text-[#6B6B6B] text-lg leading-relaxed max-w-md">
-                                Whether you&rsquo;re scaling a cleaning empire or
-                                optimizing a field service team, our engineers
-                                are ready to discuss your integration.
-                            </p>
+                            {/* Eyebrow */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                className="mb-6 inline-flex items-center rounded-full border border-black/15 bg-white/60 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-black/50"
+                            >
+                                Contact
+                            </motion.div>
+
+                            {/* Headline */}
+                            <motion.h2
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{
+                                    duration: 0.6,
+                                    ease: [0.16, 1, 0.3, 1],
+                                }}
+                                className="mb-6 text-[clamp(2.8rem,5.5vw,5rem)] font-black leading-[0.93] tracking-tight"
+                            >
+                                Get In{" "}
+                                <span className="text-black/30">Touch.</span>
+                            </motion.h2>
+
+                            {/* Subtext */}
+                            <motion.p
+                                initial={{ opacity: 0, y: 14 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.1 }}
+                                className="max-w-xs text-[13.5px] leading-relaxed text-black/55"
+                            >
+                                Got questions or ready to start your design
+                                project? Let&apos;s bring your ideas to life!
+                            </motion.p>
                         </div>
 
-                        <div className="space-y-6 pt-4">
-                            {contactInfo.map((item) => (
-                                <div
-                                    key={item.label}
-                                    className="flex items-start gap-4 group"
+                        {/* Contact info cards */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 16 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.15 }}
+                            className="flex flex-col gap-3"
+                        >
+                            {[
+                                {
+                                    icon: Mail,
+                                    label: "/Chat to sales",
+                                    value: "hello@formix.com",
+                                    href: "mailto:hello@formix.com",
+                                },
+                                {
+                                    icon: Phone,
+                                    label: "/Call us",
+                                    value: "+359-123-45678",
+                                    href: "tel:+35912345678",
+                                },
+                            ].map((item, i) => (
+                                <a
+                                    key={i}
+                                    href={item.href}
+                                    className="group flex flex-col gap-1.5 rounded-2xl border border-black/8 bg-white/80 px-6 py-5 backdrop-blur-sm transition hover:border-black/20 hover:shadow-sm"
                                 >
-                                    <div className="mt-1 size-8 flex items-center justify-center border border-[#E8E8E8] group-hover:border-[#0A0A0A] transition-colors">
-                                        <item.icon className="size-3.5 text-[#6B6B6B] group-hover:text-[#0A0A0A]" />
-                                    </div>
-                                    <div>
-                                        <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#6B6B6B] mb-0.5">
-                                            {item.label}
-                                        </p>
-                                        <p className="text-sm font-bold text-[#0A0A0A]">
-                                            {item.value}
-                                        </p>
-                                    </div>
-                                </div>
+                                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-black/35">
+                                        {item.label}
+                                    </span>
+                                    <span className="text-[15px] font-black text-black transition group-hover:text-black/70">
+                                        {item.value}
+                                    </span>
+                                </a>
                             ))}
-                        </div>
+                        </motion.div>
                     </div>
 
-                    {/* Right Column: Form Module */}
-                    <div className="relative">
+                    {/* RIGHT — form */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.55, delay: 0.1 }}
+                        className="overflow-hidden rounded-2xl bg-[#111111] p-6 md:p-8"
+                    >
                         {submitted ? (
-                            <div className="bg-[#F9F9F9] border border-[#0A0A0A] p-12 text-center animate-in fade-in zoom-in-95 duration-500">
-                                <div className="size-16 bg-[#0A0A0A] flex items-center justify-center mx-auto mb-6">
-                                    <CheckCircle2 className="text-white size-8" />
+                            <div className="flex min-h-[560px] flex-col items-center justify-center text-center">
+                                <div className="mb-6 flex size-14 items-center justify-center rounded-full bg-white/10">
+                                    <CheckCircle2 className="size-7 text-green-400" />
                                 </div>
-                                <h3 className="text-xl font-bold text-[#0A0A0A] mb-2 uppercase tracking-tighter">
-                                    Transmission Received
+                                <h3 className="text-2xl font-black text-white">
+                                    Message sent!
                                 </h3>
-                                <p className="text-sm text-[#6B6B6B] mb-8">
-                                    Data logged. An operative will contact you
-                                    shortly.
+                                <p className="mt-3 max-w-xs text-[13px] leading-relaxed text-white/45">
+                                    Thanks. We&apos;ll get back to you within 24
+                                    hours.
                                 </p>
-                                <Button
+                                <button
+                                    type="button"
                                     onClick={() => setSubmitted(false)}
-                                    variant="outline"
-                                    className="rounded-none border-[#0A0A0A] uppercase tracking-widest text-[10px] font-bold"
+                                    className="mt-8 rounded-full border border-white/15 px-6 py-2.5 text-[11px] font-black uppercase tracking-widest text-white/60 transition hover:border-white/30 hover:text-white"
                                 >
-                                    Send Another Message
-                                </Button>
+                                    Send another
+                                </button>
                             </div>
                         ) : (
                             <form
                                 onSubmit={handleSubmit}
-                                className="bg-white border border-[#E8E8E8] p-8 md:p-12 space-y-6 shadow-sm"
+                                className="flex flex-col gap-4"
                             >
-                                <div className="space-y-2">
-                                    <label
-                                        htmlFor="name"
-                                        className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#6B6B6B]"
-                                    >
-                                        Name
-                                    </label>
-                                    <input
-                                        id="name"
-                                        required
-                                        placeholder="e.g. Sterling Services Ltd."
-                                        className="w-full bg-[#F9F9F9] border border-[#E8E8E8] px-4 py-3 text-sm focus:border-[#0A0A0A] focus:outline-none transition-colors rounded-none placeholder:text-[#ADADAD]"
-                                        value={form.name}
-                                        onChange={(e) =>
-                                            setForm({
-                                                ...form,
-                                                name: e.target.value,
-                                            })
+                                {/* Name */}
+                                <FormField
+                                    label="/Your Name*"
+                                    id="name"
+                                    placeholder="Your name"
+                                    value={form.name}
+                                    onChange={(v) =>
+                                        setForm({ ...form, name: v })
+                                    }
+                                />
+
+                                {/* Email */}
+                                <FormField
+                                    label="/E-Mail*"
+                                    id="email"
+                                    type="email"
+                                    placeholder="Your Email"
+                                    value={form.email}
+                                    onChange={(v) =>
+                                        setForm({ ...form, email: v })
+                                    }
+                                />
+
+                                {/* Website + Budget row */}
+                                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                    <FormField
+                                        label="/Website"
+                                        id="website"
+                                        placeholder="Your Website"
+                                        value={form.website}
+                                        onChange={(v) =>
+                                            setForm({ ...form, website: v })
                                         }
+                                        required={false}
                                     />
+
+                                    {/* Budget select */}
+                                    <div className="flex flex-col gap-2">
+                                        <label
+                                            htmlFor="budget"
+                                            className="text-[10px] font-black uppercase tracking-[0.2em] text-white/35"
+                                        >
+                                            /Budget
+                                        </label>
+                                        <div className="relative">
+                                            <select
+                                                id="budget"
+                                                value={form.budget}
+                                                onChange={(e) =>
+                                                    setForm({
+                                                        ...form,
+                                                        budget: e.target.value,
+                                                    })
+                                                }
+                                                className="w-full appearance-none rounded-xl border border-white/10 bg-white/8 px-4 py-3.5 text-[13px] font-semibold text-white/60 outline-none transition focus:border-white/25 focus:bg-white/10"
+                                            >
+                                                <option
+                                                    value=""
+                                                    disabled
+                                                    className="bg-[#111] text-white/60"
+                                                >
+                                                    $3000–$5000
+                                                </option>
+                                                {budgetOptions.map((opt) => (
+                                                    <option
+                                                        key={opt}
+                                                        value={opt}
+                                                        className="bg-[#111] text-white"
+                                                    >
+                                                        {opt}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                            <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/30">
+                                                ▾
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div className="space-y-2">
-                                    <label
-                                        htmlFor="email"
-                                        className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#6B6B6B]"
-                                    >
-                                        E-Mail
-                                    </label>
-                                    <input
-                                        id="email"
-                                        type="email"
-                                        required
-                                        placeholder="contact@entity.com"
-                                        className="w-full bg-[#F9F9F9] border border-[#E8E8E8] px-4 py-3 text-sm focus:border-[#0A0A0A] focus:outline-none transition-colors rounded-none placeholder:text-[#ADADAD]"
-                                        value={form.email}
-                                        onChange={(e) =>
-                                            setForm({
-                                                ...form,
-                                                email: e.target.value,
-                                            })
-                                        }
-                                    />
-                                </div>
-
-                                <div className="space-y-2">
+                                {/* Message */}
+                                <div className="flex flex-col gap-2">
                                     <label
                                         htmlFor="message"
-                                        className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#6B6B6B]"
+                                        className="text-[10px] font-black uppercase tracking-[0.2em] text-white/35"
                                     >
-                                        Requirement Brief
+                                        /Message*
                                     </label>
                                     <textarea
                                         id="message"
                                         required
-                                        rows={4}
-                                        placeholder="Describe your current operational bottlenecks..."
-                                        className="w-full bg-[#F9F9F9] border border-[#E8E8E8] px-4 py-3 text-sm focus:border-[#0A0A0A] focus:outline-none transition-colors rounded-none resize-none placeholder:text-[#ADADAD]"
+                                        rows={5}
+                                        placeholder="Your Message"
                                         value={form.message}
                                         onChange={(e) =>
                                             setForm({
@@ -160,25 +240,60 @@ export default function ContactSection() {
                                                 message: e.target.value,
                                             })
                                         }
+                                        className="resize-none rounded-xl border border-white/10 bg-white/8 px-4 py-3.5 text-[13px] font-semibold leading-relaxed text-white outline-none transition placeholder:text-white/25 focus:border-white/25 focus:bg-white/10"
                                     />
                                 </div>
 
-                                <Button
+                                {/* Submit */}
+                                <button
                                     type="submit"
-                                    className="w-full bg-[#0A0A0A] text-white hover:bg-[#1A1A1A] rounded-none py-7 uppercase tracking-[0.2em] text-xs font-bold group"
+                                    className="mt-1 flex w-full items-center justify-center gap-2 rounded-full bg-white py-4 text-[13px] font-black text-black transition hover:bg-white/90 active:scale-[0.98]"
                                 >
-                                    Dispatch Message
-                                    <Send className="ml-2 size-3 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                                </Button>
-
-                                {/* <p className="text-[9px] text-center text-[#ADADAD] uppercase tracking-widest font-medium">
-                                    Secure encrypted transmission — AES-256
-                                </p> */}
+                                    Send Message
+                                </button>
                             </form>
                         )}
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>
+    );
+}
+
+function FormField({
+    id,
+    label,
+    onChange,
+    placeholder,
+    type = "text",
+    value,
+    required = true,
+}: {
+    id: string;
+    label: string;
+    onChange: (value: string) => void;
+    placeholder: string;
+    type?: string;
+    value: string;
+    required?: boolean;
+}) {
+    return (
+        <div className="flex flex-col gap-2">
+            <label
+                htmlFor={id}
+                className="text-[10px] font-black uppercase tracking-[0.2em] text-white/35"
+            >
+                {label}
+            </label>
+            <input
+                id={id}
+                required={required}
+                type={type}
+                placeholder={placeholder}
+                value={value}
+                onChange={(e) => onChange(e.target.value)}
+                className="rounded-xl border border-white/10 bg-white/8 px-4 py-3.5 text-[13px] font-semibold text-white outline-none transition placeholder:text-white/25 focus:border-white/25 focus:bg-white/10"
+            />
+        </div>
     );
 }

@@ -18,5 +18,5 @@ export default function MarketingLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <><div  className={`${syne.className} antialiased`}>{children}</div></>;
+  return <><div className={`${syne.variable} ${syne.className} antialiased`}>{children}</div></>;
 }

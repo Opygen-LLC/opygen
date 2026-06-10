@@ -1,159 +1,199 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/button";
+import Image from "next/image";
+import Logo from "../../../public/logo/Opygen.png"
 
 const navLinks = [
-  { label: "Mission", href: "#mission" },
-  { label: "Products", href: "#products" },
-  { label: "Services", href: "#services" },
-  { label: "Team", href: "#team" },
-  { label: "Contact", href: "#contact" },
+    { label: "Home", href: "#home" },
+    { label: "Services", href: "#services" },
+    { label: "Projects", href: "#projects" },
+    { label: "Pricing", href: "#pricing" },
+    { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+    const [active, setActive] = useState("#home");
+    const [menuOpen, setMenuOpen] = useState(false);
 
-  // Handle scroll state
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    useEffect(() => {
+        const sections = navLinks
+            .map((link) => document.querySelector(link.href))
+            .filter(Boolean);
 
-  // Prevent scrolling when mobile menu is open
-  useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-  }, [menuOpen]);
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const visibleSection = entries
+                    .filter((entry) => entry.isIntersecting)
+                    .sort(
+                        (a, b) => b.intersectionRatio - a.intersectionRatio,
+                    )[0];
 
-  return (
-    <>
-      <header
-        className={cn(
-          "fixed top-0 left-0 right-0 z-120 transition-all duration-300 border-b",
-          scrolled
-            ? "bg-white/90 backdrop-blur-md border-[#E8E8E8] py-3"
-            : "bg-transparent border-transparent py-5"
-        )}
-      >
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-6">
-          
-          {/* 1. Logo (Left) */}
-          <Link 
-            href="/" 
-            className="flex items-center gap-3 group shrink-0 relative z-[130]"
-            onClick={() => setMenuOpen(false)}
-          >
-            <OpygenMark />
-            <div className="flex flex-col ">
-              <span className="text-2xl font-bold tracking-tighter  text-[#0A0A0A]">
-                Opygen
-              </span>
-              <span className="text-[10px] uppercase  tracking-[0.2em] text-[#6B6B6B] font-bold">
-                Base System
-              </span>
-            </div>
-          </Link>
+                if (visibleSection?.target?.id) {
+                    setActive(`#${visibleSection.target.id}`);
+                }
+            },
+            {
+                threshold: [0.2, 0.4, 0.6, 0.8],
+                rootMargin: "-20% 0px -40% 0px",
+            },
+        );
 
-          {/* 2. Desktop Navigation (Center) */}
-          <nav className="hidden md:flex items-center absolute left-1/2 -translate-x-1/2 gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-[11px] font-bold uppercase tracking-widest text-[#6B6B6B] hover:text-[#0A0A0A] transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+        sections.forEach((section) => {
+            if (section) observer.observe(section);
+        });
 
-          {/* 3. Actions (Right) */}
-          <div className="flex items-center gap-3">
-            <div className="hidden md:flex items-center gap-2">
-              
-              <Button asChild size="sm" className="bg-[#0A0A0A] text-white hover:bg-[#1A1A1A] rounded-none px-6">
-                <Link href="/get-started" className="flex items-center gap-2">
-                  Get started
-                  <ChevronRight className="size-3" />
-                </Link>
-              </Button>
-            </div>
+        return () => observer.disconnect();
+    }, []);
 
-            {/* Mobile Toggle Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden relative z-[130] text-[#0A0A0A] hover:bg-transparent"
-              onClick={() => setMenuOpen(!menuOpen)}
-            >
-              {menuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
-            </Button>
-          </div>
-        </div>
-      </header>
+    // Lock body scroll when mobile menu is open
+    useEffect(() => {
+        document.body.style.overflow = menuOpen ? "hidden" : "";
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [menuOpen]);
 
-      {/* Mobile Menu Overlay */}
-      <div
-        className={cn(
-          "fixed inset-0 bg-white z-110 md:hidden transition-all duration-500 ease-in-out",
-          menuOpen
-            ? "opacity-100 pointer-events-auto translate-y-0"
-            : "opacity-0 pointer-events-none -translate-y-4"
-        )}
-      >
-        <div className="flex flex-col h-full pt-32 px-8 pb-10">
-          <nav className="flex flex-col gap-6">
-            {navLinks.map((link, i) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className={cn(
-                  "text-4xl font-bold tracking-tighter text-[#0A0A0A] transition-all duration-500",
-                  menuOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+    return (
+        <>
+            <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-dashed border-gray-300">
+                <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
+                    {/* Logo */}
+                    <Link href="/" className="flex items-center gap-2 shrink-0">
+                        <Image
+                            src={Logo}
+                            alt="Opygen logo"
+                            width={28}
+                            height={28}
+                            className="object-contain"
+                        />
+                        <span className="text-[15px] font-bold tracking-tight text-black">
+                            Opygen
+                        </span>
+                    </Link>
+
+                    {/* Desktop Nav — centered */}
+                    <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-1">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className={cn(
+                                    "px-4 py-2 rounded-full text-[13.5px] font-medium transition-colors duration-200",
+                                    active === link.href
+                                        ? "text-black font-semibold"
+                                        : "text-gray-500 hover:text-black",
+                                )}
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+                    </nav>
+
+                    {/* Desktop CTA */}
+                    <Link
+                        href="#contact"
+                        className="hidden md:flex items-center gap-1.5 rounded-full bg-black px-5 py-2.5 text-[13px] font-semibold text-white transition hover:bg-zinc-800 active:scale-95 shrink-0"
+                    >
+                        Get started
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="13"
+                            height="13"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        >
+                            <path d="M7 17L17 7M17 7H7M17 7v10" />
+                        </svg>
+                    </Link>
+
+                    {/* Mobile hamburger */}
+                    <button
+                        onClick={() => setMenuOpen((prev) => !prev)}
+                        className="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-[5px]"
+                        aria-label="Toggle menu"
+                    >
+                        <motion.span
+                            animate={
+                                menuOpen
+                                    ? { rotate: 45, y: 7 }
+                                    : { rotate: 0, y: 0 }
+                            }
+                            className="block h-[2px] w-5 bg-black origin-center transition-all"
+                        />
+                        <motion.span
+                            animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
+                            className="block h-[2px] w-5 bg-black"
+                        />
+                        <motion.span
+                            animate={
+                                menuOpen
+                                    ? { rotate: -45, y: -7 }
+                                    : { rotate: 0, y: 0 }
+                            }
+                            className="block h-[2px] w-5 bg-black origin-center transition-all"
+                        />
+                    </button>
+                </div>
+            </header>
+
+            {/* Mobile Menu Overlay */}
+            <AnimatePresence>
+                {menuOpen && (
+                    <motion.div
+                        key="mobile-menu"
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
+                        className="fixed inset-0 z-40 bg-white flex flex-col pt-16"
+                    >
+                        {/* Close button top-right */}
+                        <button
+                            onClick={() => setMenuOpen(false)}
+                            className="absolute top-4 right-6 text-black text-xl font-light"
+                            aria-label="Close menu"
+                        >
+                            ✕
+                        </button>
+
+                        <nav className="flex flex-col items-center justify-center flex-1 gap-1 pb-10">
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    onClick={() => setMenuOpen(false)}
+                                    className={cn(
+                                        "w-full text-center px-6 py-3 text-[15px] transition-colors",
+                                        active === link.href
+                                            ? "text-black font-semibold"
+                                            : "text-gray-500 hover:text-black",
+                                    )}
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+
+                            <div className="mt-4 w-full px-6">
+                                <Link
+                                    href="#contact"
+                                    onClick={() => setMenuOpen(false)}
+                                    className="flex w-full items-center justify-center rounded-full bg-black py-3.5 text-[14px] font-semibold text-white transition hover:bg-zinc-800"
+                                >
+                                    Get started
+                                </Link>
+                            </div>
+                        </nav>
+                    </motion.div>
                 )}
-                style={{ transitionDelay: `${i * 75}ms` }}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="mt-auto space-y-4">
-            <div className="h-px bg-[#E8E8E8] w-full" />
-            <div className="grid grid-cols-1 gap-3">
-              <Button asChild size="lg" className="w-full bg-[#0A0A0A] text-white py-8 rounded-none text-xs uppercase tracking-[0.2em] font-bold">
-                <Link href="/get-started">Get started</Link>
-              </Button>
-            
-            </div>
-            <p className="text-center text-[10px] uppercase tracking-widest text-[#6B6B6B] font-bold pt-4">
-              Operational Engine v1.0
-            </p>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
-
-function OpygenMark() {
-  return (
-    <div className="relative size-8 group-hover:rotate-12 transition-transform duration-500">
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M32 6 A26 26 0 1 1 53.5 45.5" stroke="currentColor" strokeWidth="6" strokeLinecap="square" className="text-[#0A0A0A]" />
-        <path d="M32 58 A26 26 0 1 1 10.5 18.5" stroke="currentColor" strokeWidth="6" strokeLinecap="square" className="text-[#0A0A0A]" />
-        <rect x="28" y="28" width="8" height="8" fill="currentColor" className="text-[#0A0A0A]" />
-      </svg>
-    </div>
-  );
+            </AnimatePresence>
+        </>
+    );
 }
