@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowUpRight, CirclePlus, List, CheckCheck } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const steps = [
@@ -32,7 +32,6 @@ const steps = [
 export default function Process() {
     const [active, setActive] = useState(0);
 
-    // Auto-cycle every 2 seconds, infinite
     useEffect(() => {
         const timer = setInterval(() => {
             setActive((prev) => (prev + 1) % steps.length);
@@ -178,7 +177,6 @@ export default function Process() {
                                             {step.number}
                                         </motion.span>
 
-                                        {/* Orange bar at bottom of sidebar */}
                                         <motion.div
                                             animate={{
                                                 backgroundColor: isActive
@@ -219,7 +217,7 @@ export default function Process() {
                                             />
                                         </motion.div>
 
-                                        {/* Title */}
+                                        {/* Title + Description */}
                                         <div>
                                             <motion.h3
                                                 animate={{
@@ -233,40 +231,28 @@ export default function Process() {
                                                 {step.title}
                                             </motion.h3>
 
-                                            {/* Description — animate height for collapsed/expanded */}
-                                            <AnimatePresence initial={false}>
-                                                <motion.p
-                                                    key={
-                                                        isActive
-                                                            ? "open"
-                                                            : "closed"
-                                                    }
-                                                    initial={{
-                                                        opacity: 0,
-                                                        height: 0,
-                                                    }}
-                                                    animate={{
-                                                        opacity: 1,
-                                                        height: "auto",
-                                                    }}
-                                                    exit={{
-                                                        opacity: 0,
-                                                        height: 0,
-                                                    }}
-                                                    transition={{
-                                                        duration: 0.35,
-                                                        ease: "easeInOut",
-                                                    }}
-                                                    className="overflow-hidden text-[13.5px] leading-relaxed"
-                                                    style={{
-                                                        color: isActive
-                                                            ? "rgba(255,255,255,0.6)"
-                                                            : "rgba(0,0,0,0.5)",
-                                                    }}
-                                                >
-                                                    {step.description}
-                                                </motion.p>
-                                            </AnimatePresence>
+                                            {/* Description — clip opacity only, no height animation */}
+                                            <motion.p
+                                                animate={{
+                                                    opacity: isActive ? 1 : 0,
+                                                    color: isActive
+                                                        ? "rgba(255,255,255,0.6)"
+                                                        : "rgba(0,0,0,0.5)",
+                                                }}
+                                                transition={{ duration: 0.3 }}
+                                                className="text-[13.5px] leading-relaxed"
+                                                style={{
+                                                    visibility: isActive
+                                                        ? "visible"
+                                                        : "hidden",
+                                                    position: isActive
+                                                        ? "relative"
+                                                        : "absolute",
+                                                    pointerEvents: "none",
+                                                }}
+                                            >
+                                                {step.description}
+                                            </motion.p>
                                         </div>
                                     </motion.div>
                                 </motion.div>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface TeamMember {
     name: string;
@@ -11,6 +12,7 @@ interface TeamMember {
     initials: string;
     bio: string;
     image?: string;
+    portfolio: string;
 }
 
 const team: TeamMember[] = [
@@ -18,29 +20,33 @@ const team: TeamMember[] = [
         name: "MD. Sidur Rahaman Rupom",
         role: "Co-founder & CEO",
         initials: "SR",
-        bio: "Full-stack developer and systems thinker leading product vision and engineering.",
+        bio: "Full-stack developer and strategic leader responsible for company vision, product direction, and long-term business growth while actively contributing to engineering decisions.",
         image: "/team/rupom.png",
+        portfolio: "https://rupom.dev",
     },
     {
         name: "MD. Faysal Mridha",
         role: "Co-founder & CTO",
         initials: "FM",
-        bio: "Operations strategist focused on solving real business problems with practical systems.",
+        bio: "Full-stack developer and leading technology strategy, system architecture, and engineering excellence to build scalable and reliable software solutions.",
         image: "/team/faysal.png",
+        portfolio: "https://faysal.dev",
     },
     {
         name: "Syed Mohiuddin Meshal",
         role: "Co-founder & COO",
         initials: "SM",
-        bio: "Growth and partnerships lead connecting Opygen with teams that need cleaner operations.",
+        bio: "Full-stack developer and overseeing operations, process optimization, and cross-functional execution to ensure efficient delivery and sustainable growth.",
         image: "/team/meshal.png",
+        portfolio: "https://syedmohiuddinmeshal.netlify.app",
     },
     {
         name: "Mohibbullah Khan",
         role: "Co-founder & CPO",
         initials: "MK",
-        bio: "Design and product experience lead keeping every shipped surface clear and intuitive.",
+        bio: "Full-stack developer and focused on product strategy, user experience, and feature innovation, ensuring every solution delivers real value to customers.",
         image: "/team/muhib.png",
+        portfolio: "https://muhib.dev",
     },
 ];
 
@@ -66,12 +72,17 @@ export default function TeamSection() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{
+                                duration: 0.6,
+                                ease: [0.16, 1, 0.3, 1],
+                            }}
                             className="text-[clamp(2.8rem,5.5vw,5rem)] font-black leading-[0.93] tracking-tight"
                         >
                             Built by Founders,
                             <br />
-                            <span className="text-black/30">Not Middlemen.</span>
+                            <span className="text-black/30">
+                                Not Middlemen.
+                            </span>
                         </motion.h2>
                     </div>
                     <motion.p
@@ -90,7 +101,11 @@ export default function TeamSection() {
                 {/* Cards grid */}
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
                     {team.map((member, index) => (
-                        <MemberCard key={member.name} member={member} index={index} />
+                        <MemberCard
+                            key={member.name}
+                            member={member}
+                            index={index}
+                        />
                     ))}
                 </div>
 
@@ -168,12 +183,15 @@ function MemberCard({ member, index }: { member: TeamMember; index: number }) {
 
             {/* Info */}
             <div className="p-5">
-                <div className="mb-3 flex items-start justify-between gap-3">
+                <Link
+                    href={member.portfolio}
+                    className="mb-3 flex items-start justify-between gap-3"
+                >
                     <h3 className="text-[15px] font-black leading-tight tracking-tight text-black">
                         {member.name}
                     </h3>
                     <ArrowUpRight className="size-4 shrink-0 text-black/25 transition-colors group-hover:text-black" />
-                </div>
+                </Link>
 
                 {/* Divider */}
                 <div className="mb-3 h-px w-full border-t border-dashed border-black/10" />

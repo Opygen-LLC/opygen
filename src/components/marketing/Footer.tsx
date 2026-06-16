@@ -13,21 +13,24 @@ import {
 
 const navLinks = [
     { label: "Home", href: "#home" },
+    { label: "Services", href: "#services" },
     { label: "Projects", href: "#projects" },
+    { label: "Benefits", href: "#benefits" },
     { label: "Contact", href: "#contact" },
 ];
 
 const resourceLinks = [
-    { label: "Privacy Policy", href: "/privacy-policy" },
     { label: "Terms of Service", href: "/terms-of-service" },
-    { label: "404 Page", href: "/404" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Refund Policy", href: "/refund-policy" },
+    { label: "Security", href: "/security" },
 ];
 
 const socials = [
-    { label: "Facebook", href: "https://facebook.com", icon: FacebookLogo },
-    { label: "Twitter", href: "https://twitter.com", icon: TwitterLogo },
-    { label: "Instagram", href: "https://instagram.com", icon: InstagramLogo },
-    { label: "LinkedIn", href: "https://linkedin.com", icon: LinkedinLogo },
+    { label: "Facebook", href: "https://www.facebook.com/people/Opygen-Tech/61571998205592", icon: FacebookLogo },
+    { label: "Twitter", href: "https://x.com/opygentech", icon: TwitterLogo },
+    { label: "Instagram", href: "https://www.instagram.com/opygentech", icon: InstagramLogo },
+    { label: "LinkedIn", href: "https://www.linkedin.com/company/opygen", icon: LinkedinLogo },
 ];
 
 export default function Footer() {
@@ -82,7 +85,10 @@ export default function Footer() {
                                             rel="noreferrer"
                                             className="flex size-9 items-center justify-center rounded-full border border-black/12 bg-white/60 text-black/60 transition hover:border-black/30 hover:bg-white hover:text-black"
                                         >
-                                            <Icon className="size-4" weight="bold" />
+                                            <Icon
+                                                className="size-4"
+                                                weight="bold"
+                                            />
                                         </Link>
                                     );
                                 })}
@@ -134,7 +140,7 @@ export default function Footer() {
                             /Contact
                         </p>
                         <ul className="space-y-3">
-                            {["hello@formix.com", "+359-123-45678"].map(
+                            {["conatct@opygen.com", "+359-123-45678"].map(
                                 (item) => (
                                     <li key={item}>
                                         <span className="text-[15px] font-black text-black/75">
@@ -178,7 +184,7 @@ export default function Footer() {
                 {/* Bottom bar */}
                 <div className="flex flex-col items-center justify-between gap-3 px-6 py-5 sm:flex-row sm:px-8">
                     <p className="text-[10px] font-black uppercase tracking-[0.2em] text-black/35">
-                        ©{new Date().getFullYear()} Opygen. Designed by Marso
+                        ©{new Date().getFullYear()} Opygen. Operational Systems
                     </p>
                     <p className="text-[10px] font-black uppercase tracking-[0.2em] text-black/35">
                         Built with Next.js

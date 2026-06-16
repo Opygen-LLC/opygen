@@ -12,11 +12,23 @@ import {
 
 const budgetOptions = ["$500–$1000", "$1000–$3000", "$3000–$5000", "$5000+"];
 
-const socialLinks = [
-    { label: "Facebook", href: "https://facebook.com", icon: FacebookLogo },
-    { label: "Twitter", href: "https://twitter.com", icon: TwitterLogo },
-    { label: "Instagram", href: "https://instagram.com", icon: InstagramLogo },
-    { label: "LinkedIn", href: "https://linkedin.com", icon: LinkedinLogo },
+const socials = [
+    {
+        label: "Facebook",
+        href: "https://www.facebook.com/people/Opygen-Tech/61571998205592",
+        icon: FacebookLogo,
+    },
+    { label: "Twitter", href: "https://x.com/opygentech", icon: TwitterLogo },
+    {
+        label: "Instagram",
+        href: "https://www.instagram.com/opygentech",
+        icon: InstagramLogo,
+    },
+    {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/company/opygen",
+        icon: LinkedinLogo,
+    },
 ];
 
 export default function ContactSection() {
@@ -95,8 +107,8 @@ export default function ContactSection() {
                                     {
                                         icon: Mail,
                                         label: "/Chat to sales",
-                                        value: "hello@formix.com",
-                                        href: "mailto:hello@formix.com",
+                                        value: "conatct@opygen.com",
+                                        href: "mailto:conatct@opygen.com",
                                     },
                                     {
                                         icon: Phone,
@@ -125,7 +137,7 @@ export default function ContactSection() {
                                     /Social media
                                 </p>
                                 <div className="flex items-center gap-2">
-                                    {socialLinks.map((social) => {
+                                    {socials.map((social) => {
                                         const Icon = social.icon;
 
                                         return (
@@ -137,7 +149,10 @@ export default function ContactSection() {
                                                 aria-label={social.label}
                                                 className="flex size-10 items-center justify-center rounded-full border border-black/10 bg-white/80 text-black/55 transition hover:border-black/25 hover:bg-white hover:text-black"
                                             >
-                                                <Icon className="size-4" weight="bold" />
+                                                <Icon
+                                                    className="size-4"
+                                                    weight="bold"
+                                                />
                                             </a>
                                         );
                                     })}

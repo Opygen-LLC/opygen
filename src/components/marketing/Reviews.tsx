@@ -6,8 +6,7 @@ import { motion } from "framer-motion";
 const reviews = [
     {
         rating: 4.9,
-        quote:
-            "Proactive, precise, and easy to work with - no hand-holding needed, just smooth collaboration from start to finish.",
+        quote: "Proactive, precise, and easy to work with - no hand-holding needed, just smooth collaboration from start to finish.",
         name: "Jared Kim",
         role: "Marketing Director",
         avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80",
@@ -15,8 +14,7 @@ const reviews = [
     },
     {
         rating: 5.0,
-        quote:
-            "Felt like an embedded team with zero friction; communication was clear, and revisions landed perfectly on the first go.",
+        quote: "Felt like an embedded team with zero friction; communication was clear, and revisions landed perfectly on the first go.",
         name: "Maya Collins",
         role: "Head of Product",
         avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80",
@@ -24,8 +22,7 @@ const reviews = [
     },
     {
         rating: 4.9,
-        quote:
-            "The quality was unmatched. We submitted our request on Monday and had polished designs by Wednesday.",
+        quote: "The quality was unmatched. We submitted our request on Monday and had polished designs by Wednesday.",
         name: "Jesse Leigh",
         role: "CEO & Founder",
         avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80",
@@ -33,8 +30,7 @@ const reviews = [
     },
     {
         rating: 4.9,
-        quote:
-            "We've tried other design subscriptions - none compare to Formix. Professional, reliable, and seriously creative.",
+        quote: "We've tried other design subscriptions - none compare to Formix. Professional, reliable, and seriously creative.",
         name: "Benjamin Daul",
         role: "Head of Engineering",
         avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80",
@@ -42,8 +38,7 @@ const reviews = [
     },
     {
         rating: 5.0,
-        quote:
-            "Formix completely transformed the way we approach design. The turnaround time is insane and the output's always on-brand.",
+        quote: "Formix completely transformed the way we approach design. The turnaround time is insane and the output's always on-brand.",
         name: "Michael Joseph",
         role: "Head of Content",
         avatar: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=80&q=80",
@@ -51,8 +46,7 @@ const reviews = [
     },
     {
         rating: 5.0,
-        quote:
-            "It felt like an in-house design team. Communication was seamless, and revisions were spot on from the first pass.",
+        quote: "It felt like an in-house design team. Communication was seamless, and revisions were spot on from the first pass.",
         name: "Amy Louise",
         role: "Customer Success Manager",
         avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80",
@@ -76,6 +70,90 @@ function LinkedInIcon() {
     );
 }
 
+function ReviewCard({ review }: { review: (typeof reviews)[0] }) {
+    return (
+        <div className="w-[340px] shrink-0 flex flex-col justify-between overflow-hidden rounded-2xl border border-black/8 bg-white/70 p-6 backdrop-blur-sm mx-2">
+            {/* Top: rating + quote mark */}
+            <div className="mb-5 flex items-center justify-between">
+                <div className="flex items-center gap-1.5">
+                    <span className="text-[12px] font-black text-black/70">
+                        {review.rating.toFixed(1)}
+                    </span>
+                    <span className="text-[#ff4d00] text-xs">★</span>
+                    <span className="text-[9px] font-black uppercase tracking-[0.2em] text-black/30">
+                        Rating
+                    </span>
+                </div>
+                <span className="font-serif text-[3rem] font-black leading-none text-black/8 select-none">
+                    &quot;
+                </span>
+            </div>
+
+            {/* Quote */}
+            <p className="mb-6 flex-1 text-[14px] font-semibold leading-relaxed text-black/75">
+                &quot;{review.quote}&quot;
+            </p>
+
+            {/* Author card */}
+            <div className="flex items-center justify-between rounded-xl border border-dashed border-black/10 bg-black/[0.03] px-4 py-3">
+                <div className="flex items-center gap-3">
+                    <div className="relative size-9 shrink-0 overflow-hidden rounded-full border border-black/10">
+                        <Image
+                            src={review.avatar}
+                            alt={review.name}
+                            fill
+                            sizes="36px"
+                            className="object-cover"
+                            unoptimized
+                        />
+                    </div>
+                    <div>
+                        <p className="text-[13px] font-black leading-tight text-black">
+                            {review.name}
+                        </p>
+                        <p className="text-[9px] font-black uppercase tracking-[0.16em] text-black/35">
+                            {review.role}
+                        </p>
+                    </div>
+                </div>
+                <div className="flex size-8 items-center justify-center rounded-full border border-black/10 bg-white text-black/40">
+                    {review.social === "x" ? <XIcon /> : <LinkedInIcon />}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function MarqueeRow({
+    items,
+    direction = "left",
+    speed = 40,
+}: {
+    items: typeof reviews;
+    direction?: "left" | "right";
+    speed?: number;
+}) {
+    // Duplicate for seamless loop
+    const doubled = [...items, ...items];
+    const totalWidth = items.length * 356; // card width 340 + gap ~16
+
+    return (
+        <div className="overflow-hidden w-full">
+            <div
+                className="flex"
+                style={{
+                    animation: `marquee-${direction} ${speed}s linear infinite`,
+                    width: `${totalWidth * 2}px`,
+                }}
+            >
+                {doubled.map((review, i) => (
+                    <ReviewCard key={i} review={review} />
+                ))}
+            </div>
+        </div>
+    );
+}
+
 export default function Reviews() {
     return (
         <section
@@ -83,7 +161,6 @@ export default function Reviews() {
             className="relative text-black border-b border-dashed border-gray-300"
         >
             <div className="mx-auto w-full container max-w-8xl marketing-section-container border-x border-dashed border-gray-300">
-
                 {/* Header */}
                 <div className="mb-12 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_340px] lg:items-end">
                     <div>
@@ -102,7 +179,10 @@ export default function Reviews() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{
+                                duration: 0.6,
+                                ease: [0.16, 1, 0.3, 1],
+                            }}
                             className="text-[clamp(2.8rem,5.5vw,5rem)] font-black leading-[0.93] tracking-tight"
                         >
                             Success{" "}
@@ -123,7 +203,7 @@ export default function Reviews() {
                 </div>
 
                 {/* Reviews grid */}
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {/* <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {reviews.map((review, i) => (
                         <motion.div
                             key={i}
@@ -133,29 +213,27 @@ export default function Reviews() {
                             transition={{ delay: i * 0.07, duration: 0.45 }}
                             className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-black/8 bg-white/70 p-6 backdrop-blur-sm transition-shadow hover:shadow-md"
                         >
-                            {/* Top: rating + quote mark */}
                             <div className="mb-5 flex items-center justify-between">
                                 <div className="flex items-center gap-1.5">
                                     <span className="text-[12px] font-black text-black/70">
                                         {review.rating.toFixed(1)}
                                     </span>
-                                    <span className="text-[#ff4d00] text-xs">★</span>
+                                    <span className="text-[#ff4d00] text-xs">
+                                        ★
+                                    </span>
                                     <span className="text-[9px] font-black uppercase tracking-[0.2em] text-black/30">
                                         Rating
                                     </span>
                                 </div>
-                                {/* Big decorative quote mark */}
                                 <span className="font-serif text-[3rem] font-black leading-none text-black/8 select-none">
                                     &quot;
                                 </span>
                             </div>
 
-                            {/* Quote */}
                             <p className="mb-6 flex-1 text-[14px] font-semibold leading-relaxed text-black/75">
                                 &quot;{review.quote}&quot;
                             </p>
 
-                            {/* Author card */}
                             <div className="flex items-center justify-between rounded-xl border border-dashed border-black/10 bg-black/[0.03] px-4 py-3">
                                 <div className="flex items-center gap-3">
                                     <div className="relative size-9 shrink-0 overflow-hidden rounded-full border border-black/10">
@@ -178,7 +256,6 @@ export default function Reviews() {
                                     </div>
                                 </div>
 
-                                {/* Social icon */}
                                 <div className="flex size-8 items-center justify-center rounded-full border border-black/10 bg-white text-black/40 transition hover:border-black/25 hover:text-black">
                                     {review.social === "x" ? (
                                         <XIcon />
@@ -189,6 +266,28 @@ export default function Reviews() {
                             </div>
                         </motion.div>
                     ))}
+                </div> */}
+
+                <style>{`
+                        @keyframes marquee-left {
+                            0%   { transform: translateX(0); }
+                            100% { transform: translateX(-50%); }
+                        }
+                        @keyframes marquee-right {
+                            0%   { transform: translateX(-50%); }
+                            100% { transform: translateX(0); }
+                        }
+                    `}</style>
+
+                <div className="flex flex-col gap-3 py-6">
+                    {/* Row 1: left → */}
+                    <MarqueeRow items={reviews} direction="left" speed={35} />
+                    {/* Row 2: ← right */}
+                    <MarqueeRow
+                        items={[...reviews].reverse()}
+                        direction="right"
+                        speed={40}
+                    />
                 </div>
             </div>
         </section>
