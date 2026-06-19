@@ -46,7 +46,7 @@ const team: TeamMember[] = [
         initials: "MK",
         bio: "Full-stack developer and focused on product strategy, user experience, and feature innovation, ensuring every solution delivers real value to customers.",
         image: "/team/muhib.png",
-        portfolio: "https://muhib.dev",
+        portfolio: "https://muhibkhan.netlify.app",
     },
 ];
 

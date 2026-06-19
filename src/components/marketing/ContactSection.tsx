@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { CheckCircle2, Mail, Phone } from "lucide-react";
+import { sendContactEmail } from "@/src/app/actions/contact";
 import { motion } from "framer-motion";
 import {
     FacebookLogo,
@@ -40,10 +41,25 @@ export default function ContactSection() {
         message: "",
     });
     const [submitted, setSubmitted] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        setSubmitted(true);
+        setSubmitting(true);
+        setError(null);
+        try {
+            const result = await sendContactEmail(form);
+            if (result.success) {
+                setSubmitted(true);
+            } else {
+                setError(result.error || "Failed to send message. Please try again.");
+            }
+        } catch (err: any) {
+            setError(err.message || "An unexpected error occurred. Please try again.");
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     return (
@@ -200,6 +216,7 @@ export default function ContactSection() {
                                     id="name"
                                     placeholder="Your name"
                                     value={form.name}
+                                    disabled={submitting}
                                     onChange={(v) =>
                                         setForm({ ...form, name: v })
                                     }
@@ -212,6 +229,7 @@ export default function ContactSection() {
                                     type="email"
                                     placeholder="Your Email"
                                     value={form.email}
+                                    disabled={submitting}
                                     onChange={(v) =>
                                         setForm({ ...form, email: v })
                                     }
@@ -224,6 +242,7 @@ export default function ContactSection() {
                                         id="website"
                                         placeholder="Your Website"
                                         value={form.website}
+                                        disabled={submitting}
                                         onChange={(v) =>
                                             setForm({ ...form, website: v })
                                         }
@@ -242,13 +261,14 @@ export default function ContactSection() {
                                             <select
                                                 id="budget"
                                                 value={form.budget}
+                                                disabled={submitting}
                                                 onChange={(e) =>
                                                     setForm({
                                                         ...form,
                                                         budget: e.target.value,
                                                     })
                                                 }
-                                                className="w-full appearance-none rounded-xl border border-white/10 bg-white/8 px-4 py-3.5 text-[13px] font-semibold text-white/60 outline-none transition focus:border-white/25 focus:bg-white/10"
+                                                className="w-full appearance-none rounded-xl border border-white/10 bg-white/8 px-4 py-3.5 text-[13px] font-semibold text-white/60 outline-none transition focus:border-white/25 focus:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed"
                                             >
                                                 <option
                                                     value=""
@@ -286,6 +306,7 @@ export default function ContactSection() {
                                         id="message"
                                         required
                                         rows={5}
+                                        disabled={submitting}
                                         placeholder="Your Message"
                                         value={form.message}
                                         onChange={(e) =>
@@ -294,17 +315,24 @@ export default function ContactSection() {
                                                 message: e.target.value,
                                             })
                                         }
-                                        className="resize-none rounded-xl border border-white/10 bg-white/8 px-4 py-3.5 text-[13px] font-semibold leading-relaxed text-white outline-none transition placeholder:text-white/25 focus:border-white/25 focus:bg-white/10"
+                                        className="resize-none rounded-xl border border-white/10 bg-white/8 px-4 py-3.5 text-[13px] font-semibold leading-relaxed text-white outline-none transition placeholder:text-white/25 focus:border-white/25 focus:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed"
                                     />
                                 </div>
 
                                 {/* Submit */}
                                 <button
                                     type="submit"
-                                    className="mt-1 flex w-full items-center justify-center gap-2 rounded-full bg-white py-4 text-[13px] font-black text-black transition hover:bg-white/90 active:scale-[0.98]"
+                                    disabled={submitting}
+                                    className="mt-1 flex w-full items-center justify-center gap-2 rounded-full bg-white py-4 text-[13px] font-black text-black transition hover:bg-white/90 active:scale-[0.98] disabled:bg-white/50 disabled:cursor-not-allowed"
                                 >
-                                    Send Message
+                                    {submitting ? "Sending..." : "Send Message"}
                                 </button>
+
+                                {error && (
+                                    <div className="mt-2 text-xs font-semibold text-red-400 text-center bg-red-500/10 py-2.5 px-4 rounded-xl border border-red-500/20">
+                                        {error}
+                                    </div>
+                                )}
                             </form>
                         )}
                     </motion.div>
@@ -322,6 +350,7 @@ function FormField({
     type = "text",
     value,
     required = true,
+    disabled = false,
 }: {
     id: string;
     label: string;
@@ -330,6 +359,7 @@ function FormField({
     type?: string;
     value: string;
     required?: boolean;
+    disabled?: boolean;
 }) {
     return (
         <div className="flex flex-col gap-2">
@@ -346,7 +376,8 @@ function FormField({
                 placeholder={placeholder}
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
-                className="rounded-xl border border-white/10 bg-white/8 px-4 py-3.5 text-[13px] font-semibold text-white outline-none transition placeholder:text-white/25 focus:border-white/25 focus:bg-white/10"
+                disabled={disabled}
+                className="rounded-xl border border-white/10 bg-white/8 px-4 py-3.5 text-[13px] font-semibold text-white outline-none transition placeholder:text-white/25 focus:border-white/25 focus:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed"
             />
         </div>
     );

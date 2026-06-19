@@ -1,91 +1,124 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import {
-    ArrowUpRight,
     Bell,
     CheckCircle2,
     Layers,
     Wind,
     Zap,
 } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
 const services = [
     {
         number: "001",
-        category: "Brand Identity",
-        name: "Identities That Get Noticed",
-        slug: "cleaningcrm",
-        status: "Live",
+        category: "Website Design",
+        name: "Websites That Build Trust",
+        slug: "website-design",
+        status: "Active",
         icon: Wind,
         description:
-            "Logos, visual systems, and brand guidelines built to give your startup a voice that scales.",
+            "Modern, user-focused website designs that strengthen your brand, engage visitors, and drive conversions.",
         tags: [
-            "Brand Strategy",
-            "Logo Design",
-            "Art Direction",
-            "Color Systems",
-            "Brand Strategy",
+            "UI/UX Design",
+            "Landing Pages",
+            "Corporate Websites",
+            "Wireframing",
+            "Responsive Design",
         ],
-        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80&auto=format&fit=crop",
+        image: "/images/services/web-design.jpg",
     },
     {
         number: "002",
-        category: "Web Design",
-        name: "Design That Moves Users",
-        slug: null,
-        status: "Soon",
+        category: "Web Development",
+        name: "Fast, Secure & Scalable Platforms",
+        slug: "web-development",
+        status: "Active",
         icon: Zap,
         description:
-            "From landing pages to full product UI – we design digital experiences that convert visitors.",
+            "Custom websites and web applications built with modern technologies to ensure performance, security, and growth.",
         tags: [
-            "UI/UX Design",
-            "Prototyping",
-            "Design Systems",
-            "Rebranding",
-            "UI/UX Design",
-            "Proto...",
+            "Next.js",
+            "React",
+            "Node.js",
+            "API Development",
+            "CMS Solutions",
         ],
-        image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=900&q=80&auto=format&fit=crop",
+        image: "/images/services/web-development.jpg",
     },
     {
         number: "003",
-        category: "Motion & 3D",
-        name: "Visuals That Stop the Scroll",
-        slug: null,
-        status: "Soon",
+        category: "App Development",
+        name: "Mobile Experiences Users Love",
+        slug: "app-development",
+        status: "Active",
         icon: Layers,
         description:
-            "Animated explainers, product reveals, and 3D assets that make your brand impossible to ignore.",
+            "Cross-platform and native mobile applications designed to help businesses connect with customers anywhere.",
         tags: [
-            "Motion Design",
-            "3D Rendering",
-            "Video Editing",
-            "After Effects",
-            "Lottie",
+            "iOS Apps",
+            "Android Apps",
+            "Flutter",
+            "React Native",
+            "Backend Systems",
         ],
-        image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=900&q=80&auto=format&fit=crop",
+        image: "/images/services/app-development.jpg",
     },
     {
         number: "004",
-        category: "Conversion Design",
-        name: "Pages Built to Convert",
-        slug: null,
-        status: "Soon",
+        category: "Digital Marketing",
+        name: "Growth Driven Marketing",
+        slug: "digital-marketing",
+        status: "Active",
+        icon: Bell,
+        description:
+            "Data-driven marketing strategies that increase visibility, generate leads, and grow revenue.",
+        tags: [
+            "SEO",
+            "Social Media",
+            "Google Ads",
+            "Content Marketing",
+            "Analytics",
+        ],
+        image: "/images/services/digital-marketing.jpg",
+    },
+    {
+        number: "005",
+        category: "Graphic Design",
+        name: "Creative Assets That Stand Out",
+        slug: "graphic-design",
+        status: "Active",
+        icon: CheckCircle2,
+        description:
+            "Professional visual designs that strengthen your brand identity across digital and print platforms.",
+        tags: [
+            "Brand Identity",
+            "Logo Design",
+            "Social Media Graphics",
+            "Print Design",
+            "Marketing Materials",
+        ],
+        image: "/images/services/graphic-design.jpg",
+    },
+    {
+        number: "006",
+        category: "Consulting",
+        name: "Strategic Guidance For Growth",
+        slug: "consulting",
+        status: "Active",
         icon: Layers,
         description:
-            "High-impact landing pages, pricing pages, and funnels designed to turn traffic into revenue.",
+            "Technology and business consulting to help companies make smarter decisions, improve processes, and scale efficiently.",
         tags: [
-            "Landing Pages",
-            "A/B Testing",
-            "Copywriting",
-            "CRO",
-            "Funnel Design",
+            "Business Strategy",
+            "Technology Consulting",
+            "Digital Transformation",
+            "Process Optimization",
+            "Growth Planning",
         ],
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80&auto=format&fit=crop",
+        image: "/images/services/consulting.jpg",
     },
 ];
 
@@ -136,10 +169,10 @@ export default function Services() {
                             }}
                             className="text-[clamp(2.8rem,5.5vw,5rem)] font-black leading-[0.93] tracking-tight"
                         >
-                            One Subscription,
+                            Strategy, Design &
                             <br />
                             <span className="text-black/35">
-                                Every Discipline.
+                                Development Under One Roof.
                             </span>
                         </motion.h2>
                     </div>
@@ -150,8 +183,9 @@ export default function Services() {
                         transition={{ delay: 0.1 }}
                         className="max-w-sm text-[13.5px] leading-relaxed text-black/55 lg:text-right"
                     >
-                        We combine strategy, speed, and skill to deliver
-                        exceptional design – every time.
+                        We help businesses grow through strategic consulting,
+                        website design, web development, mobile applications,
+                        digital marketing, and creative branding solutions.
                     </motion.p>
                 </div>
 
@@ -208,7 +242,7 @@ export default function Services() {
                                     {/* What's included */}
                                     <div className="border-t border-dashed border-black/10 px-6 py-4">
                                         <p className="mb-3 text-[11px] font-black uppercase tracking-[0.18em] text-black/40">
-                                            What&apos;s included
+                                            Key Services
                                         </p>
                                         <div className="flex flex-wrap gap-2">
                                             {service.tags.map((tag, t) => (

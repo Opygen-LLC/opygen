@@ -9,23 +9,23 @@ const steps = [
     {
         number: "/01",
         icon: CirclePlus,
-        title: "Subscribe",
+        title: "Consult",
         description:
-            "Pick a plan and get started right away. No calls, no setup – you're in the portal within an hour.",
+            "Tell us about your business, goals, and requirements. We analyze your needs and recommend the best digital solutions for your growth.",
     },
     {
         number: "/02",
         icon: List,
-        title: "Request",
+        title: "Build",
         description:
-            "Submit any design task you need – landing pages, brand assets, product UI, and more.",
+            "Our team designs and develops your website, mobile app, branding assets, or marketing strategy with a focus on quality, performance, and results.",
     },
     {
         number: "/03",
         icon: CheckCheck,
-        title: "Receive",
+        title: "Launch",
         description:
-            "Your design is delivered in a few business days. Simple, fast, ready to use – source files included.",
+            "We deliver, deploy, and support your project. From websites and apps to digital marketing campaigns, we help you grow with confidence.",
     },
 ];
 
@@ -95,10 +95,10 @@ export default function Process() {
                             transition={{ delay: 0.18 }}
                         >
                             <Link
-                                href="#pricing"
+                                href="#contact"
                                 className="inline-flex items-center gap-2.5 text-[13px] font-black text-black transition hover:opacity-60"
                             >
-                                See Pricing
+                                Let&apos;s Talk
                                 <span className="flex size-8 items-center justify-center rounded-full bg-black text-white">
                                     <ArrowUpRight className="size-3.5" />
                                 </span>
