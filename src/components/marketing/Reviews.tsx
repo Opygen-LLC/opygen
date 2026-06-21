@@ -108,7 +108,7 @@ function ReviewCard({ review }: { review: (typeof reviews)[0] }) {
             </p>
 
             {/* Author card */}
-            <div className="flex items-center justify-between rounded-xl border border-dashed border-black/10 bg-black/[0.03] px-4 py-3">
+            <div className="flex items-center justify-between rounded-xl border border-dashed border-black/10 bg-black/3 px-4 py-3">
                 <div className="flex items-center gap-3">
                     <div className="relative size-9 shrink-0 overflow-hidden rounded-full border border-black/10">
                         <Image
@@ -184,7 +184,7 @@ export default function Reviews() {
                             viewport={{ once: true }}
                             className="mb-5 inline-flex items-center rounded-full border border-black/15 bg-white/60 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-black/45"
                         >
-                            / 006 / Reviews
+                            / 007 / Reviews
                         </motion.div>
 
                         {/* Headline */}

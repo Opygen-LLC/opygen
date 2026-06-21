@@ -67,7 +67,7 @@ export default function Benefits() {
                             viewport={{ once: true }}
                             className="mb-5 inline-flex items-center rounded-full border border-black/15 bg-white/60 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-black/45"
                         >
-                            / 005 / Benefits
+                            / 006 / Benefits
                         </motion.div>
 
                         {/* Headline */}

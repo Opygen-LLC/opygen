@@ -7,6 +7,7 @@ import Benefits from "../../components/marketing/Benefits";
 import Reviews from "../../components/marketing/Reviews";
 import WhyUs from "@/src/components/marketing/WhyUs";
 import Products from "../../components/marketing/Products";
+import Projects from "../../components/marketing/Projects";
 
 export default function HomePage() {
     return (
@@ -16,6 +17,7 @@ export default function HomePage() {
                 <WhyUs />
                 <Services />
                 <Products />
+                <Projects />
                 <Process />
                 <Benefits />
                 <Reviews />

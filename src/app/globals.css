@@ -192,3 +192,19 @@ body {
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
+
+/*? toasty elegent */
+.tg-toast {
+    background: white !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+}
+
+.tg-msg {
+    color: #3b3b3b !important;
+}
+
+.tg-prog {
+    opacity: 0.6 !important;
+    color: #3b3b3b !important;
+}

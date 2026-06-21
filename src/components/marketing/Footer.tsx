@@ -10,6 +10,8 @@ import {
     LinkedinLogo,
     TwitterLogo,
 } from "@phosphor-icons/react";
+import React, { useState } from "react";
+import { toast } from "toasty-elegant";
 
 const navLinks = [
     { label: "Home", href: "#home" },
@@ -27,13 +29,46 @@ const resourceLinks = [
 ];
 
 const socials = [
-    { label: "Facebook", href: "https://www.facebook.com/people/Opygen-Tech/61571998205592", icon: FacebookLogo },
+    {
+        label: "Facebook",
+        href: "https://www.facebook.com/people/Opygen-Tech/61571998205592",
+        icon: FacebookLogo,
+    },
     { label: "Twitter", href: "https://x.com/opygentech", icon: TwitterLogo },
-    { label: "Instagram", href: "https://www.instagram.com/opygentech", icon: InstagramLogo },
-    { label: "LinkedIn", href: "https://www.linkedin.com/company/opygen", icon: LinkedinLogo },
+    {
+        label: "Instagram",
+        href: "https://www.instagram.com/opygentech",
+        icon: InstagramLogo,
+    },
+    {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/company/opygen",
+        icon: LinkedinLogo,
+    },
 ];
 
 export default function Footer() {
+    const [email, setEmail] = useState("");
+
+    const handleSendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if (!email.trim()) {
+            toast.error("Please enter your email address.", {
+                position: "bottom-right",
+                closable: false,
+            });
+            return;
+        }
+
+        toast.success("Saved successfully!", {
+            position: "bottom-right",
+            closable: false,
+        });
+
+        setEmail("");
+    };
+
     return (
         <footer className="relative overflow-hidden bg-[#e8e8e8] text-black">
             {/* Top content row */}
@@ -51,9 +86,14 @@ export default function Footer() {
                             </p>
 
                             {/* Email input */}
-                            <form className="flex items-center gap-0 overflow-hidden rounded-full border border-black/15 bg-white/70 pr-1">
+                            <form
+                                onSubmit={handleSendEmail}
+                                className="flex items-center gap-0 overflow-hidden rounded-full border border-black/15 bg-white/70 pr-1"
+                            >
                                 <input
                                     type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                     placeholder="Your Email"
                                     className="flex-1 bg-transparent py-2.5 pl-4 text-[12px] font-semibold text-black outline-none placeholder:text-black/35"
                                 />

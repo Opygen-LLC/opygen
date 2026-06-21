@@ -60,7 +60,7 @@ export default function Navbar() {
     return (
         <>
             <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-dashed border-gray-300">
-                <div className="mx-auto flex h-16 container max-w-8xl items-center justify-between !px-6 !py-0 lg:!px-8">
+                <div className="mx-auto flex h-16 container max-w-8xl items-center justify-between px-6! py-0! lg:px-8!">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2 shrink-0">
                         <Image
@@ -117,7 +117,7 @@ export default function Navbar() {
                     {/* Mobile hamburger */}
                     <button
                         onClick={() => setMenuOpen((prev) => !prev)}
-                        className="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-[5px]"
+                        className="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-1.25"
                         aria-label="Toggle menu"
                     >
                         <motion.span

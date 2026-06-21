@@ -55,7 +55,7 @@ export default function Process() {
                             viewport={{ once: true }}
                             className="mb-6 inline-flex items-center rounded-full border border-black/15 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-black/50"
                         >
-                            / 004 / Process
+                            / 005 / Process
                         </motion.div>
 
                         {/* Headline */}

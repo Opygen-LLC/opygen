@@ -5,24 +5,6 @@ import Link from "next/link";
 import { ArrowUpRight, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 
-const partners = [
-    "logoipsum", "LOGOIPSUM", "logoipsum", "Logoipsum",
-    "logoipsum", "logoipsum", "logoipsum", "Logoipsum",
-];
-
-const avatars = [
-    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80",
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80",
-    "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80",
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80",
-];
-
-const stats = [
-    { value: "100+", label: "Happy clients" },
-    { value: "48h",  label: "Avg. delivery" },
-    { value: "∞",    label: "Requests / mo" },
-];
-
 export default function HeroSection() {
     return (
         <section id="home" className="relative text-black">
@@ -113,33 +95,6 @@ export default function HeroSection() {
                                 </Link>
                             </motion.div>
                         </div>
-
-                        {/* Social proof — bottom strip */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.5, delay: 0.28 }}
-                            className="flex items-center gap-3 border-t border-dashed border-gray-300 px-6 py-5 sm:px-8 lg:px-10 xl:px-12"
-                        >
-                            <div className="flex shrink-0 -space-x-2">
-                                {avatars.map((src, i) => (
-                                    <div key={i} className="relative size-8 overflow-hidden rounded-full border-2 border-white shadow-sm">
-                                        <Image src={src} alt="Client" fill sizes="32px" className="object-cover" unoptimized />
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="border-l border-dashed border-gray-300 pl-3">
-                                <div className="flex items-center gap-0.5 text-amber-400">
-                                    {"★★★★★".split("").map((s, i) => (
-                                        <span key={i} className="text-[11px]">{s}</span>
-                                    ))}
-                                </div>
-                                <p className="text-[11.5px] font-black text-black">Trusted by 100+ businesses</p>
-                                <p className="text-[9px] font-bold uppercase tracking-wider text-black/35">
-                                    They hit their targets — you&apos;re next.
-                                </p>
-                            </div>
-                        </motion.div>
                     </div>
 
                     {/* RIGHT */}
@@ -183,73 +138,6 @@ export default function HeroSection() {
                                 </Link>
                             </div>
                         </motion.div>
-
-                        {/* Stats strip */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.45, delay: 0.26 }}
-                            className="grid grid-cols-3 divide-x divide-dashed divide-gray-300 overflow-hidden rounded-2xl border border-dashed border-gray-300 bg-white/60 backdrop-blur-sm"
-                        >
-                            {stats.map((stat, i) => (
-                                <div key={i} className="flex flex-col items-center py-3.5">
-                                    <span className="text-[1.2rem] font-black leading-none text-black sm:text-[1.35rem]">
-                                        {stat.value}
-                                    </span>
-                                    <span className="mt-1 text-[9px] font-bold uppercase tracking-wider text-black/35">
-                                        {stat.label}
-                                    </span>
-                                </div>
-                            ))}
-                        </motion.div>
-                    </div>
-                </div>
-
-                {/* ── PARTNER LOGOS ── */}
-                <div className="border-t border-dashed border-gray-300">
-
-                    {/* Desktop */}
-                    <div className="hidden lg:grid lg:grid-cols-8">
-                        {partners.map((partner, i) => (
-                            <div key={i} className="flex h-12 items-center gap-2 border-r border-dashed border-gray-300 px-4 text-[10px] font-black uppercase tracking-widest text-gray-300 first:border-l">
-                                <span className="size-2 shrink-0 rounded-full border border-gray-300" />
-                                <span className="truncate">{partner}</span>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Tablet */}
-                    <div className="hidden sm:grid sm:grid-cols-4 lg:hidden">
-                        {partners.map((partner, i) => (
-                            <div
-                                key={i}
-                                className={[
-                                    "flex h-11 items-center gap-2 border-r border-dashed border-gray-300 px-4 text-[10px] font-black uppercase tracking-widest text-gray-300",
-                                    i === 0 ? "border-l" : "",
-                                    i < 4 ? "border-b border-dashed border-gray-300" : "",
-                                ].join(" ")}
-                            >
-                                <span className="size-2 shrink-0 rounded-full border border-gray-300" />
-                                <span className="truncate">{partner}</span>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Mobile */}
-                    <div className="grid grid-cols-2 sm:hidden">
-                        {partners.map((partner, i) => (
-                            <div
-                                key={i}
-                                className={[
-                                    "flex h-10 items-center gap-2 px-4 text-[10px] font-black uppercase tracking-widest text-gray-300 border-dashed border-gray-300",
-                                    i % 2 === 0 ? "border-l border-r" : "",
-                                    i < partners.length - 2 ? "border-b" : "",
-                                ].join(" ")}
-                            >
-                                <span className="size-2 shrink-0 rounded-full border border-gray-300" />
-                                <span className="truncate">{partner}</span>
-                            </div>
-                        ))}
                     </div>
                 </div>
             </div>
