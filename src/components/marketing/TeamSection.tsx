@@ -21,8 +21,8 @@ const team: TeamMember[] = [
         role: "Co-founder & CEO",
         initials: "SR",
         bio: "Full-stack developer and strategic leader responsible for company vision, product direction, and long-term business growth while actively contributing to engineering decisions.",
-        image: "/team/rupom.png",
-        portfolio: "https://rupom.dev",
+        image: "/team/rupom.jpeg",
+        portfolio: "https://iamrupom.netlify.app",
     },
     {
         name: "MD. Faysal Mridha",
@@ -30,7 +30,7 @@ const team: TeamMember[] = [
         initials: "FM",
         bio: "Full-stack developer and leading technology strategy, system architecture, and engineering excellence to build scalable and reliable software solutions.",
         image: "/team/faysal.png",
-        portfolio: "https://faysal.dev",
+        portfolio: "https://faysaldev.vercel.app",
     },
     {
         name: "Syed Mohiuddin Meshal",
@@ -38,7 +38,7 @@ const team: TeamMember[] = [
         initials: "SM",
         bio: "Full-stack developer and overseeing operations, process optimization, and cross-functional execution to ensure efficient delivery and sustainable growth.",
         image: "/team/meshal.png",
-        portfolio: "https://syedmohiuddinmeshal.netlify.app",
+        portfolio: "https://syedmohiuddinmeshal.me",
     },
     {
         name: "Mohibbullah Khan",
@@ -185,6 +185,7 @@ function MemberCard({ member, index }: { member: TeamMember; index: number }) {
             <div className="p-5">
                 <Link
                     href={member.portfolio}
+                    target="_blank"
                     className="mb-3 flex items-start justify-between gap-3"
                 >
                     <h3 className="text-[15px] font-black leading-tight tracking-tight text-black">

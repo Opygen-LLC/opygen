@@ -1,35 +1,14 @@
 "use client";
 
-import Image from "next/image";
-import { ArrowDown, ArrowLeft, ArrowRight, Cpu, Layers, ShieldCheck, Zap } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { motion } from "framer-motion";
-
-const values = [
-    {
-        icon: Layers,
-        title: "Clarity over noise",
-        desc: "Lean software, focused interfaces, and operating flows that make daily work easier.",
-    },
-    {
-        icon: Zap,
-        title: "Practical by default",
-        desc: "Every screen, automation, and workflow is designed around real service teams.",
-    },
-    {
-        icon: ShieldCheck,
-        title: "Stable systems",
-        desc: "Reliable booking, payment, customer, and reporting layers for growing operators.",
-    },
-    {
-        icon: Cpu,
-        title: "Modular growth",
-        desc: "A product architecture that can start small and keep expanding without clutter.",
-    },
-];
 
 export default function WhyUs() {
     return (
-        <section id="mission" className="relative overflow-hidden bg-white text-black border-y border-dashed border-gray-300">
+        <section
+            id="mission"
+            className="relative overflow-hidden bg-white text-black border-y border-dashed border-gray-300"
+        >
             {/* ── WHY FORMIX STATEMENT BLOCK ── */}
             <div className="relative mx-auto container max-w-8xl marketing-section-container border-x border-dashed border-gray-300">
                 <div>
@@ -55,12 +34,13 @@ export default function WhyUs() {
                         className="mx-auto max-w-4xl text-center text-[clamp(1.7rem,4.2vw,3.2rem)] font-black leading-[1.15] tracking-tight"
                     >
                         <span className="text-black">
-                            Hiring designers takes months. Agencies are slow and unpredictable.
-                            Freelancers come and go. Formix is design on subscription – senior
-                            work, flat monthly rate, delivered{" "}
+                            Hiring an in-house team takes months. Agencies are
+                            slow and unpredictable. Freelancers come and go.
+                            Opygen is your software partner – design,
+                            development, marketing, and consulting,{" "}
                         </span>
                         <span className="text-black/30">
-                            in days. No calls, no scoping, no surprises.
+                            under one roof, built to actually ship.
                         </span>
                     </motion.p>
 
@@ -85,25 +65,5 @@ export default function WhyUs() {
                 </div>
             </div>
         </section>
-    );
-}
-
-function MissionPanel({
-    children,
-    dark = false,
-    eyebrow,
-    title,
-}: {
-    children: React.ReactNode;
-    dark?: boolean;
-    eyebrow: string;
-    title: string;
-}) {
-    return (
-        <div className={dark ? "bg-black p-8 text-white md:p-12" : "bg-white p-8 text-black md:p-12"}>
-            <p className="mb-6 text-[10px] font-black uppercase tracking-[0.2em] opacity-45">{eyebrow}</p>
-            <h3 className="max-w-md font-sans text-3xl font-black leading-tight">{title}</h3>
-            <p className="mt-6 max-w-md text-sm font-semibold leading-relaxed opacity-62">{children}</p>
-        </div>
     );
 }
