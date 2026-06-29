@@ -9,23 +9,25 @@ import Benefits from "../../components/marketing/Benefits";
 import Reviews from "../../components/marketing/Reviews";
 import WhyUs from "@/src/components/marketing/WhyUs";
 import Products from "../../components/marketing/Products";
+import TrustedAndDetails from "@/src/components/marketing/TrustedAndDetails";
 
 export default function HomePage() {
-    return (
-        <>
-            <Navbar />
-            <main>
-                <HeroSection />
-                <WhyUs />
-                <Services />
-                <Products />
-                <Process />
-                <Benefits />
-                <Reviews />
-                <TeamSection />
-                <ContactSection />
-            </main>
-            <Footer />
-        </>
-    );
+  return (
+    <>
+      <Navbar />
+      <main>
+        <HeroSection />
+        <TrustedAndDetails />
+        {/* <WhyUs /> */}
+        <Services />
+        <Products />
+        <Process />
+        <Benefits />
+        <Reviews />
+        <TeamSection />
+        <ContactSection />
+      </main>
+      <Footer />
+    </>
+  );
 }
