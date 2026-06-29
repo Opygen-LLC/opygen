@@ -114,33 +114,41 @@ export default function TrustedAndDetails() {
       title: "Create Seamless Experiences",
       desc: "Combining strategy, marketing, and design to create digital products that look great and drive real results.",
       graphic: (
-        <div className="relative w-full h-full flex items-center justify-center">
-          <div className="flex flex-col items-center gap-3 w-full px-6 transition-transform duration-500 group-hover:scale-[1.05]">
-            <div className="w-12 h-12 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center relative z-10">
-               <PenTool className="w-6 h-6 text-orange-500" />
-               <div className="absolute -bottom-3 left-1/2 w-[2px] h-3 bg-gray-100"></div>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center relative z-10">
-                 <Shield className="w-5 h-5 text-gray-400" />
-                 <div className="absolute -right-3 top-1/2 h-[2px] w-3 bg-gray-100"></div>
-              </div>
-              <div className="w-12 h-12 bg-[#E8F5E9] rounded-xl shadow-sm border border-green-100 flex items-center justify-center relative z-10">
-                 <Zap className="w-6 h-6 text-green-600" />
-                 <div className="absolute -right-3 top-1/2 h-[2px] w-3 bg-gray-100"></div>
-                 <div className="absolute -bottom-3 left-1/2 w-[2px] h-3 bg-gray-100"></div>
-              </div>
-              <div className="w-10 h-10 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center relative z-10">
-                 <Globe className="w-5 h-5 text-gray-400" />
-              </div>
-            </div>
-            <div className="w-10 h-10 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center relative z-10">
-                 <Hexagon className="w-5 h-5 text-gray-400" />
+        <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+          {/* Subtle grid background */}
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:20px_20px] opacity-50"></div>
+          
+          <div className="relative z-10 flex flex-col items-center gap-6">
+            {/* Top Node */}
+            <div className="w-12 h-12 bg-white rounded-[14px] shadow-sm border border-gray-100 flex items-center justify-center relative z-20" style={{ animation: 'float 4s ease-in-out infinite' }}>
+               <PenTool className="w-5 h-5 text-orange-500" />
+               <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[2px] h-6 bg-gray-100 overflow-hidden">
+                  <div className="w-full h-full bg-orange-400" style={{ animation: 'flowLineY 2s linear infinite' }}></div>
+               </div>
             </div>
             
-            {/* Background connecting lines */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none">
-              <div className="w-3/4 h-3/4 border border-gray-200 rounded-lg"></div>
+            <div className="flex items-center gap-8">
+              {/* Left Node */}
+              <div className="w-12 h-12 bg-white rounded-[14px] shadow-sm border border-gray-100 flex items-center justify-center relative z-20" style={{ animation: 'float 4s ease-in-out infinite 0.5s' }}>
+                 <Shield className="w-5 h-5 text-blue-500" />
+                 <div className="absolute -right-8 top-1/2 -translate-y-1/2 h-[2px] w-8 bg-gray-100 overflow-hidden">
+                    <div className="w-full h-full bg-blue-400" style={{ animation: 'flowLineX 2s linear infinite 0.5s' }}></div>
+                 </div>
+              </div>
+              
+              {/* Center Main Node */}
+              <div className="w-16 h-16 bg-[#E8F5E9] rounded-2xl shadow-[0_0_20px_rgba(74,222,128,0.2)] border border-green-200 flex items-center justify-center relative z-30 group-hover:scale-110 transition-transform duration-500">
+                 <Zap className="w-7 h-7 text-green-600 animate-pulse" />
+                 <div className="absolute inset-0 rounded-2xl border border-green-400 opacity-20 animate-ping"></div>
+              </div>
+              
+              {/* Right Node */}
+              <div className="w-12 h-12 bg-white rounded-[14px] shadow-sm border border-gray-100 flex items-center justify-center relative z-20" style={{ animation: 'float 4s ease-in-out infinite 1s' }}>
+                 <Globe className="w-5 h-5 text-purple-500" />
+                 <div className="absolute -left-8 top-1/2 -translate-y-1/2 h-[2px] w-8 bg-gray-100 overflow-hidden">
+                    <div className="w-full h-full bg-purple-400" style={{ animation: 'flowLineX 2s linear infinite reverse 1s' }}></div>
+                 </div>
+              </div>
             </div>
           </div>
         </div>
@@ -151,13 +159,59 @@ export default function TrustedAndDetails() {
       title: "Accelerate Growth",
       desc: "We act as your dedicated growth partner, delivering the 'digital oxygen' needed to move faster and smarter.",
       graphic: (
-        <div className="relative w-full h-full flex items-end justify-center p-6 gap-2">
-           <div className="w-10 bg-blue-50 rounded-t-md h-12 relative group-hover:h-16 transition-all duration-500 group-hover:bg-blue-100"></div>
-           <div className="w-10 bg-purple-50 rounded-t-md h-20 relative group-hover:h-24 transition-all duration-500 group-hover:bg-purple-100"></div>
-           <div className="w-10 bg-green-100 rounded-t-md h-32 relative group-hover:h-36 transition-all duration-500 shadow-sm border-t border-green-200">
-             <TrendingUp className="absolute -top-10 left-1/2 -translate-x-1/2 w-8 h-8 text-green-500 drop-shadow-sm group-hover:-translate-y-2 transition-transform duration-500" />
-           </div>
-           <div className="w-10 bg-orange-50 rounded-t-md h-24 relative group-hover:h-28 transition-all duration-500 group-hover:bg-orange-100"></div>
+        <div className="relative w-full h-full bg-white rounded-[24px] overflow-hidden group">
+          {/* Subtle grid lines */}
+          <div className="absolute inset-x-0 bottom-0 h-full flex flex-col justify-end px-6 pb-8 pt-12 gap-8 z-0 opacity-60">
+            <div className="w-full h-px bg-gray-100"></div>
+            <div className="w-full h-px bg-gray-100"></div>
+            <div className="w-full h-px bg-gray-200 border-b border-dashed border-gray-300"></div>
+          </div>
+          
+          {/* The Chart */}
+          <div className="absolute inset-x-8 top-12 bottom-8 z-10">
+            <svg className="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 100">
+              <defs>
+                <linearGradient id="growthGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#4ade80" stopOpacity="0.4" />
+                  <stop offset="100%" stopColor="#4ade80" stopOpacity="0.0" />
+                </linearGradient>
+              </defs>
+              {/* Area Fill */}
+              <path 
+                d="M 0,85 C 20,80 30,50 50,60 C 70,70 85,25 100,15 L 100,100 L 0,100 Z" 
+                fill="url(#growthGradient)" 
+                className="transition-all duration-1000 ease-in-out origin-bottom group-hover:scale-y-[1.05]"
+              />
+              {/* Stroke Line */}
+              <path 
+                d="M 0,85 C 20,80 30,50 50,60 C 70,70 85,25 100,15" 
+                fill="none" 
+                stroke="#22c55e" 
+                strokeWidth="3.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                className="drop-shadow-[0_4px_6px_rgba(34,197,94,0.3)] transition-all duration-1000 ease-in-out origin-bottom group-hover:scale-y-[1.05]"
+              />
+            </svg>
+            
+            {/* Data Points */}
+            <div className="absolute top-[85%] left-0 w-3 h-3 bg-white border-2 border-green-500 rounded-full -translate-x-1.5 -translate-y-1.5 transition-all duration-1000 group-hover:-translate-y-2"></div>
+            <div className="absolute top-[60%] left-[50%] w-3 h-3 bg-white border-2 border-green-500 rounded-full -translate-x-1.5 -translate-y-1.5 transition-all duration-1000 group-hover:-translate-y-3"></div>
+            
+            {/* End Point with Pulse */}
+            <div className="absolute top-[15%] left-[100%] -translate-x-2 -translate-y-2 flex items-center justify-center transition-all duration-1000 group-hover:-translate-y-4">
+              <div className="w-4 h-4 bg-green-500 rounded-full z-10 border-[3px] border-white shadow-md"></div>
+              <div className="w-10 h-10 bg-green-400 rounded-full absolute opacity-30 animate-ping"></div>
+            </div>
+            
+            {/* Tooltip */}
+            <div 
+              className="absolute top-[15%] left-[100%] -translate-x-[110%] -translate-y-[120%] bg-gray-900 text-white text-[11px] font-bold py-1.5 px-3 rounded-lg shadow-xl flex items-center gap-1.5 z-20 transition-all duration-1000 group-hover:-translate-y-[150%]"
+              style={{ animation: 'float 4s ease-in-out infinite' }}
+            >
+              +324% <TrendingUp className="w-3.5 h-3.5 text-green-400" />
+            </div>
+          </div>
         </div>
       )
     }
@@ -165,6 +219,24 @@ export default function TrustedAndDetails() {
 
   return (
     <section ref={containerRef} className="py-24 bg-white overflow-hidden">
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
+        }
+        @keyframes flowLineX {
+          0% { transform: translateX(-100%); opacity: 0; }
+          20% { opacity: 1; }
+          80% { opacity: 1; }
+          100% { transform: translateX(100%); opacity: 0; }
+        }
+        @keyframes flowLineY {
+          0% { transform: translateY(-100%); opacity: 0; }
+          20% { opacity: 1; }
+          80% { opacity: 1; }
+          100% { transform: translateY(100%); opacity: 0; }
+        }
+      `}} />
       {/* Trusted By Section */}
       <div className="mb-32">
         <h3 className="text-center text-xl font-medium text-gray-900 mb-12">Trusted By</h3>
