@@ -50,7 +50,7 @@ export default function TeamSection() {
             id="team"
             className="relative text-black border-b border-dashed border-gray-300"
         >
-            <div className="mx-auto container max-w-8xl marketing-section-container border-x border-dashed border-gray-300">
+            <div className="max-w-[1400px] mx-auto px-6 lg:px-8 marketing-section-container border-x border-dashed border-gray-300">
                 {/* Section header */}
                 <div className="mb-14 grid gap-6 lg:grid-cols-[1fr_400px] lg:items-end">
                     <div>

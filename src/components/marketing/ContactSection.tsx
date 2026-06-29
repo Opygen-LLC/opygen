@@ -39,7 +39,7 @@ export default function ContactSection() {
             id="contact"
             className="relative text-black border-b border-dashed border-gray-300"
         >
-            <div className="mx-auto container max-w-8xl marketing-section-container border-x border-dashed border-gray-300">
+            <div className="max-w-[1400px] mx-auto px-6 lg:px-8 marketing-section-container border-x border-dashed border-gray-300">
                 <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16 lg:items-start">
                     {/* LEFT — info */}
                     <div className="flex flex-col justify-between gap-12 lg:sticky lg:top-28">

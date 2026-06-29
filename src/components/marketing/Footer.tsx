@@ -34,7 +34,7 @@ export default function Footer() {
     return (
         <footer className="relative overflow-hidden bg-[#e8e8e8] text-black">
             {/* Top content row */}
-            <div className="mx-auto container max-w-8xl border-x border-dashed border-gray-300 !py-0">
+            <div className="max-w-[1400px] mx-auto px-6 lg:px-8 border-x border-dashed border-gray-300 !py-0">
                 <div className="grid grid-cols-1 gap-10 border-b border-dashed border-gray-300 px-6 py-14 sm:px-8 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
                     {/* Newsletter + socials */}
                     <div className="flex flex-col gap-8">

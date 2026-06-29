@@ -114,7 +114,7 @@ export default function HeroSection() {
             </div>
 
             {/* Main Content */}
-            <div className="relative z-20 flex w-full max-w-5xl flex-col items-center justify-center px-4 text-center">
+            <div className="relative z-20 flex w-full max-w-[1400px] mx-auto flex-col items-center justify-center px-6 lg:px-8 text-center">
                 
                 {/* Slots Badge */}
                 <motion.div

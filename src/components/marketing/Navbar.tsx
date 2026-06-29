@@ -81,7 +81,7 @@ export default function Navbar() {
                     <div
                         className={cn(
                             "mx-auto flex w-full items-center justify-between transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
-                            isScrolled ? "max-w-full" : "max-w-8xl"
+                            isScrolled ? "max-w-full" : "max-w-[1400px]"
                         )}
                     >
                     {/* Logo */}

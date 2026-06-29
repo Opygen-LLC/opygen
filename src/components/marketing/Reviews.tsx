@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, Reorder } from "framer-motion";
 
@@ -128,12 +128,49 @@ const ReviewCardInner = ({ review }: { review: any }) => {
 
 export default function Reviews() {
   const [cards, setCards] = useState(initialReviews);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Auto-scroll logic
+  useEffect(() => {
+    let animationFrameId: number;
+    let lastTime = performance.now();
+    let direction = 1; 
+
+    const animateScroll = (time: number) => {
+      const deltaTime = time - lastTime;
+      lastTime = time;
+
+      if (!containerRef.current || isHovered) {
+        animationFrameId = requestAnimationFrame(animateScroll);
+        return;
+      }
+      
+      const container = containerRef.current;
+      const speed = 0.05; // Adjust speed here
+      
+      container.scrollLeft += direction * speed * deltaTime;
+      
+      // Ping-pong effect
+      if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 1) {
+        direction = -1;
+      } else if (container.scrollLeft <= 0) {
+        direction = 1;
+      }
+      
+      animationFrameId = requestAnimationFrame(animateScroll);
+    };
+
+    animationFrameId = requestAnimationFrame(animateScroll);
+    
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isHovered]);
 
   return (
     <section id="reviews" className="py-24 lg:py-32 bg-white font-space-grotesk overflow-hidden relative">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
       
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-8 relative z-10">
         
         {/* Header */}
         <div className="mb-20 text-center flex flex-col items-center">
@@ -171,13 +208,20 @@ export default function Reviews() {
           True Drag & Drop Reorder Slider (2 Rows)
           Uses grid-rows-2 with grid-flow-col to create a beautiful horizontal layout.
         */}
-        <div className="w-full relative -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div 
+          className="w-full relative -mx-4 px-4 sm:mx-0 sm:px-0"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onTouchStart={() => setIsHovered(true)}
+          onTouchEnd={() => setIsHovered(false)}
+        >
           <Reorder.Group 
             axis="x" 
             values={cards} 
             onReorder={setCards} 
             as="div"
-            className="grid grid-rows-2 grid-flow-col gap-6 auto-cols-[300px] sm:auto-cols-[340px] md:auto-cols-[400px] auto-rows-[260px] overflow-x-auto pb-12 pt-4 px-4 sm:px-8 snap-x snap-mandatory"
+            ref={containerRef}
+            className="grid grid-rows-2 grid-flow-col gap-6 auto-cols-[300px] sm:auto-cols-[340px] md:auto-cols-[400px] auto-rows-[260px] overflow-x-auto pb-12 pt-4 px-4 sm:px-8"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {cards.map((review) => {
@@ -187,7 +231,7 @@ export default function Reviews() {
                   key={review.id} 
                   value={review} 
                   as="div"
-                  className={`w-full h-full cursor-grab active:cursor-grabbing snap-center ${isLarge ? "row-span-2" : "row-span-1"}`}
+                  className={`w-full h-full cursor-grab active:cursor-grabbing ${isLarge ? "row-span-2" : "row-span-1"}`}
                   whileDrag={{ scale: 1.03, zIndex: 50, rotate: -2 }}
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
