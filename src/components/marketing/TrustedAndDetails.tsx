@@ -35,28 +35,34 @@ export default function TrustedAndDetails() {
       });
 
       // Reveal Animations
-      gsap.from(titleRef.current, {
-        y: 40,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-        },
-      });
+      gsap.fromTo(titleRef.current, 
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 80%",
+          },
+        }
+      );
 
-      gsap.from(".feature-card", {
-        y: 60,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: cardsRef.current,
-          start: "top 75%",
-        },
-      });
+      gsap.fromTo(".feature-card", 
+        { y: 60, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.15,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: cardsRef.current,
+            start: "top 75%",
+          },
+        }
+      );
     }, containerRef);
 
     return () => ctx.revert();
@@ -74,8 +80,8 @@ export default function TrustedAndDetails() {
   const services = [
     {
       num: "01",
-      title: "Web & Mobile App",
-      desc: "High-performance websites and mobile applications built to scale.",
+      title: "Build the Foundation",
+      desc: "We empower your business with a robust digital foundation to grow, scale, and lead in a competitive world.",
       graphic: (
         <div className="relative w-full h-full flex items-center justify-center">
           <div className="absolute inset-0 flex items-center justify-center">
@@ -105,13 +111,13 @@ export default function TrustedAndDetails() {
     },
     {
       num: "02",
-      title: "SaaS Product Dev",
-      desc: "Develop scalable SaaS platforms turning ideas into impactful products.",
+      title: "Create Seamless Experiences",
+      desc: "Combining strategy, marketing, and design to create digital products that look great and drive real results.",
       graphic: (
         <div className="relative w-full h-full flex items-center justify-center">
           <div className="flex flex-col items-center gap-3 w-full px-6 transition-transform duration-500 group-hover:scale-[1.05]">
             <div className="w-12 h-12 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center relative z-10">
-               <Cloud className="w-6 h-6 text-orange-500" />
+               <PenTool className="w-6 h-6 text-orange-500" />
                <div className="absolute -bottom-3 left-1/2 w-[2px] h-3 bg-gray-100"></div>
             </div>
             <div className="flex items-center gap-3">
@@ -120,7 +126,7 @@ export default function TrustedAndDetails() {
                  <div className="absolute -right-3 top-1/2 h-[2px] w-3 bg-gray-100"></div>
               </div>
               <div className="w-12 h-12 bg-[#E8F5E9] rounded-xl shadow-sm border border-green-100 flex items-center justify-center relative z-10">
-                 <Layers className="w-6 h-6 text-green-600" />
+                 <Zap className="w-6 h-6 text-green-600" />
                  <div className="absolute -right-3 top-1/2 h-[2px] w-3 bg-gray-100"></div>
                  <div className="absolute -bottom-3 left-1/2 w-[2px] h-3 bg-gray-100"></div>
               </div>
@@ -142,36 +148,8 @@ export default function TrustedAndDetails() {
     },
     {
       num: "03",
-      title: "UI/UX Design",
-      desc: "Create seamless digital experiences that look great and drive results.",
-      graphic: (
-        <div className="relative w-full h-full flex flex-col gap-3 items-center justify-center p-6">
-          <div className="w-full max-w-[200px] bg-white rounded-lg shadow-sm border border-gray-100 p-3 transition-transform duration-500 group-hover:-translate-y-2 group-hover:shadow-md relative z-10">
-             <div className="flex gap-1.5 mb-3">
-               <div className="w-2 h-2 rounded-full bg-[#FF5F56]"></div>
-               <div className="w-2 h-2 rounded-full bg-[#FFBD2E]"></div>
-               <div className="w-2 h-2 rounded-full bg-[#27C93F]"></div>
-             </div>
-             <div className="w-3/4 h-2 bg-gray-100 rounded-full mb-2"></div>
-             <div className="w-full h-2 bg-gray-100 rounded-full mb-2"></div>
-             <div className="w-5/6 h-2 bg-gray-100 rounded-full"></div>
-          </div>
-          <div className="w-full max-w-[200px] bg-white rounded-lg shadow-sm border border-gray-100 p-3 opacity-60 transition-transform duration-500 group-hover:translate-y-1">
-             <div className="flex gap-1.5 mb-3">
-               <div className="w-2 h-2 rounded-full bg-gray-200"></div>
-               <div className="w-2 h-2 rounded-full bg-gray-200"></div>
-               <div className="w-2 h-2 rounded-full bg-gray-200"></div>
-             </div>
-             <div className="w-2/3 h-2 bg-gray-100 rounded-full mb-2"></div>
-             <div className="w-full h-2 bg-gray-100 rounded-full mb-2"></div>
-          </div>
-        </div>
-      )
-    },
-    {
-      num: "04",
-      title: "Digital Marketing",
-      desc: "Strategy and branding to help businesses move faster and smarter.",
+      title: "Accelerate Growth",
+      desc: "We act as your dedicated growth partner, delivering the 'digital oxygen' needed to move faster and smarter.",
       graphic: (
         <div className="relative w-full h-full flex items-end justify-center p-6 gap-2">
            <div className="w-10 bg-blue-50 rounded-t-md h-12 relative group-hover:h-16 transition-all duration-500 group-hover:bg-blue-100"></div>
@@ -255,7 +233,7 @@ export default function TrustedAndDetails() {
         </div>
 
         {/* Cards Grid */}
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service, idx) => (
             <div 
               key={idx} 
