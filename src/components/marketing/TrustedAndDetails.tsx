@@ -68,14 +68,14 @@ export default function TrustedAndDetails() {
     return () => ctx.revert();
   }, []);
 
-  const logos = [
-    { name: "Google", weight: "font-semibold text-gray-400" },
-    { name: "zapier", weight: "font-black lowercase text-gray-400" },
-    { name: "Notion", weight: "font-bold text-gray-400", isNotion: true },
-    { name: "monday.com", weight: "font-bold lowercase text-gray-400", isMonday: true },
-    { name: "Google", weight: "font-semibold text-gray-400" },
-    { name: "zapier", weight: "font-black lowercase text-gray-400" },
+  const baseLogos = [
+    { name: "Google", weight: "font-semibold", hoverColor: "group-hover:text-[#4285F4]" },
+    { name: "zapier", weight: "font-black lowercase", hoverColor: "group-hover:text-[#FF4A00]" },
+    { name: "Notion", weight: "font-bold", isNotion: true, hoverColor: "group-hover:text-black", notionBg: "group-hover:bg-black" },
+    { name: "monday.com", weight: "font-bold lowercase", isMonday: true, hoverColor: "group-hover:text-[#6161FF]", mondayBg: "group-hover:bg-[#6161FF]" },
   ];
+
+  const logos = [...baseLogos, ...baseLogos];
 
   const services = [
     {
@@ -178,38 +178,38 @@ export default function TrustedAndDetails() {
             {/* First Set */}
             <div className="flex gap-20 md:gap-32 px-10 md:px-16 items-center justify-around w-1/2">
               {logos.map((logo, index) => (
-                <div key={`logo-1-${index}`} className="flex items-center gap-2 opacity-50 hover:opacity-100 transition-opacity duration-300">
+                <div key={`logo-1-${index}`} className="flex items-center gap-2 text-gray-400 cursor-pointer transition-colors duration-300 group">
                   {logo.isNotion && (
-                    <div className="w-7 h-7 bg-gray-400 text-white flex items-center justify-center rounded-sm text-sm font-bold mr-1">
+                    <div className={`w-7 h-7 bg-gray-400 text-white flex items-center justify-center rounded-sm text-sm font-bold mr-1 transition-colors duration-300 ${logo.notionBg || ''}`}>
                       N
                     </div>
                   )}
                   {logo.isMonday && (
                     <div className="flex gap-1 mr-1">
-                      <div className="w-2 h-4 rounded-full bg-gray-400"></div>
-                      <div className="w-2 h-4 rounded-full bg-gray-400"></div>
+                      <div className={`w-2 h-4 rounded-full bg-gray-400 transition-colors duration-300 ${logo.mondayBg || ''}`}></div>
+                      <div className={`w-2 h-4 rounded-full bg-gray-400 transition-colors duration-300 ${logo.mondayBg || ''}`}></div>
                     </div>
                   )}
-                  <span className={`text-3xl tracking-tight ${logo.weight}`}>{logo.name}</span>
+                  <span className={`text-3xl tracking-tight transition-colors duration-300 ${logo.weight} ${logo.hoverColor}`}>{logo.name}</span>
                 </div>
               ))}
             </div>
             {/* Second Set (Duplicate for seamless scroll) */}
             <div className="flex gap-20 md:gap-32 px-10 md:px-16 items-center justify-around w-1/2">
               {logos.map((logo, index) => (
-                <div key={`logo-2-${index}`} className="flex items-center gap-2 opacity-50 hover:opacity-100 transition-opacity duration-300">
+                <div key={`logo-2-${index}`} className="flex items-center gap-2 text-gray-400 cursor-pointer transition-colors duration-300 group">
                   {logo.isNotion && (
-                    <div className="w-7 h-7 bg-gray-400 text-white flex items-center justify-center rounded-sm text-sm font-bold mr-1">
+                    <div className={`w-7 h-7 bg-gray-400 text-white flex items-center justify-center rounded-sm text-sm font-bold mr-1 transition-colors duration-300 ${logo.notionBg || ''}`}>
                       N
                     </div>
                   )}
                   {logo.isMonday && (
                     <div className="flex gap-1 mr-1">
-                      <div className="w-2 h-4 rounded-full bg-gray-400"></div>
-                      <div className="w-2 h-4 rounded-full bg-gray-400"></div>
+                      <div className={`w-2 h-4 rounded-full bg-gray-400 transition-colors duration-300 ${logo.mondayBg || ''}`}></div>
+                      <div className={`w-2 h-4 rounded-full bg-gray-400 transition-colors duration-300 ${logo.mondayBg || ''}`}></div>
                     </div>
                   )}
-                  <span className={`text-3xl tracking-tight ${logo.weight}`}>{logo.name}</span>
+                  <span className={`text-3xl tracking-tight transition-colors duration-300 ${logo.weight} ${logo.hoverColor}`}>{logo.name}</span>
                 </div>
               ))}
             </div>
@@ -224,7 +224,7 @@ export default function TrustedAndDetails() {
             How Opygen Automates <br className="hidden md:block"/> and Organizes Your Growth
           </h2>
           {/* Pill Badge matching the 'FLOW' badge from the image */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-12 md:mt-0 md:-translate-y-8">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mt-6 md:mt-1">
             <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-[#83D334] text-white text-[11px] font-extrabold tracking-wider shadow-lg shadow-[#83D334]/30 -rotate-3 z-10">
               <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse mr-1.5"></span>
               DIGITAL OXYGEN
