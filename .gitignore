@@ -13,6 +13,8 @@
 # testing
 /coverage
 
+mock-image
+
 # next.js
 /.next/
 /out/

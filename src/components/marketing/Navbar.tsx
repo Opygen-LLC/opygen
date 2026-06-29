@@ -18,6 +18,7 @@ const navLinks = [
 export default function Navbar() {
     const [active, setActive] = useState("#home");
     const [menuOpen, setMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
         const sections = navLinks
@@ -57,10 +58,32 @@ export default function Navbar() {
         };
     }, [menuOpen]);
 
+    // Handle scroll for floating navbar effect
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
     return (
         <>
-            <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-dashed border-gray-300">
-                <div className="mx-auto flex h-16 container max-w-8xl items-center justify-between !px-6 !py-0 lg:!px-8">
+            <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none">
+                <div
+                    className={cn(
+                        "pointer-events-auto flex w-full items-center transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden",
+                        isScrolled
+                            ? "mt-4 h-16 max-w-5xl rounded-full bg-white/85 backdrop-blur-lg shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-gray-200/60 px-6 lg:px-8 w-[92%]"
+                            : "mt-0 h-16 max-w-full rounded-none bg-white border-b border-transparent px-6 lg:px-8 xl:px-12 w-full"
+                    )}
+                >
+                    <div
+                        className={cn(
+                            "mx-auto flex w-full items-center justify-between transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                            isScrolled ? "max-w-full" : "max-w-8xl"
+                        )}
+                    >
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2 shrink-0">
                         <Image
@@ -141,6 +164,7 @@ export default function Navbar() {
                             className="block h-[2px] w-5 bg-black origin-center transition-all"
                         />
                     </button>
+                    </div>
                 </div>
             </header>
 
