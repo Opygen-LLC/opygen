@@ -12,6 +12,7 @@ import Products from "../../components/marketing/Products";
 import TrustedAndDetails from "@/src/components/marketing/TrustedAndDetails";
 import Features from "@/src/components/marketing/Features";
 import OurFocus from "@/src/components/marketing/OurFocus";
+import ServicesSteps from "@/src/components/marketing/ServicesSteps";
 
 export default function HomePage() {
   return (
@@ -23,6 +24,7 @@ export default function HomePage() {
         <Features />
         <OurFocus />
         {/* <WhyUs /> */}
+        <ServicesSteps />
         <Services />
 
         <Products />
