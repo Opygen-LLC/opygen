@@ -10,6 +10,8 @@ import Reviews from "../../components/marketing/Reviews";
 import WhyUs from "@/src/components/marketing/WhyUs";
 import Products from "../../components/marketing/Products";
 import TrustedAndDetails from "@/src/components/marketing/TrustedAndDetails";
+import Features from "@/src/components/marketing/Features";
+import OurFocus from "@/src/components/marketing/OurFocus";
 
 export default function HomePage() {
   return (
@@ -18,8 +20,11 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <TrustedAndDetails />
+        <Features />
+        <OurFocus />
         {/* <WhyUs /> */}
         <Services />
+
         <Products />
         <Process />
         <Benefits />
