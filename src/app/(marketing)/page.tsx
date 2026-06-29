@@ -27,9 +27,9 @@ export default function HomePage() {
         <ServicesSteps />
         <Services />
 
-        <Products />
-        <Process />
-        <Benefits />
+        {/* <Products /> */}
+        {/* <Process /> */}
+        {/* <Benefits /> */}
         <Reviews />
         <TeamSection />
         <ContactSection />
