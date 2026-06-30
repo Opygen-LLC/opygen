@@ -17,7 +17,7 @@ const servicesList = [
   "Webflow",
 ];
 
-const budgetOptions = ["2K - 10K", "10K - 50K", "More than 50K"];
+const budgetOptions = ["Under 1K", "1K - 2K", "2K - 10K", "10K - 50K", "50K+"];
 
 export default function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -25,7 +25,7 @@ export default function ContactSection() {
   const rightColRef = useRef<HTMLDivElement>(null);
 
   const [selectedServices, setSelectedServices] = useState<string[]>(["Animation"]);
-  const [selectedBudget, setSelectedBudget] = useState<string>("More than 50K");
+  const [selectedBudget, setSelectedBudget] = useState<string>("2K - 10K");
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -100,6 +100,13 @@ export default function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Form Submitted:", {
+      services: selectedServices,
+      budget: selectedBudget,
+      name: form.name,
+      email: form.email,
+      details: form.details
+    });
     setSubmitted(true);
   };
 
@@ -115,27 +122,28 @@ export default function ContactSection() {
                 <p className="text-gray-500 text-[13px] font-bold tracking-[0.1em] uppercase mb-4">
                   Contacts
                 </p>
-                <a href="mailto:hey@opygen.com" className="text-[22px] font-black text-black tracking-tight hover:text-gray-600 transition-colors uppercase">
-                  HEY@OPYGEN.COM
+                <a href="mailto:opygen.info@gmail.com" className="text-[22px] font-black text-black tracking-tight hover:text-gray-600 transition-colors uppercase">
+                  OPYGEN.INFO@GMAIL.COM
                 </a>
               </div>
 
               <div className="mb-16 lg:mb-0">
                 <p className="text-gray-500 text-[13px] font-bold tracking-[0.1em] mb-4">Follow</p>
                 <div className="flex items-center gap-5">
-                  <a href="#" className="text-black hover:text-gray-500 transition-colors"><InstagramLogo weight="fill" size={24} /></a>
-                  <a href="#" className="text-black hover:text-gray-500 transition-colors"><TwitterLogo weight="fill" size={24} /></a>
-                  <a href="#" className="text-black hover:text-gray-500 transition-colors"><DiscordLogo weight="fill" size={24} /></a>
+                  <a href="https://www.linkedin.com/company/opygen/" target="_blank" rel="noopener noreferrer" className="text-black hover:text-[#0A66C2] transition-colors"><LinkedinLogo weight="fill" size={24} /></a>
+                  <a href="https://www.instagram.com/opygentech/" target="_blank" rel="noopener noreferrer" className="text-black hover:text-[#E1306C] transition-colors"><InstagramLogo weight="fill" size={24} /></a>
+                  <a href="https://x.com/opygentech" target="_blank" rel="noopener noreferrer" className="text-black hover:text-gray-500 transition-colors"><TwitterLogo weight="fill" size={24} /></a>
                 </div>
               </div>
             </div>
 
-            <div className="hidden lg:block mt-auto pt-32">
-              <p className="text-[12px] leading-relaxed text-black font-bold mb-6 max-w-[240px]">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s.
-              </p>
+            <div className="hidden lg:block mt-auto pt-24">
+              <div className="text-[13px] leading-relaxed text-gray-500 font-medium mb-8 max-w-[280px] space-y-2">
+                <p className="text-black font-bold">Opygen | Digital Oxygen for Business 🚀</p>
+                <p>We build future-ready websites, apps, and SaaS platforms that empower your business to grow, scale, and lead.</p>
+              </div>
               <p className="text-[13px] font-black uppercase tracking-wider text-black">
-                © OPYGEN 2024
+                © OPYGEN 2026
               </p>
             </div>
           </div>
@@ -225,7 +233,7 @@ export default function ContactSection() {
                       <input
                         required
                         type="text"
-                        placeholder="Mohammad Reza"
+                        placeholder="e.g. John Doe"
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
                         className="w-full bg-transparent py-1 text-[16px] font-semibold text-black placeholder:text-gray-400 focus:outline-none"
@@ -242,7 +250,7 @@ export default function ContactSection() {
                       <input
                         required
                         type="email"
-                        placeholder="Mohammad Reza"
+                        placeholder="hello@example.com"
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
                         className="w-full bg-transparent py-1 text-[16px] font-semibold text-black placeholder:text-gray-400 focus:outline-none"
@@ -256,7 +264,7 @@ export default function ContactSection() {
                   <p className="text-gray-500 font-bold text-[15px] mb-2">Project Details ( Optional )</p>
                   <input
                     type="text"
-                    placeholder="Mohammad Rezal"
+                    placeholder="Tell us about your project..."
                     value={form.details}
                     onChange={(e) => setForm({ ...form, details: e.target.value })}
                     className="w-full bg-transparent py-1 text-[16px] font-semibold text-black placeholder:text-gray-400 focus:outline-none"
@@ -265,35 +273,40 @@ export default function ContactSection() {
 
                 {/* Mobile Text Block */}
                 <div className="lg:hidden mt-12 mb-4">
-                  <p className="text-[12px] leading-relaxed text-black font-bold mb-4 max-w-[280px]">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                  </p>
+                  <div className="text-[13px] leading-relaxed text-gray-500 font-medium mb-8 max-w-[320px] space-y-2">
+                    <p className="text-black font-bold">Opygen | Digital Oxygen for Business 🚀</p>
+                    <p>We build future-ready websites, apps, and SaaS platforms that empower your business to grow, scale, and lead.</p>
+                  </div>
                   <p className="text-[13px] font-black uppercase tracking-wider text-black">
-                    © OPYGEN 2024
+                    © OPYGEN 2026
                   </p>
                 </div>
 
+                {/* Submit Button aligned perfectly to the right */}
+                {!submitted && (
+                  <div className="flex justify-end mt-2 md:mt-4">
+                    <div className="send-btn-container relative z-20 translate-y-[4.5rem] md:translate-y-[5.5rem] lg:translate-y-[6rem]">
+                      <button
+                        type="submit"
+                        className="group w-32 h-32 md:w-[150px] md:h-[150px] rounded-full bg-black text-white font-bold text-[15px] tracking-wide flex items-center justify-center transition-all duration-500 shadow-[0_15px_40px_rgba(0,0,0,0.25)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.4)] hover:-translate-y-2 overflow-hidden"
+                      >
+                        <span className="relative z-10 flex items-center justify-center transition-transform duration-500 group-hover:-translate-x-3">
+                          Send
+                          <svg className="w-5 h-5 opacity-0 -translate-x-6 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-500 absolute -right-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                          </svg>
+                        </span>
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-gray-800 to-black opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      </button>
+                    </div>
+                  </div>
+                )}
               </form>
             )}
           </div>
         </div>
       </div>
       
-      {/* Bottom Pink Bar */}
-      <div className="absolute bottom-0 left-0 w-full h-[12px] bg-[#F26A8D] z-0"></div>
-      
-      {/* Absolute Submit Button (Overlaps the bottom pink bar exactly like the image) */}
-      {!submitted && (
-        <div className="send-btn-container absolute bottom-0 right-[15%] lg:right-[25%] translate-y-1/2 z-20">
-          <button
-            type="submit"
-            form="contact-form"
-            className="w-36 h-36 md:w-[150px] md:h-[150px] rounded-full bg-black text-white font-bold text-[15px] tracking-wide flex items-center justify-center hover:scale-105 hover:bg-gray-900 transition-all shadow-[0_15px_40px_rgba(0,0,0,0.25)]"
-          >
-            Send
-          </button>
-        </div>
-      )}
     </section>
   );
 }
