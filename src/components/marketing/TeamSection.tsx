@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { Globe } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -37,8 +38,8 @@ interface TeamMember {
   website: string;
   linkedin: string;
   image: string;
-  clipPathId: string;
   color: string;
+  description: string;
 }
 
 const team: TeamMember[] = [
@@ -48,8 +49,8 @@ const team: TeamMember[] = [
     website: "https://iamrupom.netlify.app/",
     linkedin: "https://www.linkedin.com/in/iamrupom7/",
     image: "/team/rupom-team.jpeg",
-    clipPathId: "shape-2",
-    color: "bg-[#38BDF8]",
+    color: "from-[#38BDF8] to-blue-500",
+    description: "Driving Opygen's vision and strategy to empower businesses with impactful digital solutions.",
   },
   {
     name: "MD. Faysal Mridha",
@@ -57,8 +58,8 @@ const team: TeamMember[] = [
     website: "https://faysaldev.vercel.app",
     linkedin: "https://www.linkedin.com/in/faysaldev/",
     image: "/team/faysal-team.png",
-    clipPathId: "shape-2",
-    color: "bg-[#4338CA]",
+    color: "from-[#4338CA] to-indigo-600",
+    description: "Architecting robust, scalable, and high-performance technology stacks for modern applications.",
   },
   {
     name: "Syed Mohiuddin Meshal",
@@ -66,8 +67,8 @@ const team: TeamMember[] = [
     website: "https://syedmohiuddinmeshal.me",
     linkedin: "https://www.linkedin.com/in/10613-meshal",
     image: "/team/meshal-team.png",
-    clipPathId: "shape-2",
-    color: "bg-[#FDBA74]",
+    color: "from-[#FDBA74] to-orange-500",
+    description: "Streamlining operations and ensuring seamless delivery of digital products across the board.",
   },
   {
     name: "Mohibbullah Khan",
@@ -75,8 +76,8 @@ const team: TeamMember[] = [
     website: "https://muhibkhan.netlify.app/",
     linkedin: "https://www.linkedin.com/in/mohibbullahkhan/",
     image: "/team/mohib-team.jpeg",
-    clipPathId: "shape-2",
-    color: "bg-[#FDE047]",
+    color: "from-[#FDE047] to-amber-500",
+    description: "Crafting intuitive, engaging, and user-centric product experiences that people truly love.",
   },
 ];
 
@@ -86,10 +87,10 @@ export default function TeamSection() {
 
   useEffect(() => {
     let ctx = gsap.context(() => {
-      // 1. Entrance animation for cards
+      // Entrance animation for cards
       gsap.fromTo(
         cardsRef.current,
-        { y: 120, opacity: 0, scale: 0.9 },
+        { y: 80, opacity: 0, scale: 0.95 },
         {
           y: 0,
           opacity: 1,
@@ -103,20 +104,6 @@ export default function TeamSection() {
           },
         },
       );
-
-      // 2. Subtle continuous floating animation for the photo shapes
-      cardsRef.current.forEach((card, i) => {
-        const imageShape = card?.querySelector(".image-shape");
-        if (imageShape) {
-          gsap.to(imageShape, {
-            y: i % 2 === 0 ? -10 : 10,
-            duration: 2.5 + i * 0.5,
-            yoyo: true,
-            repeat: -1,
-            ease: "sine.inOut",
-          });
-        }
-      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -130,50 +117,6 @@ export default function TeamSection() {
     >
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
 
-      {/* SVG Clip Paths for exactly matching the organic image shapes */}
-      <svg
-        width="0"
-        height="0"
-        className="absolute w-0 h-0 pointer-events-none"
-      >
-        <defs>
-          {/* Shape 1: Figure-8 / Hourglass / Peanut */}
-          <clipPath id="shape-1" clipPathUnits="objectBoundingBox">
-            <rect x="0" y="0" width="1" height="0.55" rx="0.35" ry="0.25" />
-            <rect x="0" y="0.45" width="1" height="0.55" rx="0.35" ry="0.25" />
-          </clipPath>
-          {/* Shape 2: Arch */}
-          <clipPath id="shape-2" clipPathUnits="objectBoundingBox">
-            <rect x="0" y="0.4" width="1" height="0.6" />
-            <ellipse cx="0.5" cy="0.4" rx="0.5" ry="0.4" />
-          </clipPath>
-          {/* Shape 3: Circle */}
-          <clipPath id="shape-3" clipPathUnits="objectBoundingBox">
-            <ellipse cx="0.5" cy="0.5" rx="0.5" ry="0.5" />
-          </clipPath>
-          {/* Shape 4: Three stacked wavy pills */}
-          <clipPath id="shape-4" clipPathUnits="objectBoundingBox">
-            <rect
-              x="0.05"
-              y="0"
-              width="0.9"
-              height="0.36"
-              rx="0.45"
-              ry="0.18"
-            />
-            <rect x="0" y="0.32" width="1" height="0.36" rx="0.5" ry="0.18" />
-            <rect
-              x="0.05"
-              y="0.64"
-              width="0.9"
-              height="0.36"
-              rx="0.45"
-              ry="0.18"
-            />
-          </clipPath>
-        </defs>
-      </svg>
-
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center mb-24">
@@ -186,60 +129,102 @@ export default function TeamSection() {
           </h2>
         </div>
 
-        {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 max-w-lg sm:max-w-none mx-auto">
+        {/* 3D Flip Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-6 max-w-lg sm:max-w-none mx-auto">
           {team.map((member, index) => (
             <div
               key={member.name}
               ref={(el) => {
                 cardsRef.current[index] = el;
               }}
-              className="flex flex-col items-center text-center group"
+              className="group relative h-[420px] w-full max-w-[300px] mx-auto [perspective:2000px]"
             >
-              {/* Photo Shape Container */}
               <div
-                className={`image-shape relative w-[240px] sm:w-[220px] lg:w-full aspect-[4/5] overflow-hidden mb-8 transition-shadow duration-500 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] ${member.color}`}
-                style={{
-                  clipPath: `url(#${member.clipPathId})`,
-                  WebkitClipPath: `url(#${member.clipPathId})`,
-                }}
+                className={cn(
+                  "relative h-full w-full",
+                  "[transform-style:preserve-3d]",
+                  "transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]",
+                  "group-hover:[transform:rotateY(180deg)]"
+                )}
               >
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  unoptimized
-                />
-              </div>
-
-              {/* Info */}
-              <h3 className="text-[18px] md:text-[20px] font-bold text-gray-900 mb-1.5 tracking-tight group-hover:text-black transition-colors">
-                {member.name}
-              </h3>
-              <p className="text-[13px] md:text-[14px] text-gray-500 font-medium mb-5">
-                {member.role}
-              </p>
-
-              {/* Social Links */}
-              <div className="flex items-center justify-center gap-4">
-                <a
-                  href={member.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-gray-900 transition-colors p-1"
+                {/* FRONT OF CARD */}
+                <div
+                  className={cn(
+                    "absolute inset-0 h-full w-full",
+                    "[backface-visibility:hidden] [transform:rotateY(0deg)]",
+                    "overflow-hidden rounded-3xl",
+                    "bg-zinc-100",
+                    "border border-zinc-200/50",
+                    "shadow-lg",
+                    "transition-shadow duration-500",
+                    "group-hover:shadow-2xl"
+                  )}
                 >
-                  <Globe className="w-5 h-5" strokeWidth={2} />
-                </a>
-                <a
-                  href={member.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-[#0A66C2] transition-colors p-1"
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover"
+                    unoptimized
+                  />
+                  {/* Dark gradient overlay for text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                  
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-xl font-bold text-white leading-snug tracking-tight mb-1">
+                      {member.name}
+                    </h3>
+                    <p className="text-sm font-medium text-zinc-300">
+                      {member.role}
+                    </p>
+                  </div>
+                </div>
+
+                {/* BACK OF CARD */}
+                <div
+                  className={cn(
+                    "absolute inset-0 h-full w-full",
+                    "[backface-visibility:hidden] [transform:rotateY(180deg)]",
+                    "rounded-3xl p-8 flex flex-col justify-between",
+                    "bg-gradient-to-br",
+                    member.color,
+                    "shadow-2xl text-white"
+                  )}
                 >
-                  <LinkedinIcon className="w-5 h-5" strokeWidth={2} />
-                </a>
+                  <div>
+                    <h3 className="text-2xl font-bold tracking-tight mb-1">
+                      {member.name}
+                    </h3>
+                    <p className="text-[15px] font-semibold opacity-90 mb-6">
+                      {member.role}
+                    </p>
+                    <p className="text-[15px] leading-relaxed opacity-95">
+                      {member.description}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-4 mt-auto">
+                    <a
+                      href={member.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-white/20 hover:bg-white/30 rounded-full transition-colors backdrop-blur-sm"
+                      aria-label={`${member.name}'s Website`}
+                    >
+                      <Globe className="w-5 h-5 text-white" />
+                    </a>
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-white/20 hover:bg-white/30 rounded-full transition-colors backdrop-blur-sm"
+                      aria-label={`${member.name}'s LinkedIn`}
+                    >
+                      <LinkedinIcon className="w-5 h-5 text-white" />
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
