@@ -14,6 +14,7 @@ import Features from "@/src/components/marketing/Features";
 import OurFocus from "@/src/components/marketing/OurFocus";
 import ServicesSteps from "@/src/components/marketing/ServicesSteps";
 import ProjectsSection from "@/src/components/marketing/ProjectsSection";
+import Intregations from "@/src/components/marketing/Intregations";
 
 export default function HomePage() {
   return (
@@ -31,6 +32,7 @@ export default function HomePage() {
         {/* <Products /> */}
         {/* <Process /> */}
         {/* <Benefits /> */}
+        <Intregations />
         <Reviews />
         <TeamSection />
         <ContactSection />
