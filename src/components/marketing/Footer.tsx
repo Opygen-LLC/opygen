@@ -1,11 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import Logo from "../../../public/logo/Opygen.png";
 import Image from "next/image";
 import {
-    FacebookLogo,
     InstagramLogo,
     LinkedinLogo,
     TwitterLogo,
@@ -13,95 +11,58 @@ import {
 
 const navLinks = [
     { label: "Home", href: "#home" },
+    { label: "Services", href: "#services" },
     { label: "Projects", href: "#projects" },
+    { label: "Team", href: "#team" },
     { label: "Contact", href: "#contact" },
 ];
 
 const resourceLinks = [
     { label: "Privacy Policy", href: "/privacy-policy" },
     { label: "Terms of Service", href: "/terms-of-service" },
-    { label: "404 Page", href: "/404" },
 ];
 
 const socials = [
-    { label: "Facebook", href: "https://facebook.com", icon: FacebookLogo },
-    { label: "Twitter", href: "https://twitter.com", icon: TwitterLogo },
-    { label: "Instagram", href: "https://instagram.com", icon: InstagramLogo },
-    { label: "LinkedIn", href: "https://linkedin.com", icon: LinkedinLogo },
+    { label: "LinkedIn", href: "https://www.linkedin.com/company/opygen/", icon: LinkedinLogo },
+    { label: "Instagram", href: "https://www.instagram.com/opygentech/", icon: InstagramLogo },
+    { label: "Twitter", href: "https://x.com/opygentech", icon: TwitterLogo },
 ];
 
 export default function Footer() {
     return (
-        <footer className="relative overflow-hidden bg-[#e8e8e8] text-black">
-            {/* Top content row */}
-            <div className="max-w-[1400px] mx-auto px-6 lg:px-8 border-x border-dashed border-gray-300 !py-0">
-                <div className="grid grid-cols-1 gap-10 border-b border-dashed border-gray-300 px-6 py-14 sm:px-8 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
-                    {/* Newsletter + socials */}
-                    <div className="flex flex-col gap-8">
-                        <div>
-                            <p className="mb-2 text-[15px] font-black text-black">
-                                Newsletter
-                            </p>
-                            <p className="mb-6 max-w-[220px] text-[12.5px] leading-relaxed text-black/50">
-                                Stay updated with design trends, new templates,
-                                and subscription insights.
-                            </p>
-
-                            {/* Email input */}
-                            <form className="flex items-center gap-0 overflow-hidden rounded-full border border-black/15 bg-white/70 pr-1">
-                                <input
-                                    type="email"
-                                    placeholder="Your Email"
-                                    className="flex-1 bg-transparent py-2.5 pl-4 text-[12px] font-semibold text-black outline-none placeholder:text-black/35"
-                                />
-                                <button
-                                    type="submit"
-                                    className="flex items-center gap-1.5 rounded-full bg-black px-4 py-2 text-[11px] font-black text-white transition hover:bg-zinc-800 cursor-pointer"
-                                >
-                                    Send
-                                    <ArrowUpRight className="size-3" />
-                                </button>
-                            </form>
-                        </div>
-
-                        {/* Social icons */}
-                        <div>
-                            <p className="mb-3 text-[10px] font-black uppercase tracking-[0.2em] text-black/35">
-                                /Follow us
-                            </p>
-                            <div className="flex items-center gap-2">
-                                {socials.map((s) => {
-                                    const Icon = s.icon;
-
-                                    return (
-                                        <Link
-                                            key={s.label}
-                                            href={s.href}
-                                            aria-label={s.label}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="flex size-9 items-center justify-center rounded-full border border-black/12 bg-white/60 text-black/60 transition hover:border-black/30 hover:bg-white hover:text-black"
-                                        >
-                                            <Icon className="size-4" weight="bold" />
-                                        </Link>
-                                    );
-                                })}
-                            </div>
-                        </div>
+        <footer className="relative overflow-hidden bg-[#F9FAFB] text-black pt-24 font-space-grotesk border-t border-gray-200">
+            <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-20 border-b border-gray-200">
+                    
+                    {/* Brand */}
+                    <div className="lg:col-span-5 flex flex-col gap-6 pr-0 lg:pr-12">
+                        <Link href="#home" className="flex items-center gap-4 group w-fit">
+                           <div className="bg-white p-2 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-105 border border-gray-200 shadow-sm">
+                               <Image src={Logo} alt="Opygen Logo" width={40} height={40} className="object-contain" />
+                           </div>
+                           <span className="text-3xl font-black tracking-tight text-black transition-colors group-hover:text-gray-600">Opygen</span>
+                        </Link>
+                        <p className="text-[15px] leading-relaxed text-gray-500 max-w-sm mt-2">
+                            <strong className="text-black">Digital Oxygen for Business</strong><br/>
+                            We build future-ready websites, apps, and SaaS platforms that empower your business to grow, scale, and lead.
+                        </p>
                     </div>
 
+                    <div className="lg:col-span-1 hidden lg:block"></div>
+
                     {/* Navigation */}
-                    <div>
-                        <p className="mb-5 text-[10px] font-black uppercase tracking-[0.2em] text-black/35">
-                            /Navigation
+                    <div className="lg:col-span-3">
+                        <p className="mb-8 text-[13px] font-bold uppercase tracking-widest text-gray-400">
+                            Navigation
                         </p>
-                        <ul className="space-y-3">
+                        <ul className="space-y-4">
                             {navLinks.map((link) => (
                                 <li key={link.label}>
                                     <Link
                                         href={link.href}
-                                        className="text-[15px] font-black text-black/75 transition hover:text-black"
+                                        className="text-[16px] font-medium text-gray-600 transition-all hover:text-black hover:translate-x-2 inline-flex items-center gap-3 group"
                                     >
+                                        <span className="w-0 h-[2px] bg-black transition-all group-hover:w-4"></span>
                                         {link.label}
                                     </Link>
                                 </li>
@@ -109,80 +70,73 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* Resources */}
-                    <div>
-                        <p className="mb-5 text-[10px] font-black uppercase tracking-[0.2em] text-black/35">
-                            /Resources
+                    {/* Contact & Socials */}
+                    <div className="lg:col-span-3">
+                        <p className="mb-8 text-[13px] font-bold uppercase tracking-widest text-gray-400">
+                            Contact Us
                         </p>
-                        <ul className="space-y-3">
-                            {resourceLinks.map((link) => (
-                                <li key={link.label}>
-                                    <Link
-                                        href={link.href}
-                                        className="text-[15px] font-black text-black/75 transition hover:text-black"
-                                    >
-                                        {link.label}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                        <div className="space-y-4 mb-12">
+                            <a href="mailto:opygen.info@gmail.com" className="inline-block text-[16px] font-medium text-gray-600 hover:text-black transition-colors border-b border-transparent hover:border-black pb-1">
+                                opygen.info@gmail.com
+                            </a>
+                        </div>
 
-                    {/* Contact */}
-                    <div>
-                        <p className="mb-5 text-[10px] font-black uppercase tracking-[0.2em] text-black/35">
-                            /Contact
+                        <p className="mb-6 text-[13px] font-bold uppercase tracking-widest text-gray-400">
+                            Follow Us
                         </p>
-                        <ul className="space-y-3">
-                            {["hello@formix.com", "+359-123-45678"].map(
-                                (item) => (
-                                    <li key={item}>
-                                        <span className="text-[15px] font-black text-black/75">
-                                            {item}
-                                        </span>
-                                    </li>
-                                ),
-                            )}
-                        </ul>
+                        <div className="flex items-center gap-3">
+                            {socials.map((s) => {
+                                const Icon = s.icon;
+                                return (
+                                    <a
+                                        key={s.label}
+                                        href={s.href}
+                                        aria-label={s.label}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="flex size-11 items-center justify-center rounded-full bg-white border border-gray-200 text-gray-600 transition-all hover:bg-black hover:border-black hover:text-white hover:scale-110 shadow-sm"
+                                    >
+                                        <Icon className="size-5" weight="fill" />
+                                    </a>
+                                );
+                            })}
+                        </div>
                     </div>
                 </div>
 
-                {/* Brand lockup */}
-                <div className="overflow-hidden border-b border-dashed border-gray-300 px-6 py-7 sm:px-8 md:py-9">
-                    <Link
-                        href="/"
-                        aria-label="Opygen home"
-                        className="group flex min-w-0 items-center justify-center gap-3 sm:gap-5 md:gap-7"
-                    >
-                        <span className="flex size-14 shrink-0 items-center justify-center p-2.5 transition sm:size-20 sm:p-3 md:size-24 md:rounded-[1.6rem] lg:size-28">
-                            <Image
-                                src={Logo}
-                                alt=""
-                                width={96}
-                                height={96}
-                                className="h-full w-full object-contain"
-                            />
-                        </span>
+                {/* Big Text & Bottom bar */}
+                <div className="pt-16 pb-8 flex flex-col items-center">
+                    <div className="w-full text-center overflow-hidden mb-16">
                         <span
-                            className="select-none whitespace-nowrap text-center font-black leading-none tracking-tight text-black"
+                            className="block font-black tracking-tighter text-black select-none"
                             style={{
-                                fontSize: "clamp(4rem, 11vw, 9.5rem)",
-                                lineHeight: 0.82,
+                                fontSize: "clamp(4.5rem, 15vw, 18rem)",
+                                lineHeight: 0.8,
+                                background: "linear-gradient(to bottom, #111111 0%, rgba(17,17,17,0.05) 100%)",
+                                WebkitBackgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
                             }}
                         >
-                            Opygen
+                            OPYGEN
                         </span>
-                    </Link>
-                </div>
+                    </div>
 
-                {/* Bottom bar */}
-                <div className="flex flex-col items-center justify-between gap-3 px-6 py-5 sm:flex-row sm:px-8">
-                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-black/35">
-                        ©{new Date().getFullYear()} Opygen. Designed by Marso
-                    </p>
-                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-black/35">
-                        Built with Next.js
-                    </p>
+                    <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-6 pt-8 border-t border-gray-200">
+                        <p className="text-[13px] font-bold tracking-widest text-gray-400 uppercase">
+                            © OPYGEN 2026. ALL RIGHTS RESERVED.
+                        </p>
+                        <div className="flex items-center gap-8">
+                            {resourceLinks.map((link) => (
+                                <Link
+                                    key={link.label}
+                                    href={link.href}
+                                    className="text-[13px] font-bold text-gray-400 hover:text-black transition-colors uppercase tracking-wider"
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
         </footer>
