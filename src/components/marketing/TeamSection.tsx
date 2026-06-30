@@ -48,7 +48,7 @@ const team: TeamMember[] = [
     website: "https://iamrupom.netlify.app/",
     linkedin: "https://www.linkedin.com/in/iamrupom7/",
     image: "/team/rupom-team.jpeg",
-    clipPathId: "shape-1",
+    clipPathId: "shape-2",
     color: "bg-[#38BDF8]",
   },
   {
@@ -66,7 +66,7 @@ const team: TeamMember[] = [
     website: "https://syedmohiuddinmeshal.me",
     linkedin: "https://www.linkedin.com/in/10613-meshal",
     image: "/team/meshal-team.png",
-    clipPathId: "shape-3",
+    clipPathId: "shape-2",
     color: "bg-[#FDBA74]",
   },
   {
@@ -75,7 +75,7 @@ const team: TeamMember[] = [
     website: "https://muhibkhan.netlify.app/",
     linkedin: "https://www.linkedin.com/in/mohibbullahkhan/",
     image: "/team/mohib-team.jpeg",
-    clipPathId: "shape-4",
+    clipPathId: "shape-2",
     color: "bg-[#FDE047]",
   },
 ];
