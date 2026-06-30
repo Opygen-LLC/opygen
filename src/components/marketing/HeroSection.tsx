@@ -18,8 +18,10 @@ const carouselImages = [
 
 export default function HeroSection() {
   return (
-    <section id="home" className="relative flex flex-col items-center justify-start overflow-hidden bg-white text-black pt-32 pb-20 font-space-grotesk min-h-screen">
-      
+    <section
+      id="home"
+      className="relative flex flex-col items-center justify-start overflow-hidden bg-white text-black pt-32 pb-0 font-space-grotesk min-h-screen"
+    >
       {/* Soft gradient background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-100/50 blur-[100px] rounded-full" />
@@ -27,7 +29,6 @@ export default function HeroSection() {
       </div>
 
       <div className="relative z-20 flex w-full max-w-[1200px] mx-auto flex-col items-center justify-center px-6 text-center">
-        
         {/* Main Heading */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -36,7 +37,10 @@ export default function HeroSection() {
           className="mb-6 text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[1.05] tracking-tight text-[#111111]"
         >
           Building bold brands <br />
-          with <span className="font-serif italic font-normal pr-2">thoughtful design</span>
+          with{" "}
+          <span className="font-serif italic font-normal pr-2">
+            thoughtful design
+          </span>
         </motion.h1>
 
         {/* Subheading */}
@@ -46,7 +50,9 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mb-12 max-w-2xl text-[clamp(0.95rem,1.5vw,1.15rem)] text-gray-500 leading-relaxed font-medium"
         >
-          At Opygen, we help small startups tackle the world's biggest challenges with tailored solutions, guiding you from strategy to success in a competitive market.
+          At Opygen, we help small startups tackle the world's biggest
+          challenges with tailored solutions, guiding you from strategy to
+          success in a competitive market.
         </motion.p>
 
         {/* CTA and Trusted Badge */}
@@ -54,7 +60,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-col sm:flex-row items-center gap-8 mb-24"
+          className="flex flex-col sm:flex-row items-center gap-8 mb-20"
         >
           {/* CTA Button */}
           <Link
@@ -71,8 +77,17 @@ export default function HeroSection() {
           <div className="flex items-center gap-4">
             <div className="flex -space-x-3">
               {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="relative size-10 rounded-full border-[3px] border-white overflow-hidden bg-gray-200">
-                  <Image src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="Client" fill className="object-cover" unoptimized />
+                <div
+                  key={i}
+                  className="relative size-10 rounded-full border-[3px] border-white overflow-hidden bg-gray-200"
+                >
+                  <Image
+                    src={`https://i.pravatar.cc/100?img=${i + 10}`}
+                    alt="Client"
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
                 </div>
               ))}
             </div>
@@ -82,53 +97,66 @@ export default function HeroSection() {
                   <Star key={i} fill="currentColor" className="size-[14px]" />
                 ))}
               </div>
-              <span className="text-[13px] font-semibold text-gray-500">Trusted by 1000+ clients</span>
+              <span className="text-[13px] font-semibold text-gray-500">
+                Trusted by 1000+ clients
+              </span>
             </div>
           </div>
         </motion.div>
-
-        {/* 3D Curved Carousel */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.4 }}
-          className="relative w-full h-[350px] flex justify-center items-center overflow-hidden [perspective:1200px]"
-        >
-          {/* Fading edges to blend seamlessly into white */}
-          <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-r from-white via-transparent to-white w-full"></div>
-          
-          <div className="relative w-[240px] h-[320px] [transform-style:preserve-3d] animate-carousel">
-            {carouselImages.map((src, i) => {
-              // Calculate rotation. 8 images = 45 degrees each
-              const rotateY = i * 45;
-              // TranslateZ pushes images out to form the circle. Larger Z = wider circle
-              const translateZ = 450; 
-              return (
-                <div 
-                  key={i} 
-                  className="absolute inset-0 rounded-[2rem] overflow-hidden shadow-2xl bg-gray-100 border-4 border-white"
-                  style={{
-                    transform: `rotateY(${rotateY}deg) translateZ(${translateZ}px)`
-                  }}
-                >
-                  <Image src={src} alt={`Work ${i}`} fill className="object-cover" unoptimized />
-                </div>
-              );
-            })}
-          </div>
-        </motion.div>
-
       </div>
 
-      <style dangerouslySetInnerHTML={{__html: `
+      {/* Full Width Concave 3D Carousel */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.4 }}
+        className="relative w-full h-[350px] sm:h-[450px] lg:h-[550px] mt-[-150px] flex justify-center items-center overflow-hidden [perspective:800px]"
+      >
+        {/* Gradients to fade edges seamlessly into white background */}
+        <div className="absolute inset-y-0 left-0 w-[15%] sm:w-[25%] bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute inset-y-0 right-0 w-[15%] sm:w-[25%] bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
+
+        <div className="relative w-[300px] h-[400px] sm:w-[400px] sm:h-[500px] [transform-style:preserve-3d] animate-carousel">
+          {[...carouselImages, ...carouselImages].map((src, i) => {
+            // 16 total images = 22.5 degrees rotation step
+            const rotateY = i * 22.5;
+            // Push Z away to create concave effect
+            const translateZ = -1400;
+            return (
+              <div
+                key={i}
+                className="absolute inset-0 rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] bg-gray-100"
+                style={{
+                  transform: `rotateY(${rotateY}deg) translateZ(${translateZ}px)`,
+                  backfaceVisibility: "hidden",
+                }}
+              >
+                <Image
+                  src={src}
+                  alt={`Work ${i}`}
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </div>
+            );
+          })}
+        </div>
+      </motion.div>
+
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
         @keyframes carousel-spin {
           from { transform: rotateY(0deg); }
-          to { transform: rotateY(-360deg); }
+          to { transform: rotateY(360deg); }
         }
         .animate-carousel {
-          animation: carousel-spin 35s infinite linear;
+          animation: carousel-spin 45s infinite linear;
         }
-      `}} />
+      `,
+        }}
+      />
     </section>
   );
 }
