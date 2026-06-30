@@ -145,13 +145,10 @@ export default function Intregations() {
 
               {/* Central Hub Node */}
               <div className="absolute top-[80px] left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                <div className="relative size-24 md:size-[110px] bg-zinc-900 rounded-[28px] shadow-2xl flex items-center justify-center overflow-hidden border border-zinc-700/50">
-                  {/* Subtle inner glow */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent"></div>
-                  
+                <div className="relative size-24 md:size-[110px] bg-white rounded-[28px] shadow-2xl flex items-center justify-center overflow-hidden border border-gray-100 p-3">
                   {/* Opygen Logo Inside */}
-                  <div className="relative size-14 md:size-16 bg-white rounded-xl shadow-inner flex items-center justify-center overflow-hidden">
-                    <Image src={Logo} alt="Opygen" fill className="object-contain p-2" />
+                  <div className="relative w-full h-full flex items-center justify-center">
+                    <Image src={Logo} alt="Opygen" fill className="object-contain" />
                   </div>
                 </div>
               </div>

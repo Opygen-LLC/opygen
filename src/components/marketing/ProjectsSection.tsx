@@ -73,7 +73,7 @@ export default function ProjectsSection() {
   );
 
   return (
-    <section id="projects" className="py-24 lg:py-32 bg-[#FAFAFA] text-black overflow-hidden font-space-grotesk border-b border-dashed border-gray-300">
+    <section id="projects" className="py-24 lg:py-32 bg-[#FAFAFA] text-black overflow-hidden font-space-grotesk">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
         
         {/* Header */}
