@@ -30,9 +30,9 @@ const socials = [
 
 export default function Footer() {
     return (
-        <footer className="relative overflow-hidden bg-[#F9FAFB] text-black pt-24 font-space-grotesk border-t border-gray-200">
+        <footer className="relative overflow-hidden bg-[#F9FAFB] text-black pt-24 font-space-grotesk">
             <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-20 border-b border-gray-200">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-20">
                     
                     {/* Brand */}
                     <div className="lg:col-span-5 flex flex-col gap-6 pr-0 lg:pr-12">
@@ -121,7 +121,7 @@ export default function Footer() {
                         </span>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-6 pt-8 border-t border-gray-200">
+                    <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-6 pt-8">
                         <p className="text-[13px] font-bold tracking-widest text-gray-400 uppercase">
                             © OPYGEN 2026. ALL RIGHTS RESERVED.
                         </p>
