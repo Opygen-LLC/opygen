@@ -37,7 +37,7 @@ interface TeamMember {
   website: string;
   linkedin: string;
   image: string;
-  shapeClass: string;
+  clipPathId: string;
   color: string;
 }
 
@@ -48,7 +48,7 @@ const team: TeamMember[] = [
     website: "https://iamrupom.netlify.app/",
     linkedin: "https://www.linkedin.com/in/iamrupom7/",
     image: "/team/rupom-team.jpeg",
-    shapeClass: "rounded-[2.5rem] rounded-tr-[5.5rem] rounded-bl-[5.5rem]",
+    clipPathId: "shape-1",
     color: "bg-[#38BDF8]",
   },
   {
@@ -57,7 +57,7 @@ const team: TeamMember[] = [
     website: "https://faysaldev.vercel.app",
     linkedin: "https://www.linkedin.com/in/faysaldev/",
     image: "/team/faysal-team.png",
-    shapeClass: "rounded-[2.5rem] rounded-tl-[5.5rem] rounded-br-[5.5rem]",
+    clipPathId: "shape-2",
     color: "bg-[#4338CA]",
   },
   {
@@ -66,7 +66,7 @@ const team: TeamMember[] = [
     website: "https://syedmohiuddinmeshal.me",
     linkedin: "https://www.linkedin.com/in/10613-meshal",
     image: "/team/meshal-team.png",
-    shapeClass: "rounded-t-full rounded-b-[2.5rem]",
+    clipPathId: "shape-3",
     color: "bg-[#FDBA74]",
   },
   {
@@ -75,7 +75,7 @@ const team: TeamMember[] = [
     website: "https://muhibkhan.netlify.app/",
     linkedin: "https://www.linkedin.com/in/mohibbullahkhan/",
     image: "/team/mohib-team.jpeg",
-    shapeClass: "rounded-full",
+    clipPathId: "shape-4",
     color: "bg-[#FDE047]",
   },
 ];
@@ -106,13 +106,16 @@ export default function TeamSection() {
 
       // 2. Subtle continuous floating animation for the photo shapes
       cardsRef.current.forEach((card, i) => {
-        gsap.to(card?.querySelector(".image-shape"), {
-          y: i % 2 === 0 ? -10 : 10,
-          duration: 2.5 + i * 0.5,
-          yoyo: true,
-          repeat: -1,
-          ease: "sine.inOut",
-        });
+        const imageShape = card?.querySelector(".image-shape");
+        if (imageShape) {
+          gsap.to(imageShape, {
+            y: i % 2 === 0 ? -10 : 10,
+            duration: 2.5 + i * 0.5,
+            yoyo: true,
+            repeat: -1,
+            ease: "sine.inOut",
+          });
+        }
       });
     }, sectionRef);
 
@@ -126,6 +129,50 @@ export default function TeamSection() {
       className="relative py-24 lg:py-32 bg-white text-black font-space-grotesk overflow-hidden"
     >
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+
+      {/* SVG Clip Paths for exactly matching the organic image shapes */}
+      <svg
+        width="0"
+        height="0"
+        className="absolute w-0 h-0 pointer-events-none"
+      >
+        <defs>
+          {/* Shape 1: Figure-8 / Hourglass / Peanut */}
+          <clipPath id="shape-1" clipPathUnits="objectBoundingBox">
+            <rect x="0" y="0" width="1" height="0.55" rx="0.35" ry="0.25" />
+            <rect x="0" y="0.45" width="1" height="0.55" rx="0.35" ry="0.25" />
+          </clipPath>
+          {/* Shape 2: Arch */}
+          <clipPath id="shape-2" clipPathUnits="objectBoundingBox">
+            <rect x="0" y="0.4" width="1" height="0.6" />
+            <ellipse cx="0.5" cy="0.4" rx="0.5" ry="0.4" />
+          </clipPath>
+          {/* Shape 3: Circle */}
+          <clipPath id="shape-3" clipPathUnits="objectBoundingBox">
+            <ellipse cx="0.5" cy="0.5" rx="0.5" ry="0.5" />
+          </clipPath>
+          {/* Shape 4: Three stacked wavy pills */}
+          <clipPath id="shape-4" clipPathUnits="objectBoundingBox">
+            <rect
+              x="0.05"
+              y="0"
+              width="0.9"
+              height="0.36"
+              rx="0.45"
+              ry="0.18"
+            />
+            <rect x="0" y="0.32" width="1" height="0.36" rx="0.5" ry="0.18" />
+            <rect
+              x="0.05"
+              y="0.64"
+              width="0.9"
+              height="0.36"
+              rx="0.45"
+              ry="0.18"
+            />
+          </clipPath>
+        </defs>
+      </svg>
 
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
         {/* Section header */}
@@ -151,14 +198,18 @@ export default function TeamSection() {
             >
               {/* Photo Shape Container */}
               <div
-                className={`image-shape relative w-[240px] sm:w-[220px] lg:w-full aspect-[4/5] overflow-hidden mb-8 transition-shadow duration-500 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] ${member.shapeClass} ${member.color}`}
+                className={`image-shape relative w-[240px] sm:w-[220px] lg:w-full aspect-[4/5] overflow-hidden mb-8 transition-shadow duration-500 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] ${member.color}`}
+                style={{
+                  clipPath: `url(#${member.clipPathId})`,
+                  WebkitClipPath: `url(#${member.clipPathId})`,
+                }}
               >
                 <Image
                   src={member.image}
                   alt={member.name}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover transition-all duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                   unoptimized
                 />
               </div>
