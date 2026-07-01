@@ -64,24 +64,24 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="relative w-full bg-white font-space-grotesk pt-4 lg:pt-8">
+    <section className="relative w-full bg-white font-space-grotesk pt-16 lg:pt-24 pb-0">
       
       {/* 
-        Sticky Header 
+        Standard Header (Non-sticky)
       */}
-      <div className="sticky top-0 z-30 w-full bg-white/95 backdrop-blur-xl pt-8 pb-6 px-4 lg:pt-12 lg:pb-8 shadow-[0_10px_40px_-10px_rgba(255,255,255,1)]">
+      <div className="w-full px-4 mb-16">
         <div className="text-center max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-5xl lg:text-[56px] font-bold tracking-tight text-gray-900 mb-4 leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight text-gray-900 mb-6 leading-tight">
             What we build <br className="hidden sm:block md:hidden" /> for businesses
           </h2>
-          <p className="text-[15px] md:text-lg text-gray-500 leading-relaxed font-medium max-w-2xl mx-auto">
+          <p className="text-[17px] md:text-lg text-gray-500 leading-relaxed font-medium max-w-2xl mx-auto">
             From websites to apps, marketing, and automation, Opygen helps service businesses create the digital foundation they need to grow.
           </p>
         </div>
       </div>
 
       {/* Stacking Cards Container */}
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 lg:px-8 mt-12 pb-[100vh]">
+      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 lg:px-8 mt-12 pb-16">
         {services.map((service, index) => {
           return (
             <ServiceCard 
@@ -99,10 +99,10 @@ export default function Services() {
 const ServiceCard = ({ service, index }: any) => {
   return (
     <div 
-      className="sticky w-full mx-auto mb-[100vh]"
+      className="sticky w-full mx-auto mb-8"
       style={{ 
-        // Pure CSS offsets. Most efficient and crisp.
-        top: `calc(max(240px, 25vh) + ${index * 20}px)`, 
+        // Pure CSS offsets for smooth stacking.
+        top: `calc(max(80px, 12vh) + ${index * 24}px)`, 
         zIndex: index + 10 
       }}
     >
