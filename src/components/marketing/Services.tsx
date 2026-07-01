@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 const services = [
   {
     title: "Website Development",
+    slug: "website-development",
     badge: "Service",
     desc: "Modern websites built to convert visitors into leads and booked calls.",
     features: [
@@ -18,6 +19,7 @@ const services = [
   },
   {
     title: "App Development",
+    slug: "app-development",
     badge: "Service",
     desc: "Custom web and mobile apps for business operations, client portals, and dashboards.",
     features: [
@@ -29,6 +31,7 @@ const services = [
   },
   {
     title: "Digital Marketing",
+    slug: "digital-marketing",
     badge: "Service",
     desc: "Marketing systems designed to bring qualified leads and improve conversions.",
     features: [
@@ -40,6 +43,7 @@ const services = [
   },
   {
     title: "Automation & CRM Systems",
+    slug: "automation-crm",
     badge: "Service",
     desc: "Automations that save time, reduce manual work, and keep business operations organized.",
     features: [
@@ -51,6 +55,7 @@ const services = [
   },
   {
     title: "SaaS Product Development",
+    slug: "saas-development",
     badge: "Service",
     desc: "We design and build SaaS products from idea to MVP, launch, and growth.",
     features: [
@@ -167,7 +172,7 @@ const ServiceCard = ({ service, index }: any) => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
             >
-              <a href="#" className="inline-flex items-center gap-2 text-gray-900 font-bold text-[14px] hover:text-green-600 transition-colors duration-300 mb-6 w-max group">
+              <a href={`/services#${service.slug}`} className="inline-flex items-center gap-2 text-gray-900 font-bold text-[14px] hover:text-green-600 transition-colors duration-300 mb-6 w-max group">
                 <span className="border-b-[2px] border-gray-900 group-hover:border-green-600 transition-colors pb-0.5">{service.button}</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
