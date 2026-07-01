@@ -96,7 +96,7 @@ const ServiceSection = ({ service, index }: { service: any, index: number }) => 
     <section 
       ref={ref}
       id={service.slug}
-      className="relative min-h-[90vh] flex items-center py-20 overflow-hidden"
+      className="relative flex items-center py-12 lg:py-16 overflow-hidden"
     >
       {/* Background Glow */}
       <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[150px] opacity-10 pointer-events-none ${service.bg}`} />
@@ -113,21 +113,21 @@ const ServiceSection = ({ service, index }: { service: any, index: number }) => 
               {service.badge}
             </div>
             
-            <h2 className="text-5xl lg:text-7xl font-bold text-gray-900 mb-8 leading-[1.05] tracking-tight">
+            <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight tracking-tight">
               {service.title}
             </h2>
             
-            <p className="text-xl text-gray-500 leading-relaxed font-medium mb-12 max-w-xl">
+            <p className="text-lg text-gray-500 leading-relaxed font-medium mb-10 max-w-xl">
               {service.desc}
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8 mb-14">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-6 mb-12">
               {service.features.map((feature: string, idx: number) => (
-                <div key={idx} className="flex items-start gap-4">
-                  <div className={`mt-1 flex-shrink-0 flex items-center justify-center size-6 rounded-full ${service.bg}/10`}>
-                    <CheckCircle2 className={`size-4 ${service.color}`} />
+                <div key={idx} className="flex items-start gap-3">
+                  <div className={`mt-0.5 flex-shrink-0 flex items-center justify-center size-5 rounded-full ${service.bg}/10`}>
+                    <CheckCircle2 className={`size-3.5 ${service.color}`} />
                   </div>
-                  <span className="text-[16px] font-semibold text-gray-800 leading-snug">{feature}</span>
+                  <span className="text-[15px] font-semibold text-gray-800 leading-snug">{feature}</span>
                 </div>
               ))}
             </div>
@@ -145,7 +145,7 @@ const ServiceSection = ({ service, index }: { service: any, index: number }) => 
           <div className="w-full lg:w-1/2 relative">
             <motion.div 
               style={{ y }}
-              className={`relative aspect-[4/5] w-full rounded-[2.5rem] overflow-hidden shadow-2xl ${service.glow}`}
+              className={`relative aspect-[16/9] lg:aspect-[3/2] w-full rounded-[2rem] overflow-hidden shadow-2xl ${service.glow}`}
             >
               <div className="absolute inset-0 bg-gray-100" />
               <Image 
@@ -172,7 +172,7 @@ export default function ServicesPage() {
       <main className="min-h-screen bg-white font-space-grotesk overflow-hidden pt-32 lg:pt-48">
         
         {/* Services Hero */}
-        <section className="relative px-6 lg:px-8 max-w-[1200px] mx-auto mb-20 lg:mb-32 text-center">
+        <section className="relative px-6 lg:px-8 max-w-[1200px] mx-auto mb-12 lg:mb-16 text-center">
           <motion.div 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -187,7 +187,7 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-6xl md:text-7xl lg:text-[90px] font-bold tracking-tight text-gray-900 mb-8 leading-[1.05]"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 mb-8 leading-[1.05]"
           >
               Digital solutions <br className="hidden md:block" />
               for <span className="text-blue-600 font-serif italic font-normal">rapid growth</span>
@@ -197,7 +197,7 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-xl md:text-2xl text-gray-500 leading-relaxed font-medium max-w-3xl mx-auto"
+              className="text-lg md:text-xl text-gray-500 leading-relaxed font-medium max-w-3xl mx-auto"
           >
               Explore our suite of services designed to transform your operations, elevate your brand, and accelerate your digital success.
           </motion.p>
