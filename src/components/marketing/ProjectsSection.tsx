@@ -116,7 +116,7 @@ export default function ProjectsSection() {
           transition={{ delay: 0.3 }}
           className="flex justify-center mb-16 px-4"
         >
-          <div className="flex items-center justify-between w-full max-w-5xl p-2 bg-white rounded-2xl shadow-[0_2px_15px_rgba(0,0,0,0.03)] border border-gray-100 overflow-x-auto hide-scrollbar gap-2 relative">
+          <div className="flex items-center w-full max-w-max mx-auto p-1.5 md:p-2 bg-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100 overflow-x-auto hide-scrollbar gap-1 relative">
             {categories.map((cat) => {
               const Icon = cat.icon;
               const isActive = activeCategory === cat.name;
@@ -124,21 +124,23 @@ export default function ProjectsSection() {
                 <button
                   key={cat.name}
                   onClick={() => setActiveCategory(cat.name)}
-                  className={`relative flex-1 min-w-[100px] md:min-w-[140px] flex flex-col items-center gap-2.5 py-4 px-2 rounded-xl transition-colors ${
-                    isActive ? "text-gray-900" : "text-gray-400 hover:text-gray-600 hover:bg-gray-50/50"
+                  className={`relative flex items-center gap-2 py-2.5 px-5 md:py-3 md:px-7 rounded-full transition-colors duration-300 whitespace-nowrap outline-none ${
+                    isActive ? "text-white" : "text-gray-500 hover:text-gray-900"
                   }`}
                 >
-                  <Icon className="w-5 h-5 md:w-6 md:h-6" strokeWidth={isActive ? 2.5 : 2} />
-                  <span className={`text-[12px] md:text-[14px] font-semibold tracking-wide ${isActive ? "" : "font-medium"}`}>
-                    {cat.name}
-                  </span>
                   {isActive && (
                     <motion.div
-                      layoutId="activeProjectTab"
-                      className="absolute bottom-0 left-1/4 right-1/4 h-[3px] bg-purple-600 rounded-t-full"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      layoutId="activeProjectTabBg"
+                      className="absolute inset-0 bg-[#1D745C] rounded-full"
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     />
                   )}
+                  <span className="relative z-10 flex items-center gap-2.5">
+                    <Icon className="w-4 h-4 md:w-5 md:h-5" strokeWidth={isActive ? 2.5 : 2} />
+                    <span className="text-[14px] md:text-[15px] font-bold tracking-wide">
+                      {cat.name}
+                    </span>
+                  </span>
                 </button>
               );
             })}
