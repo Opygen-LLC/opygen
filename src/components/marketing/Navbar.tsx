@@ -8,11 +8,10 @@ import Image from "next/image";
 import Logo from "../../../public/logo/Opygen.png"
 
 const navLinks = [
-    { label: "Home", href: "#home" },
-    { label: "Services", href: "#services" },
-    { label: "Products", href: "#products" },
-    { label: "Benefits", href: "#benefits" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/" },
+    { label: "Services", href: "/services" },
+    { label: "Projects", href: "/#projects" },
+    { label: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
@@ -22,7 +21,13 @@ export default function Navbar() {
 
     useEffect(() => {
         const sections = navLinks
-            .map((link) => document.querySelector(link.href))
+            .map((link) => {
+                if (link.href.includes('#')) {
+                    const id = link.href.substring(link.href.indexOf('#'));
+                    try { return document.querySelector(id); } catch (e) { return null; }
+                }
+                return null;
+            })
             .filter(Boolean);
 
         const observer = new IntersectionObserver(
@@ -34,7 +39,8 @@ export default function Navbar() {
                     )[0];
 
                 if (visibleSection?.target?.id) {
-                    setActive(`#${visibleSection.target.id}`);
+                    const activeHref = navLinks.find(link => link.href.endsWith(`#${visibleSection.target.id}`))?.href;
+                    if (activeHref) setActive(activeHref);
                 }
             },
             {
@@ -121,7 +127,7 @@ export default function Navbar() {
                         href="#contact"
                         className="hidden md:flex items-center gap-1.5 rounded-full bg-black px-5 py-2.5 text-[13px] font-semibold text-white transition hover:bg-zinc-800 active:scale-95 shrink-0"
                     >
-                        Get started
+                        Book a Call
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="13"
@@ -211,7 +217,7 @@ export default function Navbar() {
                                     onClick={() => setMenuOpen(false)}
                                     className="flex w-full items-center justify-center rounded-full bg-black py-3.5 text-[14px] font-semibold text-white transition hover:bg-zinc-800"
                                 >
-                                    Get started
+                                    Book a Call
                                 </Link>
                             </div>
                         </nav>
