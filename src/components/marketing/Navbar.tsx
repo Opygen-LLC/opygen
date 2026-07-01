@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Logo from "../../../public/logo/Opygen.png"
+import BookCallButton from "./BookCallButton";
 
 const navLinks = [
     { label: "Home", href: "/" },
@@ -123,9 +124,8 @@ export default function Navbar() {
                     </nav>
 
                     {/* Desktop CTA */}
-                    <Link
-                        href="#contact"
-                        className="hidden md:flex items-center gap-1.5 rounded-full bg-black px-5 py-2.5 text-[13px] font-semibold text-white transition hover:bg-zinc-800 active:scale-95 shrink-0"
+                    <BookCallButton
+                        className="hidden md:flex gap-1.5 px-5 py-2.5 text-[13px] shrink-0"
                     >
                         Book a Call
                         <svg
@@ -141,7 +141,7 @@ export default function Navbar() {
                         >
                             <path d="M7 17L17 7M17 7H7M17 7v10" />
                         </svg>
-                    </Link>
+                    </BookCallButton>
 
                     {/* Mobile hamburger */}
                     <button
@@ -212,13 +212,12 @@ export default function Navbar() {
                             ))}
 
                             <div className="mt-4 w-full px-6">
-                                <Link
-                                    href="#contact"
+                                <BookCallButton
                                     onClick={() => setMenuOpen(false)}
-                                    className="flex w-full items-center justify-center rounded-full bg-black py-3.5 text-[14px] font-semibold text-white transition hover:bg-zinc-800"
+                                    className="w-full py-3.5 text-[14px]"
                                 >
                                     Book a Call
-                                </Link>
+                                </BookCallButton>
                             </div>
                         </nav>
                     </motion.div>
