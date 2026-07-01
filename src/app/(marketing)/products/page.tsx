@@ -108,7 +108,7 @@ export default function ProductsPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-32 lg:pt-40 pb-20 min-h-screen bg-white font-space-grotesk overflow-hidden">
+      <main className="pt-32 lg:pt-40 min-h-screen bg-white font-space-grotesk overflow-hidden">
         {/* Company Overview Hero */}
         <section className="relative px-6 lg:px-8 max-w-[1400px] mx-auto mb-32">
           {/* Subtle background glow */}
