@@ -300,7 +300,7 @@ export default function TrustedAndDetails() {
         </h3>
 
         {/* Marquee Container with fade edges */}
-        <div className="relative flex overflow-hidden w-full group">
+        <div className="relative flex overflow-hidden w-full">
           <div className="absolute left-0 top-0 w-24 md:w-48 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
           <div className="absolute right-0 top-0 w-24 md:w-48 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
