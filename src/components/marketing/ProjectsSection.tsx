@@ -14,56 +14,7 @@ const categories = [
   { name: "SaaS", icon: Cloud },
 ];
 
-const projects = [
-  {
-    id: 1,
-    title: "E-Commerce Replatforming",
-    description: "A complete overhaul of a legacy e-commerce system resulting in a 40% increase in conversions.",
-    category: "Website",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-    slug: "ecommerce-replatforming"
-  },
-  {
-    id: 2,
-    title: "Fintech Mobile Application",
-    description: "A sleek, secure mobile banking app designed to streamline personal finance management.",
-    category: "App",
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80",
-    slug: "fintech-app"
-  },
-  {
-    id: 3,
-    title: "Global Brand Campaign",
-    description: "A comprehensive digital marketing campaign that reached over 5 million target users.",
-    category: "Marketing",
-    image: "https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=800&q=80",
-    slug: "global-brand-campaign"
-  },
-  {
-    id: 4,
-    title: "AI-Powered CRM Dashboard",
-    description: "An intuitive SaaS platform leveraging AI to predict customer churn and automate outreach.",
-    category: "SaaS",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-    slug: "ai-crm-dashboard"
-  },
-  {
-    id: 5,
-    title: "Healthcare Portal Redesign",
-    description: "Modernizing patient scheduling and telemedicine access with a robust web application.",
-    category: "Website",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
-    slug: "healthcare-portal"
-  },
-  {
-    id: 6,
-    title: "Fitness Tracking Ecosystem",
-    description: "A seamless mobile experience connecting wearable devices to personalized workout plans.",
-    category: "App",
-    image: "https://images.unsplash.com/photo-1526406915894-7bcd65f60845?w=800&q=80",
-    slug: "fitness-tracking"
-  },
-];
+import { projects } from "@/src/data/projects";
 
 export default function ProjectsSection() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -154,24 +105,21 @@ export default function ProjectsSection() {
               <motion.div
                 key={project.id}
                 layout
-                initial={{ opacity: 0, scale: 0.9, filter: "blur(5px)" }}
-                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                exit={{ opacity: 0, scale: 0.9, filter: "blur(5px)" }}
-                transition={{ duration: 0.4, type: "spring", bounce: 0.1 }}
-                className="group relative"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                className="group relative bg-white rounded-3xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-gray-100 cursor-pointer"
               >
-                <Link href={`/projects/${project.slug}`} className="block h-full bg-white rounded-[2rem] p-4 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-gray-100 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300">
-                  
-                  {/* Image Container */}
+                <Link href={`/projects/${project.slug}`} className="block h-full p-4 hover:-translate-y-1 transition-all duration-300">
                   <div className="relative w-full aspect-[4/3] rounded-[1.5rem] overflow-hidden mb-6 bg-gray-100">
                     <Image
                       src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
                       unoptimized
                     />
-                    
                     {/* Hover Overlay */}
                     <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <div className="bg-white/95 backdrop-blur-md text-black px-6 py-3 rounded-full font-bold text-[13px] tracking-wide transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl flex items-center gap-2">
@@ -182,20 +130,19 @@ export default function ProjectsSection() {
                       </div>
                     </div>
                   </div>
-
+                  
                   {/* Content */}
                   <div className="px-3 pb-4">
-                    <div className="inline-block px-3 py-1 bg-[#F5F3FF] text-[#7C3AED] text-[11px] font-bold uppercase tracking-widest rounded-md mb-4">
+                    <div className="inline-block px-3 py-1 bg-[#1D745C]/10 text-[#1D745C] text-[11px] font-bold uppercase tracking-widest rounded-md mb-4">
                       {project.category}
                     </div>
-                    <h3 className="text-xl md:text-[22px] font-bold text-gray-900 mb-3 group-hover:text-[#7C3AED] transition-colors leading-snug tracking-tight">
+                    <h3 className="text-xl md:text-[22px] font-bold text-gray-900 mb-3 group-hover:text-[#1D745C] transition-colors leading-snug tracking-tight">
                       {project.title}
                     </h3>
                     <p className="text-gray-500 text-[14px] md:text-[15px] leading-relaxed font-medium">
                       {project.description}
                     </p>
                   </div>
-
                 </Link>
               </motion.div>
             ))}
