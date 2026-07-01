@@ -8,6 +8,7 @@ import {
     LinkedinLogo,
     TwitterLogo,
 } from "@phosphor-icons/react";
+import { motion } from "framer-motion";
 
 const navLinks = [
     { label: "Home", href: "#home" },
@@ -106,20 +107,68 @@ export default function Footer() {
 
                 {/* Big Text & Bottom bar */}
                 <div className="pt-16 pb-8 flex flex-col items-center">
-                    <div className="w-full text-center overflow-hidden mb-16">
-                        <span
-                            className="block font-black tracking-tighter text-black select-none"
-                            style={{
-                                fontSize: "clamp(4.5rem, 15vw, 18rem)",
-                                lineHeight: 0.8,
-                                background: "linear-gradient(to bottom, #111111 0%, rgba(17,17,17,0.05) 100%)",
-                                WebkitBackgroundClip: "text",
-                                WebkitTextFillColor: "transparent",
-                            }}
-                        >
-                            OPYGEN
-                        </span>
-                    </div>
+                    <motion.div 
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-100px" }}
+                        variants={{
+                            hidden: { opacity: 0 },
+                            visible: {
+                                opacity: 1,
+                                transition: {
+                                    staggerChildren: 0.1,
+                                    delayChildren: 0.1,
+                                }
+                            }
+                        }}
+                        className="w-full flex justify-center overflow-hidden mb-16 pb-8"
+                    >
+                        {"OPYGEN".split("").map((char, index) => (
+                            <motion.span
+                                key={index}
+                                variants={{
+                                    hidden: { y: "100%", opacity: 0, rotateZ: 10 },
+                                    visible: { 
+                                        y: "0%", 
+                                        opacity: 1,
+                                        rotateZ: 0,
+                                        transition: { type: "spring", stiffness: 100, damping: 20, mass: 1 }
+                                    }
+                                }}
+                                animate={{
+                                    backgroundPosition: ["0% 50%", "200% 50%"]
+                                }}
+                                transition={{
+                                    backgroundPosition: {
+                                        duration: 8,
+                                        repeat: Infinity,
+                                        ease: "linear"
+                                    }
+                                }}
+                                whileHover={{ 
+                                    y: -15, 
+                                    scale: 1.05, 
+                                    rotateZ: Math.random() > 0.5 ? 5 : -5,
+                                    transition: { type: "spring", stiffness: 400, damping: 10 }
+                                }}
+                                className="inline-block font-black tracking-tighter select-none cursor-pointer"
+                                style={{
+                                    fontSize: "clamp(4.5rem, 15vw, 18rem)",
+                                    lineHeight: 0.8,
+                                    backgroundImage: "linear-gradient(90deg, #111111 0%, #1D745C 25%, #10b981 50%, #1D745C 75%, #111111 100%)",
+                                    backgroundSize: "200% auto",
+                                    WebkitBackgroundClip: "text",
+                                    backgroundClip: "text",
+                                    WebkitTextFillColor: "transparent",
+                                    color: "transparent",
+                                    WebkitTextStroke: "2px rgba(17, 17, 17, 0.9)", // This ensures the letter shapes are always clearly visible
+                                    paddingRight: index === 5 ? "0" : "0.5vw", // Slight kerning adjustment
+                                }}
+                            >
+                                {char}
+                            </motion.span>
+                        ))}
+                    </motion.div>
 
                     <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-6 pt-8">
                         <p className="text-[13px] font-bold tracking-widest text-gray-400 uppercase">
