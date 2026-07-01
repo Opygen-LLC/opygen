@@ -1,21 +1,22 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Activity, Bot, Cloud, Database, Zap } from "lucide-react";
+import { Briefcase, Layers, Sprout, Wrench, Zap } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import Link from "next/link";
 import Logo from "../../../public/logo/Opygen.png";
 import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const apps = [
-  { name: "Activity", icon: Activity, color: "text-zinc-800" },
-  { name: "Cloud", icon: Cloud, color: "text-rose-500" },
-  { name: "AI", icon: Bot, color: "text-black" },
-  { name: "Database", icon: Database, color: "text-orange-500" },
-  { name: "Zapier", icon: Zap, color: "text-amber-500" },
+  { name: "Opygen Build", icon: Briefcase, color: "text-blue-500" },
+  { name: "Opygen Fix", icon: Wrench, color: "text-amber-500" },
+  { name: "Opygen Clean", icon: Layers, color: "text-green-500" },
+  { name: "Opygen Grow", icon: Sprout, color: "text-purple-500" },
+  { name: "Opygen Flow", icon: Zap, color: "text-rose-500" },
 ];
 
 export default function Intregations() {
@@ -71,21 +72,20 @@ export default function Intregations() {
           {/* Left Content */}
           <div ref={leftContentRef} className="max-w-xl">
             <div className="mb-6 inline-flex items-center px-4 py-1.5 rounded-full border border-gray-200 bg-white text-gray-900 text-[13px] font-bold tracking-wide shadow-sm">
-              Integration
+              Our Products
             </div>
             
             <h2 className="text-4xl md:text-5xl lg:text-[52px] font-bold tracking-tight text-gray-900 leading-[1.1] mb-6">
-              Your entire tech stack, Perfectly connected
+              Vertical Software, <br /> Built to Operate.
             </h2>
             
             <p className="text-[17px] leading-relaxed text-gray-500 mb-10 max-w-lg">
-              Unlock the full potential of your technology stack with secure,
-              enterprise-grade integrations.
+              Purpose-built CRMs for service operators. Each product is designed around real workflows — not generic templates.
             </p>
             
-            <button className="bg-black text-white px-8 py-3.5 rounded-full text-[15px] font-bold transition-transform hover:scale-105 shadow-lg shadow-black/10">
-              Get Started
-            </button>
+            <Link href="/products" className="inline-block bg-black text-white px-8 py-3.5 rounded-full text-[15px] font-bold transition-transform hover:scale-105 shadow-lg shadow-black/10">
+              Explore all products
+            </Link>
           </div>
 
           {/* Right Visual */}
