@@ -38,15 +38,15 @@ export default function Features() {
           </div>
           
           <h2 className="text-4xl md:text-5xl lg:text-[64px] font-bold tracking-tight text-gray-900 mb-6 leading-[1.1]">
-            Everything your business needs to scale from <span className="text-gray-400">idea to digital dominance</span>
+            The right creative and technical force, <span className="text-gray-400">all in one place.</span>
           </h2>
           
           <p className="text-lg text-gray-500 max-w-2xl mx-auto font-medium leading-relaxed mb-10">
             We provide complete user flows, polished digital products, powerful automations, and growth-driven marketing—all in one unified partnership.
           </p>
           
-          <a href="#" className="inline-flex items-center gap-2 bg-gray-900 text-white px-6 py-3.5 rounded-full font-semibold hover:bg-gray-800 transition-colors duration-300">
-            View all Features
+          <a href="#services" className="inline-flex items-center gap-2 bg-gray-900 text-white px-6 py-3.5 rounded-full font-semibold hover:bg-gray-800 transition-colors duration-300">
+            See what we build
             <ArrowRight className="w-4 h-4" />
           </a>
         </motion.div>
@@ -61,7 +61,7 @@ export default function Features() {
         >
           
           {/* Card 1: Data-Driven Products (Top Left) */}
-          <motion.div variants={itemVariants} className="col-span-1 md:col-span-3 bg-white rounded-[2.5rem] p-2 border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.02)] flex flex-col group">
+          <motion.div data-marketing-card variants={itemVariants} className="col-span-1 md:col-span-3 bg-white rounded-[2.5rem] p-2 border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.02)] flex flex-col group">
             <div className="w-full bg-[#F8F9FA] rounded-[2rem] h-[340px] relative overflow-hidden flex items-center justify-center p-8 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
                {/* UI Graphic */}
                <div className="w-full max-w-md bg-white/80 backdrop-blur-sm border border-gray-100 shadow-xl rounded-2xl p-6 transition-transform duration-700 group-hover:-translate-y-2">
@@ -100,7 +100,7 @@ export default function Features() {
           </motion.div>
 
           {/* Card 2: Custom SaaS & Platforms (Top Right) */}
-          <motion.div variants={itemVariants} className="col-span-1 md:col-span-3 bg-white rounded-[2.5rem] p-2 border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.02)] flex flex-col group">
+          <motion.div data-marketing-card variants={itemVariants} className="col-span-1 md:col-span-3 bg-white rounded-[2.5rem] p-2 border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.02)] flex flex-col group">
             <div className="w-full bg-gradient-to-br from-[#F4F7F9] to-[#EBF0F5] rounded-[2rem] h-[340px] relative overflow-hidden flex items-center justify-center perspective-[1000px]">
               {/* Isometric UI Panels */}
               <div className="relative w-full h-full flex items-center justify-center transition-transform duration-[1.5s] ease-out group-hover:scale-105"
@@ -143,7 +143,7 @@ export default function Features() {
           </motion.div>
 
           {/* Card 3: Responsive Experiences (Bottom Left) */}
-          <motion.div variants={itemVariants} className="col-span-1 md:col-span-2 bg-white rounded-[2.5rem] p-2 border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.02)] flex flex-col group">
+          <motion.div data-marketing-card variants={itemVariants} className="col-span-1 md:col-span-2 bg-white rounded-[2.5rem] p-2 border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.02)] flex flex-col group">
             <div className="w-full bg-[#FAFAFA] rounded-[2rem] h-[280px] relative overflow-hidden flex items-center justify-center bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:12px_12px]">
               <div className="flex items-end gap-3 transition-transform duration-700 ease-out group-hover:-translate-y-2 mt-12">
                  {/* Desktop */}
@@ -169,7 +169,7 @@ export default function Features() {
           </motion.div>
 
           {/* Card 4: Seamless Integrations (Bottom Mid) */}
-          <motion.div variants={itemVariants} className="col-span-1 md:col-span-2 bg-white rounded-[2.5rem] p-2 border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.02)] flex flex-col group">
+          <motion.div data-marketing-card variants={itemVariants} className="col-span-1 md:col-span-2 bg-white rounded-[2.5rem] p-2 border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.02)] flex flex-col group">
             <div className="w-full bg-gradient-to-br from-[#F0F4F8] to-[#E2EAF1] rounded-[2rem] h-[280px] relative overflow-hidden flex items-center justify-center">
                <div className="relative w-52 bg-white/90 backdrop-blur-md border border-white/60 shadow-xl rounded-2xl p-4 transition-transform duration-700 ease-out group-hover:scale-105">
                  <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-100">
@@ -197,7 +197,7 @@ export default function Features() {
           </motion.div>
 
           {/* Card 5: Scalable Infrastructure (Bottom Right) */}
-          <motion.div variants={itemVariants} className="col-span-1 md:col-span-2 bg-white rounded-[2.5rem] p-2 border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.02)] flex flex-col group">
+          <motion.div data-marketing-card variants={itemVariants} className="col-span-1 md:col-span-2 bg-white rounded-[2.5rem] p-2 border border-gray-100 shadow-[0_10px_40px_rgba(0,0,0,0.02)] flex flex-col group">
             <div className="w-full bg-[#FDFBF7] rounded-[2rem] h-[280px] relative overflow-hidden flex items-center justify-center perspective-[800px]">
               <div className="relative w-full h-full flex items-center justify-center transition-transform duration-[1.5s] ease-out group-hover:scale-105" style={{ transformStyle: 'preserve-3d' }}>
                 <div 

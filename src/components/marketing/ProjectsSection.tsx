@@ -46,7 +46,7 @@ export default function ProjectsSection() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight text-gray-900 mb-6 leading-[1.1]"
           >
-            Get Unlimited Benefits When <br className="hidden md:block" /> Creating With Opygen
+            Work made to earn attention <br className="hidden md:block" /> and keep it.
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -55,7 +55,7 @@ export default function ProjectsSection() {
             transition={{ delay: 0.2 }}
             className="text-gray-500 text-lg leading-relaxed max-w-2xl mx-auto font-medium"
           >
-            Our team leverages advanced technologies and design systems to automate repetitive tasks, freeing up your team to focus on high-value work.
+            A selection of digital products, campaigns, and brand experiences built to create real momentum.
           </motion.p>
         </div>
 
@@ -109,6 +109,7 @@ export default function ProjectsSection() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
+                data-marketing-card
                 className="group relative bg-white rounded-3xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-gray-100 cursor-pointer"
               >
                 <Link href={`/projects/${project.slug}`} className="block h-full p-4 hover:-translate-y-1 transition-all duration-300">
