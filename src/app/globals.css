@@ -192,3 +192,161 @@ body {
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
+
+/* Marketing homepage: Opygen's premium light design system.
+   Kept under .marketing-page so Cleaning CRM maintains its own visual language. */
+.marketing-page {
+    --marketing-ink: #111111;
+    --marketing-muted: #626262;
+    --marketing-paper: #f7f7f4;
+    --marketing-surface: #fffdf9;
+    --marketing-line: rgba(17, 17, 17, 0.1);
+    --marketing-accent: #f24202;
+    --marketing-accent-soft: #ffd6c7;
+    --marketing-lime: #d9ff5b;
+    background: var(--marketing-paper);
+    color: var(--marketing-ink);
+}
+
+.marketing-page main {
+    overflow: clip;
+}
+
+.marketing-page main > section {
+    position: relative;
+    border-top: 1px solid var(--marketing-line);
+    background: var(--marketing-paper);
+}
+
+.marketing-page main > section:first-child {
+    border-top: 0;
+}
+
+.marketing-page main > section:nth-of-type(even) {
+    background: var(--marketing-surface);
+}
+
+.marketing-page main > section h2 {
+    color: var(--marketing-ink);
+    font-weight: 600;
+    letter-spacing: -0.055em;
+}
+
+.marketing-page main > section h2 span {
+    color: var(--marketing-accent);
+}
+
+.marketing-page main > section h3 {
+    color: var(--marketing-ink);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+}
+
+.marketing-page main > section p {
+    color: var(--marketing-muted);
+}
+
+.marketing-page main > section [class*="text-white"] {
+    color: #ffffff;
+}
+
+.marketing-page main > section [class*="text-gray-900"],
+.marketing-page main > section [class*="text-gray-800"],
+.marketing-page main > section [class*="text-gray-700"] {
+    color: var(--marketing-ink);
+}
+
+.marketing-page main > section [class*="text-gray-600"],
+.marketing-page main > section [class*="text-gray-500"],
+.marketing-page main > section [class*="text-gray-400"] {
+    color: var(--marketing-muted);
+}
+
+.marketing-page main > section [class*="border-gray"],
+.marketing-page main > section [class*="border-red"],
+.marketing-page main > section [class*="border-purple"] {
+    border-color: var(--marketing-line);
+}
+
+.marketing-page main > section [class*="bg-red-"],
+.marketing-page main > section [class*="bg-purple-"] {
+    background-color: var(--marketing-accent-soft);
+}
+
+.marketing-page main > section [class*="text-red-"],
+.marketing-page main > section [class*="text-purple-"] {
+    color: var(--marketing-accent);
+}
+
+.marketing-page main > section [class*="rounded-[2.5rem]"],
+.marketing-page main > section [class~="rounded-3xl"] {
+    border-color: var(--marketing-line);
+}
+
+.marketing-page main > section .feature-card,
+.marketing-page main > section .step-card,
+.marketing-page main > section [data-marketing-card] {
+    border-color: var(--marketing-line);
+    box-shadow: 0 18px 45px rgba(17, 17, 17, 0.06);
+}
+
+.marketing-page main > section .feature-card:hover,
+.marketing-page main > section .step-card:hover,
+.marketing-page main > section [data-marketing-card]:hover {
+    border-color: rgba(17, 17, 17, 0.22);
+    box-shadow: 0 24px 55px rgba(17, 17, 17, 0.1);
+}
+
+.marketing-page main > section a[class*="bg-gray-900"],
+.marketing-page main > section button[class*="bg-gray-900"],
+.marketing-page main > section a[class*="bg-black"],
+.marketing-page main > section button[class*="bg-black"] {
+    background-color: var(--marketing-ink);
+}
+
+.marketing-page main > section a[class*="bg-gray-900"]:hover,
+.marketing-page main > section button[class*="bg-gray-900"]:hover,
+.marketing-page main > section a[class*="bg-black"]:hover,
+.marketing-page main > section button[class*="bg-black"]:hover {
+    background-color: var(--marketing-accent);
+}
+
+.marketing-page input {
+    color: var(--marketing-ink);
+}
+
+.marketing-page input:focus {
+    caret-color: var(--marketing-accent);
+}
+
+.marketing-page footer {
+    background: #171717;
+    color: #ffffff;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.marketing-page footer [class*="text-black"] {
+    color: #ffffff;
+}
+
+.marketing-page footer [class*="text-gray-"] {
+    color: rgba(255, 255, 255, 0.62);
+}
+
+.marketing-page footer [class*="bg-white"] {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.marketing-page footer [class*="border-gray"] {
+    border-color: rgba(255, 255, 255, 0.14);
+}
+
+.marketing-page footer [class*="bg-black"] {
+    background-color: var(--marketing-accent);
+}
+
+@media (max-width: 767px) {
+    .marketing-page main > section h2 {
+        letter-spacing: -0.045em;
+    }
+}

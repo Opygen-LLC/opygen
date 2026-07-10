@@ -380,8 +380,8 @@ export default function TrustedAndDetails() {
             ref={titleRef}
             className="text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight text-gray-900 leading-[1.1]"
           >
-            How Opygen Automates <br className="hidden md:block" /> and
-            Organizes Your Growth
+            One partner for the work <br className="hidden md:block" /> that
+            moves your business forward.
           </h2>
         </div>
 
@@ -393,6 +393,7 @@ export default function TrustedAndDetails() {
           {services.map((service, idx) => (
             <div
               key={idx}
+              data-marketing-card
               className="feature-card flex flex-col bg-[#F9FAFB] rounded-[32px] p-8 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] hover:-translate-y-1 transition-all duration-500 group border border-gray-100/50"
             >
               <div className="mb-5 text-[17px] font-semibold text-gray-900">
