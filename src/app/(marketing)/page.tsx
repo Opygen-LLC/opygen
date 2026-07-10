@@ -24,7 +24,7 @@ export default function HomePage() {
         <HeroSection />
         <TrustedAndDetails />
         <Features />
-        <OurFocus />
+        {/* <OurFocus /> */}
         {/* <WhyUs /> */}
         <ServicesSteps />
         <Services />
@@ -32,7 +32,7 @@ export default function HomePage() {
         {/* <Products /> */}
         {/* <Process /> */}
         {/* <Benefits /> */}
-        <Intregations />
+        {/* <Intregations /> */}
         <Reviews />
         <TeamSection />
         <ContactSection />

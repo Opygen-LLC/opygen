@@ -11,11 +11,15 @@ const services = [
     badge: "Service",
     desc: "Modern websites built to convert visitors into leads and booked calls.",
     features: [
-      "Business websites", "Landing pages", "Booking-focused pages",
-      "SEO-friendly structure", "Fast-loading frontend", "Mobile responsive design"
+      "Business websites",
+      "Landing pages",
+      "Booking-focused pages",
+      "SEO-friendly structure",
+      "Fast-loading frontend",
+      "Mobile responsive design",
     ],
     button: "Build My Website",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
+    image: "/services/website-development.jpeg",
   },
   {
     title: "App Development",
@@ -23,11 +27,15 @@ const services = [
     badge: "Service",
     desc: "Custom web and mobile apps for business operations, client portals, and dashboards.",
     features: [
-      "Client portals", "Admin dashboards", "Booking apps",
-      "Internal tools", "Custom CRM systems", "Mobile-first interfaces"
+      "Client portals",
+      "Admin dashboards",
+      "Booking apps",
+      "Internal tools",
+      "Custom CRM systems",
+      "Mobile-first interfaces",
     ],
     button: "Start an App Project",
-    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?w=1200&q=80",
+    image: "/services/app-development.jpeg",
   },
   {
     title: "Digital Marketing",
@@ -35,11 +43,16 @@ const services = [
     badge: "Service",
     desc: "Marketing systems designed to bring qualified leads and improve conversions.",
     features: [
-      "Meta ads", "Google ads", "Landing pages",
-      "Lead funnels", "Content strategy", "Conversion tracking", "Retargeting setup"
+      "Meta ads",
+      "Google ads",
+      "Landing pages",
+      "Lead funnels",
+      "Content strategy",
+      "Conversion tracking",
+      "Retargeting setup",
     ],
     button: "Grow My Business",
-    image: "https://images.unsplash.com/photo-1557838923-2985c318be48?w=1200&q=80",
+    image: "/services/digital-marketing.jpeg",
   },
   {
     title: "Automation & CRM Systems",
@@ -47,11 +60,15 @@ const services = [
     badge: "Service",
     desc: "Automations that save time, reduce manual work, and keep business operations organized.",
     features: [
-      "Lead automation", "Appointment reminders", "CRM setup",
-      "Workflow automation", "Payment flow setup", "Staff and client systems"
+      "Lead automation",
+      "Appointment reminders",
+      "CRM setup",
+      "Workflow automation",
+      "Payment flow setup",
+      "Staff and client systems",
     ],
     button: "Automate My Business",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&q=80",
+    image: "/services/custom-crm.jpeg",
   },
   {
     title: "SaaS Product Development",
@@ -59,28 +76,33 @@ const services = [
     badge: "Service",
     desc: "We design and build SaaS products from idea to MVP, launch, and growth.",
     features: [
-      "Product strategy", "MVP development", "Subscription systems",
-      "Dashboard design", "User roles", "Admin panels"
+      "Product strategy",
+      "MVP development",
+      "Subscription systems",
+      "Dashboard design",
+      "User roles",
+      "Admin panels",
     ],
     button: "Build My SaaS",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
-  }
+    image: "/services/sass-development.jpeg",
+  },
 ];
 
 export default function Services() {
   return (
     <section className="relative w-full bg-white font-space-grotesk pt-16 lg:pt-24 pb-0">
-      
       {/* 
         Standard Header (Non-sticky)
       */}
       <div className="w-full px-4 mb-16">
         <div className="text-center max-w-4xl mx-auto">
           <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight text-gray-900 mb-6 leading-tight">
-            What we build <br className="hidden sm:block md:hidden" /> for businesses
+            What we build <br className="hidden sm:block md:hidden" /> for
+            businesses
           </h2>
           <p className="text-[17px] md:text-lg text-gray-500 leading-relaxed font-medium max-w-2xl mx-auto">
-            From websites to apps, marketing, and automation, Opygen helps service businesses create the digital foundation they need to grow.
+            From websites to apps, marketing, and automation, Opygen helps
+            service businesses create the digital foundation they need to grow.
           </p>
         </div>
       </div>
@@ -88,13 +110,7 @@ export default function Services() {
       {/* Stacking Cards Container */}
       <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 lg:px-8 mt-12 pb-16">
         {services.map((service, index) => {
-          return (
-            <ServiceCard 
-              key={index} 
-              service={service} 
-              index={index} 
-            />
-          );
+          return <ServiceCard key={index} service={service} index={index} />;
         })}
       </div>
     </section>
@@ -103,15 +119,15 @@ export default function Services() {
 
 const ServiceCard = ({ service, index }: any) => {
   return (
-    <div 
+    <div
       className="sticky w-full mx-auto mb-8"
-      style={{ 
+      style={{
         // Pure CSS offsets for smooth stacking.
-        top: `calc(max(80px, 12vh) + ${index * 24}px)`, 
-        zIndex: index + 10 
+        top: `calc(max(80px, 12vh) + ${index * 24}px)`,
+        zIndex: index + 10,
       }}
     >
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-10%" }}
@@ -128,7 +144,7 @@ const ServiceCard = ({ service, index }: any) => {
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="w-full h-full relative"
             >
-              <Image 
+              <Image
                 src={service.image}
                 alt={service.title}
                 fill
@@ -141,7 +157,7 @@ const ServiceCard = ({ service, index }: any) => {
 
           {/* Right: Content Area */}
           <div className="w-full md:w-[55%] py-4 lg:py-6 pr-4 lg:pr-8 flex flex-col justify-center">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -155,8 +171,8 @@ const ServiceCard = ({ service, index }: any) => {
                 {service.badge}
               </div>
             </motion.div>
-            
-            <motion.p 
+
+            <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -165,15 +181,20 @@ const ServiceCard = ({ service, index }: any) => {
             >
               {service.desc}
             </motion.p>
-            
+
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
             >
-              <a href={`/services#${service.slug}`} className="inline-flex items-center gap-2 text-gray-900 font-bold text-[14px] hover:text-green-600 transition-colors duration-300 mb-6 w-max group">
-                <span className="border-b-[2px] border-gray-900 group-hover:border-green-600 transition-colors pb-0.5">{service.button}</span>
+              <a
+                href={`/services#${service.slug}`}
+                className="inline-flex items-center gap-2 text-gray-900 font-bold text-[14px] hover:text-green-600 transition-colors duration-300 mb-6 w-max group"
+              >
+                <span className="border-b-[2px] border-gray-900 group-hover:border-green-600 transition-colors pb-0.5">
+                  {service.button}
+                </span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
             </motion.div>
@@ -181,16 +202,22 @@ const ServiceCard = ({ service, index }: any) => {
             {/* Features Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-4 mt-auto">
               {service.features.map((feature: string, idx: number) => (
-                <motion.div 
-                  key={idx} 
+                <motion.div
+                  key={idx}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.4 + (idx * 0.08), ease: "easeOut" }}
+                  transition={{
+                    duration: 0.4,
+                    delay: 0.4 + idx * 0.08,
+                    ease: "easeOut",
+                  }}
                   className="flex items-start gap-2.5"
                 >
                   <CheckCircle2 className="w-[16px] h-[16px] text-green-500 shrink-0 mt-0.5" />
-                  <span className="text-[13px] font-medium text-gray-700 leading-tight">{feature}</span>
+                  <span className="text-[13px] font-medium text-gray-700 leading-tight">
+                    {feature}
+                  </span>
                 </motion.div>
               ))}
             </div>
@@ -199,4 +226,4 @@ const ServiceCard = ({ service, index }: any) => {
       </motion.div>
     </div>
   );
-}
+};
