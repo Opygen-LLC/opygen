@@ -1,228 +1,167 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
-import Logo from "../../../public/logo/Opygen.png"
+import Link from "next/link";
+import { ArrowUpRight, X } from "lucide-react";
+import { cn } from "@/lib/utils";
+import Logo from "../../../public/logo/Opygen.png";
 import BookCallButton from "./BookCallButton";
 
 const navLinks = [
-    { label: "Home", href: "/" },
-    { label: "Services", href: "/services" },
-    { label: "Projects", href: "/#projects" },
-    { label: "Contact", href: "/#contact" },
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
-    const [active, setActive] = useState("#home");
-    const [menuOpen, setMenuOpen] = useState(false);
-    const [isScrolled, setIsScrolled] = useState(false);
+  const [active, setActive] = useState("/");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-    useEffect(() => {
-        const sections = navLinks
-            .map((link) => {
-                if (link.href.includes('#')) {
-                    const id = link.href.substring(link.href.indexOf('#'));
-                    try { return document.querySelector(id); } catch (e) { return null; }
-                }
-                return null;
-            })
-            .filter(Boolean);
+  useEffect(() => {
+    const sections = navLinks
+      .map((link) => {
+        if (!link.href.includes("#")) return null;
+        return document.querySelector(link.href.substring(link.href.indexOf("#")));
+      })
+      .filter((section): section is Element => Boolean(section));
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                const visibleSection = entries
-                    .filter((entry) => entry.isIntersecting)
-                    .sort(
-                        (a, b) => b.intersectionRatio - a.intersectionRatio,
-                    )[0];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleSection = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
-                if (visibleSection?.target?.id) {
-                    const activeHref = navLinks.find(link => link.href.endsWith(`#${visibleSection.target.id}`))?.href;
-                    if (activeHref) setActive(activeHref);
-                }
-            },
-            {
-                threshold: [0.2, 0.4, 0.6, 0.8],
-                rootMargin: "-20% 0px -40% 0px",
-            },
-        );
-
-        sections.forEach((section) => {
-            if (section) observer.observe(section);
-        });
-
-        return () => observer.disconnect();
-    }, []);
-
-    // Lock body scroll when mobile menu is open
-    useEffect(() => {
-        document.body.style.overflow = menuOpen ? "hidden" : "";
-        return () => {
-            document.body.style.overflow = "";
-        };
-    }, [menuOpen]);
-
-    // Handle scroll for floating navbar effect
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    return (
-        <>
-            <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none">
-                <div
-                    className={cn(
-                        "pointer-events-auto flex w-full items-center transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden",
-                        isScrolled
-                            ? "mt-4 h-16 max-w-5xl rounded-full bg-white/85 backdrop-blur-lg shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-gray-200/60 px-6 lg:px-8 w-[92%]"
-                            : "mt-0 h-16 max-w-full rounded-none bg-white border-b border-transparent px-6 lg:px-8 xl:px-12 w-full"
-                    )}
-                >
-                    <div
-                        className={cn(
-                            "mx-auto flex w-full items-center justify-between transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
-                            isScrolled ? "max-w-full" : "max-w-[1400px]"
-                        )}
-                    >
-                    {/* Logo */}
-                    <Link href="/" className="flex items-center gap-2 shrink-0">
-                        <Image
-                            src={Logo}
-                            alt="Opygen logo"
-                            width={28}
-                            height={28}
-                            className="object-contain"
-                        />
-                        <span className="text-[15px] font-bold tracking-tight text-black">
-                            Opygen
-                        </span>
-                    </Link>
-
-                    {/* Desktop Nav — centered */}
-                    <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-1">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className={cn(
-                                    "px-4 py-2 rounded-full text-[13.5px] font-medium transition-colors duration-200",
-                                    active === link.href
-                                        ? "text-black font-semibold"
-                                        : "text-gray-500 hover:text-black",
-                                )}
-                            >
-                                {link.label}
-                            </Link>
-                        ))}
-                    </nav>
-
-                    {/* Desktop CTA */}
-                    <BookCallButton
-                        className="hidden md:flex gap-1.5 px-5 py-2.5 text-[13px] shrink-0"
-                    >
-                        Book a Call
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="13"
-                            height="13"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        >
-                            <path d="M7 17L17 7M17 7H7M17 7v10" />
-                        </svg>
-                    </BookCallButton>
-
-                    {/* Mobile hamburger */}
-                    <button
-                        onClick={() => setMenuOpen((prev) => !prev)}
-                        className="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-[5px]"
-                        aria-label="Toggle menu"
-                    >
-                        <motion.span
-                            animate={
-                                menuOpen
-                                    ? { rotate: 45, y: 7 }
-                                    : { rotate: 0, y: 0 }
-                            }
-                            className="block h-[2px] w-5 bg-black origin-center transition-all"
-                        />
-                        <motion.span
-                            animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
-                            className="block h-[2px] w-5 bg-black"
-                        />
-                        <motion.span
-                            animate={
-                                menuOpen
-                                    ? { rotate: -45, y: -7 }
-                                    : { rotate: 0, y: 0 }
-                            }
-                            className="block h-[2px] w-5 bg-black origin-center transition-all"
-                        />
-                    </button>
-                    </div>
-                </div>
-            </header>
-
-            {/* Mobile Menu Overlay */}
-            <AnimatePresence>
-                {menuOpen && (
-                    <motion.div
-                        key="mobile-menu"
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.2, ease: "easeOut" }}
-                        className="fixed inset-0 z-40 bg-white flex flex-col pt-16"
-                    >
-                        {/* Close button top-right */}
-                        <button
-                            onClick={() => setMenuOpen(false)}
-                            className="absolute top-4 right-6 text-black text-xl font-light"
-                            aria-label="Close menu"
-                        >
-                            ✕
-                        </button>
-
-                        <nav className="flex flex-col items-center justify-center flex-1 gap-1 pb-10">
-                            {navLinks.map((link) => (
-                                <Link
-                                    key={link.href}
-                                    href={link.href}
-                                    onClick={() => setMenuOpen(false)}
-                                    className={cn(
-                                        "w-full text-center px-6 py-3 text-[15px] transition-colors",
-                                        active === link.href
-                                            ? "text-black font-semibold"
-                                            : "text-gray-500 hover:text-black",
-                                    )}
-                                >
-                                    {link.label}
-                                </Link>
-                            ))}
-
-                            <div className="mt-4 w-full px-6">
-                                <BookCallButton
-                                    onClick={() => setMenuOpen(false)}
-                                    className="w-full py-3.5 text-[14px]"
-                                >
-                                    Book a Call
-                                </BookCallButton>
-                            </div>
-                        </nav>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </>
+        if (!visibleSection?.target.id) return;
+        const activeHref = navLinks.find((link) => link.href.endsWith(`#${visibleSection.target.id}`))?.href;
+        if (activeHref) setActive(activeHref);
+      },
+      { threshold: [0.2, 0.4, 0.6], rootMargin: "-20% 0px -45% 0px" },
     );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY > 36;
+      setIsScrolled(scrolled);
+      if (!scrolled) setActive("/");
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  return (
+    <>
+      <header className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-3 sm:px-5">
+        <div
+          className={cn(
+            "pointer-events-auto flex h-[4.5rem] w-full items-center border transition-[max-width,margin,background-color,border-color,box-shadow] duration-300",
+            isScrolled
+              ? "mt-3 max-w-[1180px] rounded-2xl border-black/10 bg-[#FFFDF9]/90 px-4 shadow-[0_14px_38px_rgba(17,17,17,0.10)] backdrop-blur-xl sm:px-5"
+              : "max-w-[1400px] border-transparent bg-transparent px-2 sm:px-3",
+          )}
+        >
+          <div className="mx-auto flex w-full items-center justify-between">
+            <Link href="/" className="group flex items-center gap-2.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F24202]">
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-black/10 bg-white/90 shadow-[0_6px_15px_rgba(17,17,17,0.06)]">
+                <Image src={Logo} alt="Opygen logo" width={23} height={23} className="object-contain" priority />
+              </span>
+              <span className="text-[15px] font-semibold tracking-[-0.04em] text-[#111111]">Opygen</span>
+            </Link>
+
+            <nav aria-label="Primary navigation" className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 rounded-xl border border-black/10 bg-white/65 p-1 shadow-[0_6px_20px_rgba(17,17,17,0.04)] backdrop-blur-sm md:flex">
+              {navLinks.map((link) => {
+                const isActive = active === link.href;
+
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    aria-current={isActive ? "page" : undefined}
+                    className={cn(
+                      "rounded-lg px-3.5 py-2 text-[12px] font-semibold transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F24202]",
+                      isActive ? "bg-[#111111] text-white" : "text-[#626262] hover:bg-black/[0.04] hover:text-[#111111]",
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            <BookCallButton className="!hidden !rounded-lg !px-4 !py-2.5 !text-[12px] !shadow-[0_8px_18px_rgba(17,17,17,0.13)] hover:!bg-[#F24202] md:!flex">
+              Book a Call
+              <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+            </BookCallButton>
+
+            <button
+              type="button"
+              onClick={() => setMenuOpen((open) => !open)}
+              className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 rounded-lg border border-black/10 bg-white/75 text-[#111111] transition-colors duration-200 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F24202] md:hidden"
+              aria-label="Toggle menu"
+              aria-expanded={menuOpen}
+            >
+              <span className={cn("h-px w-4 bg-current transition-transform duration-200", menuOpen && "translate-y-[7px] rotate-45")} />
+              <span className={cn("h-px w-4 bg-current transition-opacity duration-200", menuOpen && "opacity-0")} />
+              <span className={cn("h-px w-4 bg-current transition-transform duration-200", menuOpen && "-translate-y-[7px] -rotate-45")} />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 bg-[#F7F7F4] px-5 pb-6 pt-24 md:hidden">
+          <div className="relative flex h-full flex-col border border-black/10 bg-white p-5 shadow-[0_24px_60px_rgba(17,17,17,0.10)]">
+            <button
+              type="button"
+              onClick={() => setMenuOpen(false)}
+              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-lg border border-black/10 text-[#111111] transition-colors hover:bg-[#F7F7F4] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F24202]"
+              aria-label="Close menu"
+            >
+              <X className="h-4 w-4" aria-hidden="true" />
+            </button>
+
+            <nav aria-label="Mobile navigation" className="mt-auto flex flex-col border-y border-black/10 py-4">
+              {navLinks.map((link) => {
+                const isActive = active === link.href;
+
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className={cn(
+                      "flex items-center justify-between border-b border-black/10 px-1 py-4 text-xl font-semibold tracking-[-0.04em] last:border-b-0",
+                      isActive ? "text-[#F24202]" : "text-[#111111]",
+                    )}
+                  >
+                    {link.label}
+                    <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                );
+              })}
+            </nav>
+
+            <BookCallButton onClick={() => setMenuOpen(false)} className="!mt-6 !w-full !rounded-lg !py-3.5 !text-sm hover:!bg-[#F24202]">
+              Book a Call
+            </BookCallButton>
+          </div>
+        </div>
+      )}
+    </>
+  );
 }

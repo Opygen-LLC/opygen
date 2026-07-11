@@ -1,13 +1,14 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { useState } from "react";
 import { motion, Reorder } from "framer-motion";
+import { Quote } from "lucide-react";
 
 const OpygenLogo = ({ dark = false }: { dark?: boolean }) => (
-  <div className={`flex items-center gap-1.5 font-bold text-2xl tracking-tight select-none pointer-events-none ${dark ? 'text-white' : 'text-gray-900'}`}>
+  <div className={`flex items-center gap-1.5 text-2xl font-bold tracking-tight select-none pointer-events-none ${dark ? "text-white" : "text-[#111111]"}`}>
     opygen
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="mb-2">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="mb-2" aria-hidden="true">
       <path d="M12 0L14 10L24 12L14 14L12 24L10 14L0 12L10 10L12 0Z" />
     </svg>
   </div>
@@ -69,182 +70,97 @@ const initialReviews = [
     name: "David L",
     role: "CEO / Beskon",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80",
-  }
+  },
 ];
 
-const ReviewCardInner = ({ review }: { review: any }) => {
+type Review = (typeof initialReviews)[number];
+
+function ReviewCard({ review }: { review: Review }) {
   const isLargeLight = review.type === "large-light";
   const isLargeDark = review.type === "large-dark";
-  const isNormal = review.type === "normal";
 
   return (
-    <div className={`relative w-full h-full rounded-[2rem] overflow-hidden group flex flex-col justify-between ${
-        isLargeLight ? 'bg-white p-8 md:p-10 shadow-[0_15px_60px_rgba(255,0,0,0.06)] border border-red-50/50' : 
-        isLargeDark ? 'bg-[#F94527] p-8 md:p-10 shadow-[0_15px_40px_rgba(249,69,39,0.3)]' : 
-        'bg-white p-8 border border-gray-100 shadow-[0_8px_30px_rgba(0,0,0,0.04)]'
-    }`}>
-      {isLargeLight && (
-         <div className="absolute inset-0 bg-red-100/50 rounded-[2rem] blur-[60px] -z-10 scale-90 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-      )}
+    <div
+      className={`relative flex h-full min-h-[23rem] flex-col overflow-hidden rounded-[1.75rem] border p-7 shadow-[0_16px_42px_rgba(17,17,17,0.06)] sm:p-8 ${
+        isLargeDark
+          ? "border-[#111111] bg-[#111111] text-white shadow-[0_20px_50px_rgba(17,17,17,0.18)]"
+          : "border-black/10 bg-white/90"
+      }`}
+    >
+      <div aria-hidden="true" className={`absolute -right-10 -top-10 h-36 w-36 rounded-full blur-3xl ${isLargeDark ? "bg-[#F24202]/45" : "bg-[#D9FF5B]/40"}`} />
 
-      {isLargeLight && <OpygenLogo />}
-      {isLargeDark && <OpygenLogo dark />}
-
-      <div className={`pointer-events-none ${isLargeLight || isLargeDark ? "mt-12" : "flex-grow"}`}>
-        <p className={`
-          ${isLargeLight ? "text-2xl md:text-[28px] font-bold text-gray-900 leading-[1.3] tracking-tight" : ""}
-          ${isLargeDark ? "text-2xl md:text-[28px] font-bold text-white leading-[1.3] tracking-tight" : ""}
-          ${isNormal ? "text-[15px] font-medium text-gray-600 leading-relaxed mb-10" : ""}
-        `}>
-          {review.quote}
-        </p>
+      <div className="relative flex items-start justify-between gap-5">
+        {isLargeLight && <OpygenLogo />}
+        {isLargeDark && <OpygenLogo dark />}
+        {!isLargeLight && !isLargeDark && <span className="h-7" />}
+        <Quote className={`h-5 w-5 shrink-0 ${isLargeDark ? "text-[#D9FF5B]" : "text-[#F24202]"}`} strokeWidth={1.8} aria-hidden="true" />
       </div>
 
-      <div className={`flex items-center justify-between pointer-events-none mt-auto ${isLargeLight || isLargeDark ? "" : "pt-4"}`}>
+      <p className={`relative mt-10 flex-1 leading-7 ${isLargeLight || isLargeDark ? "text-xl font-semibold leading-[1.35] tracking-[-0.035em] sm:text-2xl" : "text-[15px]"}`}>
+        {review.quote}
+      </p>
+
+      <div className="relative mt-9 flex items-center justify-between gap-5 border-t border-current/10 pt-5">
         <div>
-          <p className={`text-[15px] font-bold ${isLargeDark ? "text-white" : "text-gray-900"}`}>{review.name}</p>
-          <p className={`text-[13px] font-medium ${isLargeDark ? "text-white/80" : "text-gray-500"}`}>{review.role}</p>
+          <p className={`text-[15px] font-semibold ${isLargeDark ? "text-white" : "text-[#111111]"}`}>{review.name}</p>
+          <p className={`mt-1 text-[13px] font-medium ${isLargeDark ? "text-white/65" : "text-[#626262]"}`}>{review.role}</p>
         </div>
-        
-        <div className="relative shrink-0">
-          <div className={`absolute inset-0 rounded-full blur-[6px] opacity-70 ${isLargeDark ? 'bg-white/40' : 'bg-gradient-to-tr from-[#FF3B30] to-[#FF9500]'}`}></div>
-          <div className={`relative w-12 h-12 rounded-full p-[2px] ${isLargeDark ? 'bg-white/40' : 'bg-gradient-to-tr from-[#FF3B30] to-[#FF9500]'}`}>
-             <div className="w-full h-full rounded-full border-[2px] border-white overflow-hidden bg-white relative">
-               <Image 
-                 src={review.avatar} 
-                 alt={review.name} 
-                 fill
-                 sizes="48px"
-                 className="object-cover" 
-                 unoptimized 
-               />
-             </div>
-          </div>
+        <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border-2 border-white bg-[#F7F7F4] shadow-[0_6px_15px_rgba(17,17,17,0.12)]">
+          <Image src={review.avatar} alt={review.name} fill sizes="44px" className="object-cover" unoptimized />
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default function Reviews() {
   const [cards, setCards] = useState(initialReviews);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-
-  // Auto-scroll logic
-  useEffect(() => {
-    let animationFrameId: number;
-    let lastTime = performance.now();
-    let direction = 1; 
-
-    const animateScroll = (time: number) => {
-      const deltaTime = time - lastTime;
-      lastTime = time;
-
-      if (!containerRef.current || isHovered) {
-        animationFrameId = requestAnimationFrame(animateScroll);
-        return;
-      }
-      
-      const container = containerRef.current;
-      const speed = 0.05; // Adjust speed here
-      
-      container.scrollLeft += direction * speed * deltaTime;
-      
-      // Ping-pong effect
-      if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 1) {
-        direction = -1;
-      } else if (container.scrollLeft <= 0) {
-        direction = 1;
-      }
-      
-      animationFrameId = requestAnimationFrame(animateScroll);
-    };
-
-    animationFrameId = requestAnimationFrame(animateScroll);
-    
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [isHovered]);
 
   return (
-    <section id="reviews" className="py-24 lg:py-32 bg-white font-space-grotesk overflow-hidden relative">
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
-      
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-8 relative z-10">
-        
-        {/* Header */}
-        <div className="mb-20 text-center flex flex-col items-center">
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-6 inline-flex items-center px-4 py-1.5 rounded-full border border-red-200 bg-white text-red-500 text-[13px] font-bold tracking-wide shadow-sm"
-          >
+    <section id="reviews" aria-labelledby="reviews-title" className="overflow-hidden px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-32">
+      <div className="mx-auto max-w-[1400px]">
+        <header className="mx-auto max-w-3xl text-center">
+          <p className="inline-flex rounded-full border border-black/10 bg-white px-3 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-[#4B4B4B] shadow-[0_8px_24px_rgba(17,17,17,0.04)]">
             Testimonial
-          </motion.div>
-          
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight text-gray-900 leading-[1.1]"
-          >
+          </p>
+          <h2 id="reviews-title" className="mt-6 text-4xl leading-[0.98] sm:text-5xl lg:text-[4rem]">
             Why everyone&apos;s talking <br className="hidden sm:block" /> about our service
-          </motion.h2>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[15px] font-bold text-gray-400 mt-6 tracking-widest uppercase"
-          >
+          </h2>
+          <p className="mt-6 text-[11px] font-bold uppercase tracking-[0.16em] text-[#626262]">
             Drag to rearrange cards
-          </motion.p>
-        </div>
+          </p>
+        </header>
 
-        {/* 
-          True Drag & Drop Reorder Slider (2 Rows)
-          Uses grid-rows-2 with grid-flow-col to create a beautiful horizontal layout.
-        */}
-        <div 
-          className="w-full relative -mx-4 px-4 sm:mx-0 sm:px-0"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onTouchStart={() => setIsHovered(true)}
-          onTouchEnd={() => setIsHovered(false)}
-        >
-          <Reorder.Group 
-            axis="x" 
-            values={cards} 
-            onReorder={setCards} 
+        <div className="relative mt-12 lg:mt-16">
+          <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-16 bg-gradient-to-r from-[#F7F7F4] to-transparent sm:block" />
+          <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-16 bg-gradient-to-l from-[#F7F7F4] to-transparent sm:block" />
+
+          <Reorder.Group
+            axis="x"
+            values={cards}
+            onReorder={setCards}
             as="div"
-            ref={containerRef}
-            className="grid grid-rows-2 grid-flow-col gap-6 auto-cols-[300px] sm:auto-cols-[340px] md:auto-cols-[400px] auto-rows-[260px] overflow-x-auto pb-12 pt-4 px-4 sm:px-8"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-1 pb-6 pt-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:px-5"
           >
             {cards.map((review) => {
-              const isLarge = review.type.includes("large");
+              const isLarge = review.type !== "normal";
+
               return (
-                <Reorder.Item 
-                  key={review.id} 
-                  value={review} 
+                <Reorder.Item
+                  key={review.id}
+                  value={review}
                   as="div"
-                  className={`w-full h-full cursor-grab active:cursor-grabbing ${isLarge ? "row-span-2" : "row-span-1"}`}
-                  whileDrag={{ scale: 1.03, zIndex: 50, rotate: -2 }}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: "-10%" }}
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  className={`shrink-0 snap-center cursor-grab active:cursor-grabbing ${isLarge ? "w-[min(88vw,35rem)]" : "w-[min(84vw,25rem)]"}`}
+                  whileDrag={{ scale: 1.015, rotate: -0.5, zIndex: 20 }}
                 >
-                  <ReviewCardInner review={review} />
+                  <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.45 }}>
+                    <ReviewCard review={review} />
+                  </motion.div>
                 </Reorder.Item>
               );
             })}
           </Reorder.Group>
         </div>
-
       </div>
     </section>
   );
