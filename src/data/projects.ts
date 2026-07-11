@@ -2,10 +2,11 @@ export const projects = [
   {
     id: 1,
     slug: "haven-estate",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
     gallery: [
       "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
     ],
     project_name: "Haven Estate",
     duration: "1.5 months",
@@ -50,10 +51,11 @@ export const projects = [
   {
     id: 2,
     slug: "bright-smile",
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&q=80",
+    image:
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&q=80",
     gallery: [
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80"
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80",
     ],
     project_name: "Bright Smile",
     duration: "25 days",
@@ -98,10 +100,11 @@ export const projects = [
   {
     id: 3,
     slug: "realteek",
-    image: "https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=1200&q=80",
+    image:
+      "https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=1200&q=80",
     gallery: [
       "https://images.unsplash.com/photo-1557838923-2985c318be48?w=800&q=80",
-      "https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=800&q=80"
+      "https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=800&q=80",
     ],
     project_name: "Realteek",
     duration: "2 months",
@@ -147,10 +150,11 @@ export const projects = [
   {
     id: 4,
     slug: "coach-energy",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80",
     gallery: [
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
     ],
     project_name: "Coach Energy",
     duration: "45 days",
@@ -195,10 +199,11 @@ export const projects = [
   {
     id: 5,
     slug: "bio-cleaning",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80",
+    image:
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80",
     gallery: [
       "https://images.unsplash.com/photo-1576091160550-2173ff9e9e9c?w=800&q=80",
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80"
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
     ],
     project_name: "BIO Cleaning",
     duration: "20 days",
@@ -217,7 +222,7 @@ export const projects = [
       "Stripe",
     ],
     description:
-      "As visualized in image_f76962.jpg, BIO Cleaning is an executive, full-scale booking platform built for premium localized cleaning services across New York and beyond. It features dynamic quotes, interactive multi-step scheduling, live coverage mapping, and flexible client onboarding workflows tailored for modern service businesses.",
+      "BIO Cleaning is an executive, full-scale booking platform built for premium localized cleaning services across New York and beyond. It features dynamic quotes, interactive multi-step scheduling, live coverage mapping, and flexible client onboarding workflows tailored for modern service businesses.",
     problem_solved:
       "Local service agencies lose considerable revenue due to manual quoting errors and cumbersome phone-only booking systems. BIO Cleaning digitalizes the service workflow completely, letting clients transparently evaluate service tiers, check real-time availability across physical regions, and reserve services in a single automated flow.",
     real_challenges: [
@@ -240,10 +245,11 @@ export const projects = [
   {
     id: 6,
     slug: "dnoin-inc",
-    image: "https://images.unsplash.com/photo-1526406915894-7bcd65f60845?w=1200&q=80",
+    image:
+      "https://images.unsplash.com/photo-1526406915894-7bcd65f60845?w=1200&q=80",
     gallery: [
       "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80",
-      "https://images.unsplash.com/photo-1526406915894-7bcd65f60845?w=800&q=80"
+      "https://images.unsplash.com/photo-1526406915894-7bcd65f60845?w=800&q=80",
     ],
     project_name: "DNOIN.INC",
     duration: "30 days",
@@ -262,7 +268,7 @@ export const projects = [
       "Docker",
     ],
     description:
-      "As visualized in image_f7702b.jpg, DNOIN.INC is a premium, high-end digital portfolio and client acquisition platform engineered for an elite architectural and structural design firm. The platform showcases luxury projects across residential, commercial, interior, and landscape design through highly performant, immersive visual feeds and server-rendered storytelling layout structures.",
+      "DNOIN.INC is a premium, high-end digital portfolio and client acquisition platform engineered for an elite architectural and structural design firm. The platform showcases luxury projects across residential, commercial, interior, and landscape design through highly performant, immersive visual feeds and server-rendered storytelling layout structures.",
     problem_solved:
       "Luxury architectural firms frequently rely on massive, uncompressed photography assets that slow down conventional websites, causing catastrophic portfolio load times that lose high-value prospects. DNOIN.INC resolves this by coupling cutting-edge web optimization with localized state management, allowing elite corporate and residential clients to explore massive layout blueprints and media galleries seamlessly.",
     real_challenges: [
@@ -285,10 +291,11 @@ export const projects = [
   {
     id: 7,
     slug: "roofora",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80",
     gallery: [
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
     ],
     project_name: "Roofora",
     duration: "15 days",
@@ -307,7 +314,7 @@ export const projects = [
       "Google Maps API",
     ],
     description:
-      "As visualized in image_f7711e.jpg, Roofora is a modern, full-stack digital platform engineered for premium residential and commercial roofing services. It integrates live estimation calculators, dynamic service area filtering, interactive consultation booking components, and a content distribution pipeline tailored to showcase craftsmanship and enterprise metrics.",
+      "Roofora is a modern, full-stack digital platform engineered for premium residential and commercial roofing services. It integrates live estimation calculators, dynamic service area filtering, interactive consultation booking components, and a content distribution pipeline tailored to showcase craftsmanship and enterprise metrics.",
     problem_solved:
       "The roofing and contracting industry suffers from high drop-off rates due to delayed estimations and opaque project quotes. Homeowners often wait days for manual site inspections just to get a baseline price. Roofora eliminates this bottleneck by offering an instant automated intake funnel, matching dynamic home variables with localized material and labor costs directly online.",
     real_challenges: [
@@ -330,10 +337,11 @@ export const projects = [
   {
     id: 8,
     slug: "plumbin",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
     gallery: [
       "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
     ],
     project_name: "Plumbin",
     duration: "50 days",
@@ -352,7 +360,7 @@ export const projects = [
       "Twilio",
     ],
     description:
-      "As visualized in image_f77426.jpg, Plumbin is a high-performance, full-stack digital hub designed for enterprise plumbing and emergency repair services. The platform streamlines service navigation, step-by-step service pipelines, case studies, and automated on-demand emergency scheduling with an optimized responsive interface.",
+      "Plumbin is a high-performance, full-stack digital hub designed for enterprise plumbing and emergency repair services. The platform streamlines service navigation, step-by-step service pipelines, case studies, and automated on-demand emergency scheduling with an optimized responsive interface.",
     problem_solved:
       "Emergency plumbing issues require immediate, friction-free booking. Traditional websites with complex navigation structures and slow page speeds cause panicked users to bounce to competitors. Plumbin resolves this by providing an optimized emergency dispatch pipeline, transparent service breakdowns, and instant appointment processing.",
     real_challenges: [
