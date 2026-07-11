@@ -20,7 +20,7 @@ export default function ProjectsSection() {
   const [activeCategory, setActiveCategory] = useState("All");
 
   const filteredProjects = projects.filter(
-    (project) => activeCategory === "All" || project.category === activeCategory
+    (project) => activeCategory === "All" || project.project_type === activeCategory
   );
 
   return (
@@ -116,7 +116,7 @@ export default function ProjectsSection() {
                   <div className="relative w-full aspect-[4/3] rounded-[1.5rem] overflow-hidden mb-6 bg-gray-100">
                     <Image
                       src={project.image}
-                      alt={project.title}
+                      alt={project.project_name}
                       fill
                       className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
                       unoptimized
@@ -135,13 +135,13 @@ export default function ProjectsSection() {
                   {/* Content */}
                   <div className="px-3 pb-4">
                     <div className="inline-block px-3 py-1 bg-[#1D745C]/10 text-[#1D745C] text-[11px] font-bold uppercase tracking-widest rounded-md mb-4">
-                      {project.category}
+                      {project.project_type}
                     </div>
                     <h3 className="text-xl md:text-[22px] font-bold text-gray-900 mb-3 group-hover:text-[#1D745C] transition-colors leading-snug tracking-tight">
-                      {project.title}
+                      {project.project_name}
                     </h3>
-                    <p className="text-gray-500 text-[14px] md:text-[15px] leading-relaxed font-medium">
-                      {project.description}
+                    <p className="text-gray-500 text-[14px] md:text-[15px] leading-relaxed font-medium line-clamp-3">
+                      {project.project_description || project.description}
                     </p>
                   </div>
                 </Link>

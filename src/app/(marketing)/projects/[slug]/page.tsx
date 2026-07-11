@@ -41,7 +41,7 @@ export default function ProjectDetailsPage({ params }: { params: Promise<{ slug:
           >
             <Image 
               src={project.image}
-              alt={project.title}
+              alt={project.project_name}
               fill
               className="object-cover"
               unoptimized
@@ -62,7 +62,7 @@ export default function ProjectDetailsPage({ params }: { params: Promise<{ slug:
             
             <div className="flex flex-wrap items-center gap-3 mb-6">
               <span className="bg-[#1D745C] text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">
-                {project.category}
+                {project.project_type}
               </span>
               <span className="bg-white/20 backdrop-blur-md border border-white/10 text-white px-4 py-1.5 rounded-full text-xs font-bold tracking-widest">
                 CASE STUDY
@@ -75,7 +75,7 @@ export default function ProjectDetailsPage({ params }: { params: Promise<{ slug:
               transition={{ duration: 0.6 }}
               className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.05] tracking-tight max-w-4xl"
             >
-              {project.title}
+              {project.project_name}
             </motion.h1>
 
             <motion.p 
@@ -84,7 +84,7 @@ export default function ProjectDetailsPage({ params }: { params: Promise<{ slug:
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-xl text-gray-300 max-w-2xl font-medium leading-relaxed"
             >
-              {project.description}
+              {project.project_description || project.description}
             </motion.p>
           </div>
         </section>
@@ -94,11 +94,11 @@ export default function ProjectDetailsPage({ params }: { params: Promise<{ slug:
           <div className="bg-white/80 backdrop-blur-xl border border-gray-100 shadow-[0_20px_40px_rgba(0,0,0,0.06)] rounded-3xl p-6 md:p-10 flex flex-col md:flex-row gap-8 justify-between items-start md:items-center">
             <div className="flex items-center gap-4">
               <div className="size-12 rounded-full bg-gray-50 flex items-center justify-center border border-gray-100">
-                <User className="size-5 text-gray-400" />
+                <Briefcase className="size-5 text-gray-400" />
               </div>
               <div>
-                <p className="text-[12px] font-bold text-gray-400 uppercase tracking-widest mb-1">Client</p>
-                <p className="font-bold text-gray-900 text-lg">{project.client}</p>
+                <p className="text-[12px] font-bold text-gray-400 uppercase tracking-widest mb-1">Tech Stack</p>
+                <p className="font-bold text-gray-900 text-lg">{project.tech_stack?.slice(0, 2).join(", ")}{project.tech_stack?.length > 2 ? '...' : ''}</p>
               </div>
             </div>
             
@@ -114,17 +114,17 @@ export default function ProjectDetailsPage({ params }: { params: Promise<{ slug:
               </div>
             </div>
 
-            <div className="hidden md:block w-px h-12 bg-gray-100"></div>
+            {project.live_link && (
+              <>
+                <div className="hidden md:block w-px h-12 bg-gray-100"></div>
 
-            <div className="flex items-center gap-4">
-              <div className="size-12 rounded-full bg-gray-50 flex items-center justify-center border border-gray-100">
-                <Briefcase className="size-5 text-gray-400" />
-              </div>
-              <div>
-                <p className="text-[12px] font-bold text-gray-400 uppercase tracking-widest mb-1">Role</p>
-                <p className="font-bold text-gray-900 text-lg">{project.role}</p>
-              </div>
-            </div>
+                <div className="flex items-center gap-4">
+                  <a href={project.live_link} target="_blank" rel="noopener noreferrer" className="bg-[#1D745C] text-white px-6 py-3 rounded-full font-bold hover:scale-105 transition-transform shadow-[0_4px_20px_rgba(29,116,92,0.3)]">
+                    Visit Live Site
+                  </a>
+                </div>
+              </>
+            )}
           </div>
         </section>
 
@@ -138,9 +138,11 @@ export default function ProjectDetailsPage({ params }: { params: Promise<{ slug:
                 <span className="size-2 rounded-full bg-rose-500 animate-pulse"></span>
                 <h2 className="text-2xl font-bold text-gray-900 tracking-tight">The Challenge</h2>
               </div>
-              <p className="text-xl text-gray-500 leading-relaxed font-medium">
-                {project.challenge}
-              </p>
+              <div className="text-[17px] text-gray-500 leading-relaxed font-medium space-y-4">
+                {project.real_challenges?.map((challenge, idx) => (
+                  <p key={idx} className="relative pl-4 border-l-2 border-rose-500/30">{challenge}</p>
+                ))}
+              </div>
             </div>
 
             {/* The Solution */}
@@ -149,9 +151,11 @@ export default function ProjectDetailsPage({ params }: { params: Promise<{ slug:
                 <span className="size-2 rounded-full bg-[#1D745C]"></span>
                 <h2 className="text-2xl font-bold text-gray-900 tracking-tight">Our Solution</h2>
               </div>
-              <p className="text-xl text-gray-500 leading-relaxed font-medium">
-                {project.solution}
-              </p>
+              <div className="text-[17px] text-gray-500 leading-relaxed font-medium space-y-4">
+                {(project.solutions_implemented || project.technical_solutions)?.map((solution, idx) => (
+                  <p key={idx} className="relative pl-4 border-l-2 border-[#1D745C]/30">{solution}</p>
+                ))}
+              </div>
             </div>
 
           </div>
@@ -199,12 +203,12 @@ export default function ProjectDetailsPage({ params }: { params: Promise<{ slug:
                   The Results
                 </h2>
                 <div className="flex flex-col gap-6">
-                  {project.results?.map((result, idx) => (
-                    <div key={idx} className="flex items-center gap-4 bg-white/10 p-5 rounded-2xl border border-white/10 backdrop-blur-sm transition-transform hover:scale-[1.02]">
-                      <div className="flex-shrink-0 size-10 rounded-full bg-white flex items-center justify-center">
-                        <CheckCircle2 className="size-5 text-[#1D745C]" />
+                  {project.key_features?.map((result, idx) => (
+                    <div key={idx} className="flex items-start gap-4 bg-white/10 p-5 rounded-2xl border border-white/10 backdrop-blur-sm transition-transform hover:scale-[1.02]">
+                      <div className="flex-shrink-0 size-8 mt-1 rounded-full bg-white flex items-center justify-center">
+                        <CheckCircle2 className="size-4 text-[#1D745C]" />
                       </div>
-                      <span className="text-lg font-bold text-white tracking-wide">{result}</span>
+                      <span className="text-md font-medium text-white/90 tracking-wide">{result}</span>
                     </div>
                   ))}
                 </div>
