@@ -4,7 +4,17 @@ import Image from "next/image";
 import { Check, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-const services = [
+type Service = {
+  title: string;
+  slug: string;
+  badge: string;
+  desc: string;
+  features: string[];
+  button: string;
+  image: string;
+};
+
+const services: Service[] = [
   {
     title: "Website Development",
     slug: "website-development",
@@ -117,7 +127,7 @@ export default function Services() {
   );
 }
 
-const ServiceCard = ({ service, index }: any) => {
+const ServiceCard = ({ service, index }: { service: Service; index: number }) => {
   return (
     <div
       className="sticky w-full mx-auto mb-8"
@@ -216,7 +226,7 @@ const ServiceCard = ({ service, index }: any) => {
               className="mt-auto pt-6"
             >
               <a
-                href={`/services#${service.slug}`}
+                href={`/services/${service.slug}`}
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gray-900 text-white rounded-full font-bold text-[14px] hover:bg-blue-600 transition-all duration-300 shadow-[0_10px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_10px_25px_rgba(37,99,235,0.3)] hover:-translate-y-0.5 group/btn"
               >
                 <span>{service.button}</span>
