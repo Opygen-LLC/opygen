@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import { ArrowUpRight, Blocks, Code2, Database, Sparkles } from "lucide-react";
+import { marketingButton } from "@/lib/marketing-button";
 
 const containerVariants: Variants = {
   hidden: {},
@@ -58,10 +59,10 @@ export default function Features() {
             </p>
             <a
               href="#services"
-              className="group mt-7 inline-flex items-center gap-3 rounded-full bg-[#111111] px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(17,17,17,0.16)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#F24202] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F24202]"
+              className={marketingButton("group mt-7")}
             >
               See what we build
-              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+              <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
             </a>
           </div>
         </header>

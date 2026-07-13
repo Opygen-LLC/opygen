@@ -7,10 +7,22 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowLeft, CheckCircle2, Calendar, User, Briefcase, Sparkles } from "lucide-react";
-import { useRef, use } from "react";
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  Briefcase,
+  Calendar,
+  CheckCircle2,
+  Sparkles,
+} from "lucide-react";
+import { use, useRef } from "react";
+import { marketingButton, marketingButtonOnDark } from "@/lib/marketing-button";
 
-export default function ProjectDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
+export default function ProjectDetailsPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const resolvedParams = use(params);
   const project = projects.find((p) => p.slug === resolvedParams.slug);
 
@@ -18,218 +30,319 @@ export default function ProjectDetailsPage({ params }: { params: Promise<{ slug:
     notFound();
   }
 
-  const heroRef = useRef(null);
+  const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end start"],
   });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
 
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-white font-space-grotesk overflow-hidden selection:bg-[#1D745C]/20">
-        
-        {/* Immersive Hero Section */}
-        <section ref={heroRef} className="relative h-[90vh] min-h-[600px] w-full flex items-end pb-20 bg-[#050505] overflow-hidden">
-          {/* Background Image with Parallax */}
-          <motion.div 
-            style={{ y, opacity }}
-            className="absolute top-[-20%] left-0 w-full h-[140%]"
-          >
-            <Image 
-              src={project.image}
-              alt={project.project_name}
-              fill
-              className="object-cover"
-              unoptimized
-              priority
-            />
-            {/* Gradient Overlay for Text Readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-          </motion.div>
+      <main className="min-h-screen overflow-hidden bg-[#F7F7F4] font-space-grotesk text-[#111111] selection:bg-[#FFD6C7]">
+        <section
+          ref={heroRef}
+          className="relative isolate overflow-hidden px-5 pb-16 pt-32 sm:px-8 sm:pt-40 lg:px-12 lg:pb-24"
+        >
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 opacity-60"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(17,17,17,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(17,17,17,0.045) 1px, transparent 1px)",
+              backgroundSize: "44px 44px",
+              maskImage: "linear-gradient(to bottom, black, transparent 90%)",
+            }}
+          />
+          <div
+            aria-hidden="true"
+            className="absolute -left-28 top-28 h-72 w-72 rounded-full bg-[#D9FF5B]/60 blur-3xl"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute -right-24 top-8 h-[28rem] w-[28rem] rounded-full bg-[#FFD6C7]/70 blur-3xl"
+          />
 
-          <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 lg:px-8">
-            <Link 
-              href="/#projects" 
-              className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors mb-8 font-medium group"
-            >
-              <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
-              Back to Portfolio
-            </Link>
-            
-            <div className="flex flex-wrap items-center gap-3 mb-6">
-              <span className="bg-[#1D745C] text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">
-                {project.project_type}
-              </span>
-              <span className="bg-white/20 backdrop-blur-md border border-white/10 text-white px-4 py-1.5 rounded-full text-xs font-bold tracking-widest">
-                CASE STUDY
-              </span>
+          <div className="relative mx-auto grid max-w-[1400px] items-center gap-14 lg:grid-cols-[0.88fr_1.12fr] lg:gap-20">
+            <div className="max-w-2xl">
+              <Link
+                href="/#projects"
+                className="group inline-flex items-center gap-2 text-sm font-semibold text-[#626262] transition-colors hover:text-[#111111] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F24202]"
+              >
+                <ArrowLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-1" />
+                Back to Portfolio
+              </Link>
+
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45 }}
+                className="mt-10 flex flex-wrap items-center gap-2"
+              >
+                <span className="inline-flex items-center rounded-full bg-[#111111] px-3 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white shadow-[0_10px_24px_rgba(17,17,17,0.12)]">
+                  {project.project_type}
+                </span>
+                <span className="inline-flex items-center rounded-full border border-black/10 bg-white/75 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-[#555555] shadow-[0_10px_24px_rgba(17,17,17,0.05)]">
+                  CASE STUDY
+                </span>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.08 }}
+                className="mt-6 max-w-3xl text-[3.5rem] font-semibold leading-[0.91] tracking-[-0.075em] sm:text-7xl lg:text-[5.85rem]"
+              >
+                {project.project_name}
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.16 }}
+                className="mt-8 max-w-xl text-base leading-7 text-[#626262] sm:text-lg sm:leading-8"
+              >
+                {project.project_description || project.description}
+              </motion.p>
             </div>
 
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-[1.05] tracking-tight max-w-4xl"
+            <motion.div
+              initial={{ opacity: 0, scale: 0.97, y: 24 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.12 }}
+              className="relative mx-auto w-full max-w-[720px] lg:justify-self-end"
             >
-              {project.project_name}
-            </motion.h1>
+              <div
+                aria-hidden="true"
+                className="absolute -left-5 top-[18%] hidden h-28 w-28 rounded-full border border-black/10 bg-white/65 sm:block"
+              />
+              <div
+                aria-hidden="true"
+                className="absolute -right-3 -top-5 h-20 w-20 rounded-[1.5rem] bg-[#F24202] sm:-right-7 sm:-top-7 sm:h-28 sm:w-28"
+              />
 
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-xl text-gray-300 max-w-2xl font-medium leading-relaxed"
-            >
-              {project.project_description || project.description}
-            </motion.p>
+              <div className="relative rounded-[2rem] bg-[#111111] p-3 shadow-[0_35px_80px_rgba(17,17,17,0.22)] sm:rounded-[2.5rem] sm:p-4">
+                <motion.div
+                  style={{ y: imageY }}
+                  className="relative aspect-[4/3] overflow-hidden rounded-[1.45rem] bg-[#222222] sm:rounded-[1.9rem]"
+                >
+                  <Image
+                    src={project.image}
+                    alt={project.project_name}
+                    fill
+                    priority
+                    unoptimized
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 text-white sm:p-7">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/70">
+                      {project.project_type}
+                    </p>
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#D9FF5B] text-[#111111] shadow-lg">
+                      <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div className="absolute -bottom-6 left-4 rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-[0_16px_40px_rgba(17,17,17,0.14)] sm:-left-8 sm:px-5">
+                <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#858585]">
+                  Timeline
+                </p>
+                <p className="mt-1 text-sm font-semibold text-[#222222]">
+                  {project.duration}
+                </p>
+              </div>
+            </motion.div>
           </div>
         </section>
 
-        {/* Project Meta Info - Glassmorphism Bar */}
-        <section className="relative z-20 -mt-10 px-6 lg:px-8 max-w-[1400px] mx-auto">
-          <div className="bg-white/80 backdrop-blur-xl border border-gray-100 shadow-[0_20px_40px_rgba(0,0,0,0.06)] rounded-3xl p-6 md:p-10 flex flex-col md:flex-row gap-8 justify-between items-start md:items-center">
-            <div className="flex items-center gap-4">
-              <div className="size-12 rounded-full bg-gray-50 flex items-center justify-center border border-gray-100">
-                <Briefcase className="size-5 text-gray-400" />
-              </div>
-              <div>
-                <p className="text-[12px] font-bold text-gray-400 uppercase tracking-widest mb-1">Tech Stack</p>
-                <p className="font-bold text-gray-900 text-lg">{project.tech_stack?.slice(0, 2).join(", ")}{project.tech_stack?.length > 2 ? '...' : ''}</p>
+        <section className="relative z-10 px-5 pb-20 sm:px-8 lg:px-12 lg:pb-28">
+          <div className="mx-auto grid max-w-[1400px] overflow-hidden rounded-[1.75rem] border border-black/10 bg-white shadow-[0_22px_60px_rgba(17,17,17,0.07)] md:grid-cols-[1.25fr_0.9fr_auto] md:items-stretch">
+            <div className="flex items-center gap-4 border-b border-black/10 p-5 sm:p-6 md:border-b-0 md:border-r">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F7F7F4] text-[#F24202]">
+                <Briefcase className="h-5 w-5" aria-hidden="true" />
+              </span>
+              <div className="min-w-0">
+                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#858585]">
+                  Tech Stack
+                </p>
+                <p className="mt-1 truncate text-sm font-semibold text-[#222222] sm:text-base">
+                  {project.tech_stack?.slice(0, 2).join(", ")}
+                  {project.tech_stack?.length > 2 ? "..." : ""}
+                </p>
               </div>
             </div>
-            
-            <div className="hidden md:block w-px h-12 bg-gray-100"></div>
-            
-            <div className="flex items-center gap-4">
-              <div className="size-12 rounded-full bg-gray-50 flex items-center justify-center border border-gray-100">
-                <Calendar className="size-5 text-gray-400" />
-              </div>
+
+            <div className="flex items-center gap-4 border-b border-black/10 p-5 sm:p-6 md:border-b-0 md:border-r">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F7F7F4] text-[#F24202]">
+                <Calendar className="h-5 w-5" aria-hidden="true" />
+              </span>
               <div>
-                <p className="text-[12px] font-bold text-gray-400 uppercase tracking-widest mb-1">Timeline</p>
-                <p className="font-bold text-gray-900 text-lg">{project.duration}</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#858585]">
+                  Timeline
+                </p>
+                <p className="mt-1 text-sm font-semibold text-[#222222] sm:text-base">
+                  {project.duration}
+                </p>
               </div>
             </div>
 
             {project.live_link && (
-              <>
-                <div className="hidden md:block w-px h-12 bg-gray-100"></div>
-
-                <div className="flex items-center gap-4">
-                  <a href={project.live_link} target="_blank" rel="noopener noreferrer" className="bg-[#1D745C] text-white px-6 py-3 rounded-full font-bold hover:scale-105 transition-transform shadow-[0_4px_20px_rgba(29,116,92,0.3)]">
-                    Visit Live Site
-                  </a>
-                </div>
-              </>
+              <a
+                href={project.live_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={marketingButton("group min-h-auto px-5 py-3")}
+              >
+                Visit Live Site
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
             )}
           </div>
         </section>
 
-        {/* Content Section: Challenge & Solution */}
-        <section className="py-24 lg:py-32 px-6 lg:px-8 max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-            
-            {/* The Challenge */}
-            <div className="flex flex-col gap-6">
-              <div className="inline-flex items-center gap-2">
-                <span className="size-2 rounded-full bg-rose-500 animate-pulse"></span>
-                <h2 className="text-2xl font-bold text-gray-900 tracking-tight">The Challenge</h2>
+        <section className="px-5 pb-24 sm:px-8 lg:px-12 lg:pb-32">
+          <div className="mx-auto grid max-w-[1400px] gap-6 lg:grid-cols-2 lg:gap-8">
+            <motion.article
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-12%" }}
+              transition={{ duration: 0.5 }}
+              className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-white p-7 shadow-[0_16px_40px_rgba(17,17,17,0.05)] sm:p-10"
+            >
+              <div className="absolute -right-10 -top-10 h-36 w-36 rounded-full bg-[#FFD6C7]/60 blur-2xl" />
+              <div className="relative">
+                <div className="flex items-center gap-3">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#F24202]" />
+                  <h2 className="text-2xl font-semibold tracking-[-0.05em] text-[#111111] sm:text-3xl">
+                    The Challenge
+                  </h2>
+                </div>
+                <div className="mt-9 space-y-6">
+                  {project.real_challenges?.map((challenge, index) => (
+                    <p
+                      key={index}
+                      className="border-l-2 border-[#F24202]/25 pl-5 text-[15px] font-medium leading-7 text-[#626262] sm:text-base"
+                    >
+                      {challenge}
+                    </p>
+                  ))}
+                </div>
               </div>
-              <div className="text-[17px] text-gray-500 leading-relaxed font-medium space-y-4">
-                {project.real_challenges?.map((challenge, idx) => (
-                  <p key={idx} className="relative pl-4 border-l-2 border-rose-500/30">{challenge}</p>
-                ))}
-              </div>
-            </div>
+            </motion.article>
 
-            {/* The Solution */}
-            <div className="flex flex-col gap-6">
-              <div className="inline-flex items-center gap-2">
-                <span className="size-2 rounded-full bg-[#1D745C]"></span>
-                <h2 className="text-2xl font-bold text-gray-900 tracking-tight">Our Solution</h2>
+            <motion.article
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-12%" }}
+              transition={{ duration: 0.5, delay: 0.08 }}
+              className="relative overflow-hidden rounded-[2rem] bg-[#111111] p-7 text-white shadow-[0_18px_50px_rgba(17,17,17,0.18)] sm:p-10"
+            >
+              <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-[#D9FF5B]/25 blur-3xl" />
+              <div className="relative">
+                <div className="flex items-center gap-3">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#D9FF5B]" />
+                  <h2 className="text-2xl font-semibold tracking-[-0.05em] sm:text-3xl">
+                    Our Solution
+                  </h2>
+                </div>
+                <div className="mt-9 space-y-6">
+                  {(project.solutions_implemented || project.technical_solutions)?.map(
+                    (solution, index) => (
+                      <p
+                        key={index}
+                        className="border-l-2 border-[#D9FF5B]/35 pl-5 text-[15px] font-medium leading-7 text-white/70 sm:text-base"
+                      >
+                        {solution}
+                      </p>
+                    ),
+                  )}
+                </div>
               </div>
-              <div className="text-[17px] text-gray-500 leading-relaxed font-medium space-y-4">
-                {(project.solutions_implemented || project.technical_solutions)?.map((solution, idx) => (
-                  <p key={idx} className="relative pl-4 border-l-2 border-[#1D745C]/30">{solution}</p>
-                ))}
-              </div>
-            </div>
-
+            </motion.article>
           </div>
         </section>
 
-        {/* Parallax Gallery */}
-        <section className="py-12 bg-gray-50 overflow-hidden">
-          <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {project.gallery?.map((img, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-10%" }}
-                  transition={{ duration: 0.6, delay: i * 0.2 }}
-                  className={`relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl shadow-black/5 ${i % 2 !== 0 ? 'md:mt-16' : ''}`}
-                >
-                  <Image 
-                    src={img} 
-                    alt={`Gallery Image ${i + 1}`} 
-                    fill 
-                    className="object-cover hover:scale-105 transition-transform duration-700" 
-                    unoptimized 
+        <section className="bg-[#EDEDE7] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
+          <div className="mx-auto grid max-w-[1400px] gap-6 md:grid-cols-2 md:gap-8">
+            {project.gallery?.map((img, index) => (
+              <motion.div
+                key={img}
+                initial={{ opacity: 0, y: 32 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className={`group relative overflow-hidden rounded-[2rem] bg-[#111111] p-2 shadow-[0_20px_48px_rgba(17,17,17,0.14)] ${
+                  index % 2 !== 0 ? "md:mt-16" : ""
+                }`}
+              >
+                <div className="relative aspect-[4/3] overflow-hidden rounded-[1.55rem]">
+                  <Image
+                    src={img}
+                    alt={`Gallery Image ${index + 1}`}
+                    fill
+                    unoptimized
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                </motion.div>
-              ))}
-            </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </section>
 
-        {/* Results & CTA */}
-        <section className="py-24 lg:py-32 px-6 lg:px-8 max-w-[1400px] mx-auto">
-          <div className="bg-[#1D745C] rounded-[3rem] p-8 md:p-16 lg:p-20 relative overflow-hidden shadow-2xl">
-            {/* Background pattern */}
-            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white opacity-5 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/3 pointer-events-none" />
-            
-            <div className="relative z-10 flex flex-col lg:flex-row gap-16 items-center">
-              <div className="w-full lg:w-1/2">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-white text-[12px] font-bold tracking-widest uppercase mb-6">
-                  <Sparkles className="size-4" />
+        <section className="px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+          <div className="relative mx-auto max-w-[1400px] overflow-hidden rounded-[2.25rem] bg-[#111111] p-7 shadow-[0_30px_70px_rgba(17,17,17,0.2)] sm:p-10 lg:rounded-[3rem] lg:p-16">
+            <div className="absolute -left-24 -top-24 h-80 w-80 rounded-full bg-[#F24202]/60 blur-3xl" />
+            <div className="absolute -bottom-40 right-0 h-96 w-96 rounded-full bg-[#D9FF5B]/35 blur-3xl" />
+
+            <div className="relative grid gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.08] px-3 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white/75">
+                  <Sparkles className="h-3.5 w-3.5 text-[#D9FF5B]" aria-hidden="true" />
                   Measurable Impact
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">
+                <h2 className="mt-6 text-4xl font-semibold leading-none tracking-[-0.06em] text-white sm:text-5xl">
                   The Results
                 </h2>
-                <div className="flex flex-col gap-6">
-                  {project.key_features?.map((result, idx) => (
-                    <div key={idx} className="flex items-start gap-4 bg-white/10 p-5 rounded-2xl border border-white/10 backdrop-blur-sm transition-transform hover:scale-[1.02]">
-                      <div className="flex-shrink-0 size-8 mt-1 rounded-full bg-white flex items-center justify-center">
-                        <CheckCircle2 className="size-4 text-[#1D745C]" />
-                      </div>
-                      <span className="text-md font-medium text-white/90 tracking-wide">{result}</span>
+
+                <div className="mt-10 grid gap-3 sm:grid-cols-2">
+                  {project.key_features?.map((result, index) => (
+                    <div
+                      key={index}
+                      className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.07] p-4 backdrop-blur-sm"
+                    >
+                      <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#D9FF5B] text-[#111111]">
+                        <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
+                      </span>
+                      <span className="text-sm font-medium leading-6 text-white/82">
+                        {result}
+                      </span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="w-full lg:w-1/2 flex flex-col items-center justify-center text-center">
-                <h3 className="text-3xl font-bold text-white mb-6">Ready to achieve similar results?</h3>
-                <p className="text-white/80 text-lg mb-10 max-w-md">
-                  Let's discuss how we can transform your digital presence and drive real growth.
+              <div className="rounded-[1.75rem] border border-white/15 bg-white/[0.08] p-7 text-center backdrop-blur-sm sm:p-9">
+                <h3 className="text-3xl font-semibold leading-[1.05] tracking-[-0.055em] text-white">
+                  Ready to achieve similar results?
+                </h3>
+                <p className="mx-auto mt-5 max-w-md text-base leading-7 text-white/70">
+                  Let&apos;s discuss how we can transform your digital presence and drive real growth.
                 </p>
-                <Link 
-                  href="/#contact" 
-                  className="bg-white text-gray-900 px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-[0_0_40px_rgba(255,255,255,0.3)]"
+                <Link
+                  href="/#contact"
+                  className={marketingButtonOnDark("group mt-8")}
                 >
                   Start Your Project
+                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </Link>
               </div>
             </div>
           </div>
         </section>
-
       </main>
       <Footer />
     </>

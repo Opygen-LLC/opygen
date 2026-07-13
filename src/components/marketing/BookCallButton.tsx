@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { getCalApi } from "@calcom/embed-react";
 import { cn } from "@/lib/utils";
+import { marketingButtonClass } from "@/lib/marketing-button";
 
 interface BookCallButtonProps {
     className?: string;
@@ -35,10 +36,7 @@ export default function BookCallButton({ className, children, onClick }: BookCal
             data-cal-namespace="30min"
             data-cal-link="opygen/30min"
             data-cal-config='{"layout":"month_view","useSmallScreenLayout":true,"theme":"auto"}'
-            className={cn(
-                "flex items-center justify-center rounded-full bg-black text-white font-semibold transition hover:bg-zinc-800 active:scale-95 cursor-pointer",
-                className
-            )}
+            className={cn(marketingButtonClass, className)}
         >
             {children || "Book a Call"}
         </button>

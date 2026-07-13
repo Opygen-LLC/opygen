@@ -12,6 +12,7 @@ import {
   Zap,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { marketingButton } from "@/lib/marketing-button";
 import LogoClean from "../../../public/logo/Opygen Clean.png";
 
 type Product = {
@@ -218,22 +219,19 @@ export default function Products() {
                   {isLive ? (
                     <Link
                       href={product.slug!}
-                      className="flex w-full items-center justify-between rounded-xl bg-black px-6 py-4 text-[14px] font-bold text-white transition hover:scale-[1.02] active:scale-95 shadow-lg shadow-black/10"
+                      className={marketingButton("w-full")}
                     >
                       <span>Open product</span>
-                      <span className="flex size-7 items-center justify-center rounded-full bg-white/20">
-                        <ArrowUpRight className="size-4" />
-                      </span>
+                      <ArrowUpRight className="h-3.5 w-3.5" />
                     </Link>
                   ) : (
                     <button
                       type="button"
-                      className="flex w-full items-center justify-between rounded-xl bg-gray-50 border border-gray-200 px-6 py-4 text-[14px] font-bold text-gray-500 transition hover:bg-gray-100 hover:text-gray-900 cursor-not-allowed"
+                      className={marketingButton("w-full opacity-60 cursor-not-allowed hover:bg-black")}
+                      disabled
                     >
                       <span>Join waitlist</span>
-                      <span className="flex size-7 items-center justify-center rounded-full bg-white border border-gray-200">
-                        <Bell className="size-4" />
-                      </span>
+                      <Bell className="h-3.5 w-3.5" />
                     </button>
                   )}
                 </div>
