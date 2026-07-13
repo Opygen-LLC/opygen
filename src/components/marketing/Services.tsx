@@ -101,7 +101,7 @@ const services: Service[] = [
 
 export default function Services() {
   return (
-    <section className="relative w-full bg-white font-space-grotesk pt-16 lg:pt-24 pb-0">
+    <section className="relative w-full bg-white font-space-grotesk pt-16 lg:pt-24 pb-0 overflow-hidden">
       {/* 
         Standard Header (Non-sticky)
       */}

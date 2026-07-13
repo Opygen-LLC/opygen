@@ -95,7 +95,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" ref={sectionRef} className="relative bg-white pt-24 pb-24 font-space-grotesk">
+    <section id="contact" ref={sectionRef} className="relative bg-white pt-24 pb-24 font-space-grotesk overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-32">
           

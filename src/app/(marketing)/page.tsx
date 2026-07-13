@@ -14,7 +14,7 @@ export default function HomePage() {
   return (
     <div className="marketing-page">
       <Navbar />
-      <main>
+      <main className="w-full overflow-x-hidden">
         <HeroSection1 />
         <TrustedAndDetails />
         <Features />
