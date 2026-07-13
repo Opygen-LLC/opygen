@@ -1,6 +1,7 @@
 import Footer from "@/src/components/marketing/Footer";
 import Navbar from "@/src/components/marketing/Navbar";
 import { servicePages } from "@/src/data/service-pages";
+import { projects } from "@/src/data/projects";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -34,6 +35,24 @@ const approach = [
   },
 ];
 
+function getFeaturedProjects(projectTypes: string[], count = 3) {
+  const matched = projects.filter((project) =>
+    projectTypes.includes(project.project_type),
+  );
+  const remaining = projects.filter(
+    (project) => !projectTypes.includes(project.project_type),
+  );
+  return [...matched, ...remaining].slice(0, count);
+}
+
+function getProjectSummary(project: (typeof projects)[number]) {
+  return (
+    project.project_description ||
+    ("description" in project ? String(project.description) : "") ||
+    ""
+  );
+}
+
 export function generateStaticParams() {
   return servicePages.map((service) => ({ slug: service.slug }));
 }
@@ -51,12 +70,15 @@ export default async function ServicePage({
   }
 
   const relatedServices = servicePages.filter((item) => item.slug !== service.slug);
+  const featuredProjects = getFeaturedProjects(service.projectTypes, 3);
+  const highlightFeatures = service.features.slice(0, 3);
 
   return (
     <>
       <Navbar />
       <main className="min-h-screen overflow-hidden bg-[#F7F7F4] font-space-grotesk text-[#111111] selection:bg-[#FFD6C7]">
-        <section className="relative isolate overflow-hidden px-5 pb-20 pt-32 sm:px-8 sm:pt-40 lg:px-12 lg:pb-28">
+        {/* Hero */}
+        <section className="relative isolate overflow-hidden px-5 pb-20 pt-32 text-left sm:px-8 sm:pt-40 lg:px-12 lg:pb-28">
           <div
             aria-hidden="true"
             className="absolute inset-0 opacity-60"
@@ -79,21 +101,24 @@ export default async function ServicePage({
           />
 
           <div className="relative mx-auto grid max-w-[1400px] items-center gap-14 lg:grid-cols-[0.88fr_1.12fr] lg:gap-20">
-            <div className="max-w-2xl">
-              <Link
-                href="/services"
-                className="group inline-flex items-center gap-2 text-sm font-semibold text-[#626262] transition-colors hover:text-[#111111] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F24202]"
-              >
-                <ArrowLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-1" />
-                All Services
-              </Link>
+            <div className="flex max-w-2xl flex-col items-start text-left">
+              <div className="flex flex-wrap items-center gap-3">
+                <Link
+                  href="/services"
+                  className="group inline-flex items-center gap-2 text-sm font-semibold text-[#626262] transition-colors hover:text-[#111111] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F24202]"
+                >
+                  <ArrowLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-1" />
+                  All Services
+                </Link>
 
-              <p
-                className="mt-10 inline-flex rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-[#111111] shadow-[0_10px_24px_rgba(17,17,17,0.08)]"
-                style={{ backgroundColor: service.accentSoft }}
-              >
-                {service.badge}
-              </p>
+                <p
+                  className="inline-flex items-center rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-[#111111] shadow-[0_10px_24px_rgba(17,17,17,0.08)]"
+                  style={{ backgroundColor: service.accentSoft }}
+                >
+                  {service.badge}
+                </p>
+              </div>
+
               <p className="mt-7 text-[10px] font-bold uppercase tracking-[0.16em] text-[#777777]">
                 Opygen Services
               </p>
@@ -103,10 +128,7 @@ export default async function ServicePage({
               <p className="mt-8 max-w-xl text-base leading-7 text-[#626262] sm:text-lg sm:leading-8">
                 {service.description}
               </p>
-              <Link
-                href="/#contact"
-                className={marketingButton("group mt-9")}
-              >
+              <Link href="/#contact" className={marketingButton("group mt-9")}>
                 Start this project
                 <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
@@ -133,7 +155,7 @@ export default async function ServicePage({
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 text-white sm:p-7">
+                  <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 text-left text-white sm:p-7">
                     <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/70">
                       {service.badge}
                     </p>
@@ -150,35 +172,46 @@ export default async function ServicePage({
           </div>
         </section>
 
-        <section className="border-y border-black/10 bg-white px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28">
+        {/* What we deliver */}
+        <section className="border-y border-black/10 bg-white px-5 py-20 text-left sm:px-8 sm:py-24 lg:px-12 lg:py-28">
           <div className="mx-auto max-w-[1400px]">
-            <header className="grid gap-8 border-b border-black/10 pb-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-end lg:pb-12">
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em]" style={{ color: service.accent }}>
+            <header className="grid gap-6 border-b border-black/10 pb-10 lg:grid-cols-2 lg:items-end lg:gap-16 lg:pb-12">
+              <div className="text-left">
+                <p
+                  className="text-[10px] font-bold uppercase tracking-[0.16em]"
+                  style={{ color: service.accent }}
+                >
                   What we deliver
                 </p>
-                <h2 className="mt-5 max-w-xl text-4xl font-semibold leading-[0.96] tracking-[-0.065em] sm:text-5xl lg:text-[4rem]">
+                <h2 className="mt-5 max-w-xl text-left text-4xl font-semibold leading-[0.96] tracking-[-0.065em] sm:text-5xl lg:text-[4rem]">
                   The work your business needs to move with confidence.
                 </h2>
               </div>
-              <p className="max-w-xl text-base leading-7 text-[#626262] sm:text-lg sm:leading-8 lg:justify-self-end">
+              <p className="max-w-xl text-left text-base leading-7 text-[#626262] sm:text-lg sm:leading-8 lg:justify-self-start">
                 A focused service designed to make the next important part of your business clearer, stronger, and easier to grow.
               </p>
             </header>
 
             <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {service.features.map((feature, index) => (
-                <article key={feature} className="group rounded-2xl border border-black/10 bg-[#F7F7F4] p-5 transition-transform duration-200 hover:-translate-y-1 sm:p-6">
+                <article
+                  key={feature}
+                  className="group rounded-2xl border border-black/10 bg-[#F7F7F4] p-5 text-left transition-transform duration-200 hover:-translate-y-1 sm:p-6"
+                >
                   <div className="flex items-center justify-between gap-4">
                     <span
-                      className="flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold text-[#111111]"
+                      className="flex h-9 w-9 items-center justify-center rounded-lg text-sm font-bold text-[#111111]"
                       style={{ backgroundColor: service.accentSoft }}
                     >
                       0{index + 1}
                     </span>
-                    <CheckCircle2 className="h-5 w-5" style={{ color: service.accent }} aria-hidden="true" />
+                    <CheckCircle2
+                      className="h-5 w-5 shrink-0"
+                      style={{ color: service.accent }}
+                      aria-hidden="true"
+                    />
                   </div>
-                  <p className="mt-12 text-xl font-semibold leading-[1.08] tracking-[-0.04em] text-[#111111]">
+                  <p className="mt-10 text-left text-xl font-semibold leading-[1.08] tracking-[-0.04em] text-[#111111]">
                     {feature}
                   </p>
                 </article>
@@ -187,55 +220,201 @@ export default async function ServicePage({
           </div>
         </section>
 
-        <section className="relative overflow-hidden bg-[#111111] px-5 py-20 text-white sm:px-8 sm:py-24 lg:px-12 lg:py-32">
+        {/* Highlight features strip */}
+        <section className="relative overflow-hidden px-5 py-16 text-left sm:px-8 sm:py-20 lg:px-12">
           <div
             aria-hidden="true"
-            className="absolute -left-24 -top-16 h-80 w-80 rounded-full blur-3xl"
-            style={{ backgroundColor: service.accent, opacity: 0.55 }}
+            className="absolute -right-24 top-0 h-72 w-72 rounded-full blur-3xl"
+            style={{ backgroundColor: service.accentSoft, opacity: 0.55 }}
           />
-          <div aria-hidden="true" className="absolute -bottom-28 right-0 h-96 w-96 rounded-full bg-[#D9FF5B]/35 blur-3xl" />
           <div className="relative mx-auto max-w-[1400px]">
-            <header className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-end">
-              <div>
-                <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.08] px-3 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white/70">
-                  <Sparkles className="h-3.5 w-3.5 text-[#D9FF5B]" aria-hidden="true" />
-                  Our approach
-                </p>
-                <h2 className="mt-6 max-w-xl text-4xl font-semibold leading-[0.96] tracking-[-0.065em] sm:text-5xl lg:text-[4rem]">
-                  The right process makes ambitious work feel possible.
-                </h2>
-              </div>
-              <p className="max-w-xl text-base leading-7 text-white/70 sm:text-lg sm:leading-8 lg:justify-self-end">
-                We keep the work focused from first decision to final handoff, with a shared view of what success looks like at every stage.
+            <header className="mb-8 max-w-2xl text-left">
+              <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#F24202]">
+                Core strengths
               </p>
+              <h2 className="mt-4 text-3xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-4xl">
+                Three capabilities that define this service.
+              </h2>
             </header>
 
-            <div className="mt-12 grid gap-4 md:grid-cols-3">
-              {approach.map((step) => (
-                <article key={step.number} className="rounded-2xl border border-white/10 bg-white/[0.07] p-6 backdrop-blur-sm sm:p-7">
-                  <span className="text-sm font-semibold" style={{ color: service.accentSoft }}>
-                    {step.number}
+            <div className="grid gap-3 md:grid-cols-3">
+              {highlightFeatures.map((feature, index) => (
+                <article
+                  key={feature}
+                  className="relative overflow-hidden rounded-2xl border border-black/10 bg-white p-6 text-left shadow-[0_14px_32px_rgba(17,17,17,0.04)] sm:p-7"
+                >
+                  <div
+                    aria-hidden="true"
+                    className="absolute -right-8 -top-8 h-24 w-24 rounded-full blur-2xl"
+                    style={{ backgroundColor: service.accent, opacity: 0.18 }}
+                  />
+                  <span
+                    className="relative text-sm font-semibold"
+                    style={{ color: service.accent }}
+                  >
+                    0{index + 1}
                   </span>
-                  <h3 className="mt-10 text-3xl font-semibold leading-[0.98] tracking-[-0.055em]">
-                    {step.title}
+                  <h3 className="relative mt-8 text-2xl font-semibold leading-[1.05] tracking-[-0.045em] text-[#111111]">
+                    {feature}
                   </h3>
-                  <p className="mt-5 text-[15px] leading-7 text-white/68">{step.description}</p>
+                  <p className="relative mt-4 text-[15px] leading-7 text-[#626262]">
+                    Built into every engagement so the outcome stays clear, useful, and ready to scale.
+                  </p>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-32">
+        {/* Approach */}
+        <section className="relative overflow-hidden bg-[#111111] px-5 py-20 text-left text-white sm:px-8 sm:py-24 lg:px-12 lg:py-32">
+          <div
+            aria-hidden="true"
+            className="absolute -left-24 -top-16 h-80 w-80 rounded-full blur-3xl"
+            style={{ backgroundColor: service.accent, opacity: 0.55 }}
+          />
+          <div
+            aria-hidden="true"
+            className="absolute -bottom-28 right-0 h-96 w-96 rounded-full bg-[#D9FF5B]/35 blur-3xl"
+          />
+          <div className="relative mx-auto max-w-[1400px]">
+            <header className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
+              <div className="text-left">
+                <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.08] px-3 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white/70">
+                  <Sparkles className="h-3.5 w-3.5 text-[#D9FF5B]" aria-hidden="true" />
+                  Our approach
+                </p>
+                <h2 className="mt-6 max-w-xl text-left text-4xl font-semibold leading-[0.96] tracking-[-0.065em] sm:text-5xl lg:text-[4rem]">
+                  The right process makes ambitious work feel possible.
+                </h2>
+              </div>
+              <p className="max-w-xl text-left text-base leading-7 text-white/70 sm:text-lg sm:leading-8">
+                We keep the work focused from first decision to final handoff, with a shared view of what success looks like at every stage.
+              </p>
+            </header>
+
+            <div className="mt-12 grid gap-4 md:grid-cols-3">
+              {approach.map((step) => (
+                <article
+                  key={step.number}
+                  className="rounded-2xl border border-white/10 bg-white/[0.07] p-6 text-left backdrop-blur-sm sm:p-7"
+                >
+                  <span
+                    className="text-sm font-semibold"
+                    style={{ color: service.accentSoft }}
+                  >
+                    {step.number}
+                  </span>
+                  <h3 className="mt-10 text-3xl font-semibold leading-[0.98] tracking-[-0.055em]">
+                    {step.title}
+                  </h3>
+                  <p className="mt-5 text-[15px] leading-7 text-white/68">
+                    {step.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Featured projects */}
+        <section className="border-y border-black/10 bg-white px-5 py-20 text-left sm:px-8 sm:py-24 lg:px-12 lg:py-32">
           <div className="mx-auto max-w-[1400px]">
-            <header className="flex flex-col gap-5 border-b border-black/10 pb-8 sm:flex-row sm:items-end sm:justify-between sm:pb-10">
+            <header className="flex flex-col gap-5 border-b border-black/10 pb-8 text-left sm:flex-row sm:items-end sm:justify-between sm:pb-10">
+              <div className="max-w-2xl">
+                <p
+                  className="text-[10px] font-bold uppercase tracking-[0.16em]"
+                  style={{ color: service.accent }}
+                >
+                  Featured work
+                </p>
+                <h2 className="mt-5 text-4xl font-semibold leading-[0.96] tracking-[-0.065em] sm:text-5xl lg:text-[4rem]">
+                  Three projects that show the craft.
+                </h2>
+                <p className="mt-5 max-w-xl text-base leading-7 text-[#626262] sm:text-lg sm:leading-8">
+                  Real builds connected to {service.title.toLowerCase()} — designed, shipped, and ready to learn from.
+                </p>
+              </div>
+              <Link
+                href="/#projects"
+                className={marketingButton("group shrink-0")}
+              >
+                View all projects
+                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+              </Link>
+            </header>
+
+            <div className="mt-10 grid gap-4 md:grid-cols-3">
+              {featuredProjects.map((project, index) => {
+                const summary = getProjectSummary(project);
+                return (
+                  <Link
+                    key={project.slug}
+                    href={`/projects/${project.slug}`}
+                    className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-black/10 bg-[#F7F7F4] text-left shadow-[0_14px_36px_rgba(17,17,17,0.05)] transition-transform duration-300 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F24202]"
+                  >
+                    <div className="relative aspect-[4/3] overflow-hidden bg-[#222222]">
+                      <Image
+                        src={project.image}
+                        alt={project.project_name}
+                        fill
+                        unoptimized
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                      <div className="absolute left-4 top-4 flex items-center gap-2">
+                        <span className="rounded-lg bg-white/95 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-[#111111]">
+                          {project.project_type}
+                        </span>
+                        <span
+                          className="rounded-lg px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-[#111111]"
+                          style={{ backgroundColor: service.accentSoft }}
+                        >
+                          0{index + 1}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-1 flex-col p-5 sm:p-6">
+                      <div className="flex items-start justify-between gap-3">
+                        <h3 className="text-2xl font-semibold leading-[1.02] tracking-[-0.045em] text-[#111111]">
+                          {project.project_name}
+                        </h3>
+                        <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-[#111111] transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                      </div>
+                      <p className="mt-3 line-clamp-3 text-[14px] leading-6 text-[#626262]">
+                        {summary}
+                      </p>
+                      <div className="mt-auto flex items-center justify-between border-t border-black/10 pt-4 text-xs font-semibold text-[#555555]">
+                        <span>{project.duration}</span>
+                        <span className="transition-colors group-hover:text-[#111111]">
+                          View case study
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Related services */}
+        <section className="px-5 py-20 text-left sm:px-8 sm:py-24 lg:px-12 lg:py-32">
+          <div className="mx-auto max-w-[1400px]">
+            <header className="flex flex-col gap-5 border-b border-black/10 pb-8 text-left sm:flex-row sm:items-end sm:justify-between sm:pb-10">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#F24202]">More ways we can help</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#F24202]">
+                  More ways we can help
+                </p>
                 <h2 className="mt-5 text-4xl font-semibold leading-[0.96] tracking-[-0.065em] sm:text-5xl">
                   Explore other services.
                 </h2>
               </div>
-              <Link href="/services" className="group inline-flex items-center gap-2 text-sm font-semibold text-[#555555] transition-colors hover:text-[#111111]">
+              <Link
+                href="/services"
+                className="group inline-flex items-center gap-2 text-sm font-semibold text-[#555555] transition-colors hover:text-[#111111]"
+              >
                 All Services
                 <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
               </Link>
@@ -246,16 +425,20 @@ export default async function ServicePage({
                 <Link
                   key={related.slug}
                   href={`/services/${related.slug}`}
-                  className="group relative min-h-56 overflow-hidden rounded-2xl border border-black/10 bg-white p-5 shadow-[0_12px_30px_rgba(17,17,17,0.04)] transition-transform duration-200 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F24202]"
+                  className="group relative min-h-56 overflow-hidden rounded-2xl border border-black/10 bg-white p-5 text-left shadow-[0_12px_30px_rgba(17,17,17,0.04)] transition-transform duration-200 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F24202]"
                 >
                   <div
                     aria-hidden="true"
                     className="absolute -right-8 -top-8 h-28 w-28 rounded-full blur-2xl"
                     style={{ backgroundColor: related.accent, opacity: 0.2 }}
                   />
-                  <div className="relative flex h-full flex-col">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#777777]">{related.badge}</p>
-                    <h3 className="mt-5 text-2xl font-semibold leading-[0.98] tracking-[-0.055em]">{related.title}</h3>
+                  <div className="relative flex h-full flex-col text-left">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#777777]">
+                      {related.badge}
+                    </p>
+                    <h3 className="mt-5 text-2xl font-semibold leading-[0.98] tracking-[-0.055em]">
+                      {related.title}
+                    </h3>
                     <ArrowUpRight className="mt-auto h-5 w-5 text-[#111111] transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
                   </div>
                 </Link>
@@ -264,6 +447,7 @@ export default async function ServicePage({
           </div>
         </section>
 
+        {/* Final CTA */}
         <section className="px-5 pb-24 sm:px-8 lg:px-12 lg:pb-32">
           <div className="relative mx-auto max-w-[1400px] overflow-hidden rounded-[2.25rem] bg-[#111111] px-7 py-12 text-center shadow-[0_30px_70px_rgba(17,17,17,0.2)] sm:px-10 sm:py-16 lg:rounded-[3rem] lg:py-20">
             <div
@@ -271,7 +455,10 @@ export default async function ServicePage({
               className="absolute -left-24 -top-24 h-80 w-80 rounded-full blur-3xl"
               style={{ backgroundColor: service.accent, opacity: 0.65 }}
             />
-            <div aria-hidden="true" className="absolute -bottom-36 right-0 h-96 w-96 rounded-full bg-[#D9FF5B]/35 blur-3xl" />
+            <div
+              aria-hidden="true"
+              className="absolute -bottom-36 right-0 h-96 w-96 rounded-full bg-[#D9FF5B]/35 blur-3xl"
+            />
             <div className="relative mx-auto max-w-3xl">
               <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.08] px-3 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white/70">
                 <Sparkles className="h-3.5 w-3.5 text-[#D9FF5B]" aria-hidden="true" />

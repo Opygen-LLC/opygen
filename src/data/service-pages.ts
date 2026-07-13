@@ -4,6 +4,8 @@ export type ServicePage = {
   badge: string;
   description: string;
   features: string[];
+  /** Project types used to pick featured work for this service. */
+  projectTypes: string[];
   image: string;
   accent: string;
   accentSoft: string;
@@ -24,6 +26,7 @@ export const servicePages: ServicePage[] = [
       "Lightning-Fast Frontend",
       "Flawless Mobile Design",
     ],
+    projectTypes: ["Website"],
     image:
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
     accent: "#F24202",
@@ -43,6 +46,7 @@ export const servicePages: ServicePage[] = [
       "Bespoke CRM Systems",
       "Native-feel Mobile Interfaces",
     ],
+    projectTypes: ["App", "SaaS"],
     image:
       "https://images.unsplash.com/photo-1558655146-d09347e92766?w=1200&q=80",
     accent: "#6D5DFB",
@@ -62,6 +66,7 @@ export const servicePages: ServicePage[] = [
       "Strategic Content Planning",
       "Advanced Conversion Tracking",
     ],
+    projectTypes: ["Marketing", "Website"],
     image:
       "https://images.unsplash.com/photo-1557838923-2985c318be48?w=1200&q=80",
     accent: "#F59E0B",
@@ -81,6 +86,7 @@ export const servicePages: ServicePage[] = [
       "Seamless Payment Flows",
       "Staff & Client Syncing",
     ],
+    projectTypes: ["SaaS", "App"],
     image:
       "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&q=80",
     accent: "#1D745C",
@@ -100,6 +106,7 @@ export const servicePages: ServicePage[] = [
       "Complex User Role Management",
       "Secure Admin Panels",
     ],
+    projectTypes: ["SaaS"],
     image:
       "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1200&q=80",
     accent: "#E95482",
