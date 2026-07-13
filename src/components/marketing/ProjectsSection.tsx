@@ -35,7 +35,8 @@ export default function ProjectsSection() {
             viewport={{ once: true }}
             className="mb-6 inline-block"
           >
-            <span className="text-purple-600 font-bold text-sm tracking-wide uppercase bg-purple-50 px-4 py-1.5 rounded-full border border-purple-100">
+            <span className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#111111]">
+              <span className="h-2 w-2 rounded-full bg-[#D1FF4F] shadow-[0_0_8px_#D1FF4F]"></span>
               Our Portfolio
             </span>
           </motion.div>
@@ -82,7 +83,7 @@ export default function ProjectsSection() {
                   {isActive && (
                     <motion.div
                       layoutId="activeProjectTabBg"
-                      className="absolute inset-0 bg-[#1D745C] rounded-full"
+                      className="absolute inset-0 bg-[#111111] rounded-full"
                       transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     />
                   )}
@@ -134,10 +135,10 @@ export default function ProjectsSection() {
                   
                   {/* Content */}
                   <div className="px-3 pb-4">
-                    <div className="inline-block px-3 py-1 bg-[#1D745C]/10 text-[#1D745C] text-[11px] font-bold uppercase tracking-widest rounded-md mb-4">
+                    <div className="inline-block px-3 py-1 bg-[#111111] text-[#D1FF4F] text-[11px] font-bold uppercase tracking-widest rounded-md mb-4 border border-[#111111]/10">
                       {project.project_type}
                     </div>
-                    <h3 className="text-xl md:text-[22px] font-bold text-gray-900 mb-3 group-hover:text-[#1D745C] transition-colors leading-snug tracking-tight">
+                    <h3 className="text-xl md:text-[22px] font-bold text-gray-900 mb-3 group-hover:opacity-75 transition-opacity leading-snug tracking-tight">
                       {project.project_name}
                     </h3>
                     <p className="text-gray-500 text-[14px] md:text-[15px] leading-relaxed font-medium line-clamp-3">
