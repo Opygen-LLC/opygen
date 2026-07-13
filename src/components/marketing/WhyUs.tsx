@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ArrowDown, ArrowLeft, ArrowRight, Cpu, Layers, ShieldCheck, Zap } from "lucide-react";
 import { motion } from "framer-motion";
+import { marketingButton } from "@/lib/marketing-button";
 
 const values = [
     {
@@ -74,12 +75,10 @@ export default function WhyUs() {
                     >
                         <a
                             href="#services"
-                            className="flex items-center gap-3 text-[12px] font-bold uppercase tracking-[0.18em] text-black/70 transition hover:text-black"
+                            className={marketingButton("group")}
                         >
                             See how it works
-                            <span className="flex size-9 items-center justify-center rounded-full bg-black text-white">
-                                <ArrowDown className="size-4" />
-                            </span>
+                            <ArrowDown className="h-3.5 w-3.5 transition-transform group-hover:translate-y-0.5" />
                         </a>
                     </motion.div>
                 </div>

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Check, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { marketingButton } from "@/lib/marketing-button";
 
 type Service = {
   title: string;
@@ -227,10 +228,10 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
             >
               <a
                 href={`/services/${service.slug}`}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gray-900 text-white rounded-full font-bold text-[14px] hover:bg-blue-600 transition-all duration-300 shadow-[0_10px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_10px_25px_rgba(37,99,235,0.3)] hover:-translate-y-0.5 group/btn"
+                className={marketingButton("group/btn")}
               >
                 <span>{service.button}</span>
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/btn:translate-x-1" />
               </a>
             </motion.div>
           </div>

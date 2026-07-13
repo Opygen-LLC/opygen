@@ -198,43 +198,25 @@ export default function Navbar() {
                             </div>
 
                             <div className={cn("p-2", isServicesMenu && "grid auto-rows-fr grid-cols-2 gap-1")}>
-                              {link.children.map((child, index) => (
+                              {link.children.map((child) => (
                                 <Link
                                   key={child.href}
                                   href={child.href}
                                   role="menuitem"
                                   onClick={() => setOpenDesktopMenu(null)}
-                                  className={cn(
-                                    "group relative h-full rounded-xl p-3 text-left transition-transform duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F24202]",
-                                    isServicesMenu && index === 0
-                                      ? "col-span-2 mb-1 bg-[#111111] text-white shadow-[0_8px_20px_rgba(17,17,17,0.16)]"
-                                      : "",
-                                  )}
+                                  className="group relative flex h-full items-start rounded-xl p-3 text-left transition-colors duration-200 hover:bg-black/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F24202]"
                                 >
-                                  <span className="flex items-start justify-between gap-3">
-                                    <span className="min-w-0">
-                                      <span
-                                        className={cn(
-                                          "block text-[12px] font-bold",
-                                          isServicesMenu && index === 0 ? "text-white" : "text-[#111111]",
-                                        )}
-                                      >
+                                  <span className="flex w-full items-start justify-between gap-3 text-left">
+                                    <span className="min-w-0 flex-1 text-left">
+                                      <span className="block text-left text-[12px] font-bold leading-snug text-[#111111]">
                                         {child.label}
                                       </span>
-                                      <span
-                                        className={cn(
-                                          "mt-1 block text-[10px] leading-relaxed",
-                                          isServicesMenu && index === 0 ? "text-white/65" : "text-[#777777]",
-                                        )}
-                                      >
+                                      <span className="mt-1 block text-left text-[10px] leading-relaxed text-[#777777]">
                                         {child.description}
                                       </span>
                                     </span>
                                     <ArrowUpRight
-                                      className={cn(
-                                        "mt-0.5 h-3.5 w-3.5 shrink-0 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5",
-                                        isServicesMenu && index === 0 ? "text-[#F24202]" : "text-[#A0A0A0]",
-                                      )}
+                                      className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#A0A0A0] transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                                       aria-hidden="true"
                                     />
                                   </span>
@@ -264,7 +246,7 @@ export default function Navbar() {
               })}
             </nav>
 
-            <BookCallButton className="!hidden !rounded-lg !px-4 !py-2.5 !text-[12px] !shadow-[0_8px_18px_rgba(17,17,17,0.13)] hover:!bg-[#F24202] md:!flex">
+            <BookCallButton className="!hidden md:!flex">
               Book a Call
               <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
             </BookCallButton>
@@ -367,7 +349,7 @@ export default function Navbar() {
               })}
             </nav>
 
-            <BookCallButton onClick={() => setMenuOpen(false)} className="!mt-6 !w-full !rounded-lg !py-3.5 !text-sm hover:!bg-[#F24202]">
+            <BookCallButton onClick={() => setMenuOpen(false)} className="!mt-6 !w-full !py-3.5 !text-sm">
               Book a Call
             </BookCallButton>
           </div>

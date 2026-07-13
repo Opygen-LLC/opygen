@@ -11,6 +11,7 @@ import {
   CheckCircle2,
   Sparkles,
 } from "lucide-react";
+import { marketingButton, marketingButtonOnDark } from "@/lib/marketing-button";
 
 const approach = [
   {
@@ -104,10 +105,10 @@ export default async function ServicePage({
               </p>
               <Link
                 href="/#contact"
-                className="group mt-9 inline-flex min-h-13 items-center justify-center gap-3 rounded-full bg-[#111111] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_18px_32px_rgba(17,17,17,0.18)] transition duration-300 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F24202]"
+                className={marketingButton("group mt-9")}
               >
                 Start this project
-                <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
             </div>
 
@@ -284,10 +285,10 @@ export default async function ServicePage({
               </p>
               <Link
                 href="/#contact"
-                className="group mt-9 inline-flex min-h-13 items-center justify-center gap-3 rounded-full bg-[#D9FF5B] px-6 py-3.5 text-sm font-semibold text-[#111111] transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                className={marketingButtonOnDark("group mt-9")}
               >
                 Start a project
-                <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
               </Link>
             </div>
           </div>

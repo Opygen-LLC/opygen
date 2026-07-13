@@ -6,6 +6,7 @@ import { ArrowRight, ArrowUpRight, CheckCircle2, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { marketingButton, marketingButtonOnDark } from "@/lib/marketing-button";
 
 type Service = {
   title: string;
@@ -191,14 +192,14 @@ function ServiceDetail({ service, index }: { service: Service; index: number }) 
 
             <Link
               href="/#contact"
-              className={`group mt-9 inline-flex min-h-12 items-center justify-center gap-3 rounded-full px-5 py-3 text-sm font-semibold transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 ${
+              className={
                 isDark
-                  ? "bg-[#D9FF5B] text-[#111111] focus-visible:outline-white"
-                  : "bg-[#111111] text-white focus-visible:outline-[#F24202]"
-              }`}
+                  ? marketingButtonOnDark("group mt-9")
+                  : marketingButton("group mt-9")
+              }
             >
               Start this project
-              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
+              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
             </Link>
           </div>
 
@@ -294,17 +295,17 @@ export default function ServicesPage() {
               >
                 <Link
                   href="#service-directory"
-                  className="group inline-flex min-h-13 items-center justify-center gap-3 rounded-full bg-[#111111] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_18px_32px_rgba(17,17,17,0.18)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#F24202] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F24202]"
+                  className={marketingButton("group")}
                 >
                   Explore our services
                   <ArrowDownIcon />
                 </Link>
                 <Link
                   href="/#contact"
-                  className="group inline-flex min-h-13 items-center justify-center gap-3 rounded-full border border-black/10 bg-white/70 px-6 py-3.5 text-sm font-semibold text-[#222222] transition duration-300 hover:border-black/25 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+                  className={marketingButton("group")}
                 >
                   Start a project
-                  <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
                 </Link>
               </motion.div>
             </div>
@@ -450,10 +451,10 @@ export default function ServicesPage() {
               </p>
               <Link
                 href="/#contact"
-                className="group mt-9 inline-flex min-h-13 items-center justify-center gap-3 rounded-full bg-[#D9FF5B] px-6 py-3.5 text-sm font-semibold text-[#111111] transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                className={marketingButtonOnDark("group mt-9")}
               >
                 Start a project
-                <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
               </Link>
             </div>
           </div>

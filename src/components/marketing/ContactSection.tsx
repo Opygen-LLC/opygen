@@ -5,6 +5,7 @@ import { CheckCircle2 } from "lucide-react";
 import { InstagramLogo, TwitterLogo, DiscordLogo, LinkedinLogo } from "@phosphor-icons/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { marketingButton } from "@/lib/marketing-button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -65,23 +66,6 @@ export default function ContactSection() {
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top 70%",
-          },
-        }
-      );
-      
-      // Animate the big send button
-      gsap.fromTo(
-        ".send-btn-container",
-        { scale: 0, opacity: 0, rotation: -45 },
-        {
-          scale: 1,
-          opacity: 1,
-          rotation: 0,
-          duration: 1.2,
-          ease: "back.out(1.5)",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 60%",
           },
         }
       );
@@ -168,7 +152,7 @@ export default function ContactSection() {
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="px-8 py-3 bg-black text-white rounded-full font-bold text-sm hover:bg-gray-800 transition shadow-lg hover:shadow-xl"
+                  className={marketingButton()}
                 >
                   Send Another
                 </button>
@@ -285,20 +269,15 @@ export default function ContactSection() {
                 {/* Submit Button aligned perfectly to the right */}
                 {!submitted && (
                   <div className="flex justify-end mt-2 md:mt-4">
-                    <div className="send-btn-container relative z-20 translate-y-[4.5rem] md:translate-y-[5.5rem] lg:translate-y-[6rem]">
-                      <button
-                        type="submit"
-                        className="group w-32 h-32 md:w-[150px] md:h-[150px] rounded-full bg-black text-white font-bold text-[15px] tracking-wide flex items-center justify-center transition-all duration-500 shadow-[0_15px_40px_rgba(0,0,0,0.25)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.4)] hover:-translate-y-2 overflow-hidden"
-                      >
-                        <span className="relative z-10 flex items-center justify-center transition-transform duration-500 group-hover:-translate-x-3">
-                          Send
-                          <svg className="w-5 h-5 opacity-0 -translate-x-6 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-500 absolute -right-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                          </svg>
-                        </span>
-                        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-gray-800 to-black opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      </button>
-                    </div>
+                    <button
+                      type="submit"
+                      className={marketingButton("group")}
+                    >
+                      Send
+                      <svg className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </button>
                   </div>
                 )}
               </form>

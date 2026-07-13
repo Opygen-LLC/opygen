@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Logo from "../../../public/logo/Opygen.png";
 import { cn } from "@/lib/utils";
+import { marketingButton } from "@/lib/marketing-button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -83,7 +84,7 @@ export default function Intregations() {
               Purpose-built CRMs for service operators. Each product is designed around real workflows — not generic templates.
             </p>
             
-            <Link href="/products" className="inline-block bg-black text-white px-8 py-3.5 rounded-full text-[15px] font-bold transition-transform hover:scale-105 shadow-lg shadow-black/10">
+            <Link href="/products" className={marketingButton()}>
               Explore all products
             </Link>
           </div>

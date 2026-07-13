@@ -16,6 +16,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { use, useRef } from "react";
+import { marketingButton, marketingButtonOnDark } from "@/lib/marketing-button";
 
 export default function ProjectDetailsPage({
   params,
@@ -194,10 +195,10 @@ export default function ProjectDetailsPage({
                 href={project.live_link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex min-h-20 items-center justify-center gap-3 bg-[#111111] px-7 py-5 text-sm font-semibold text-white transition-colors hover:bg-[#F24202]"
+                className={marketingButton("group min-h-auto px-5 py-3")}
               >
                 Visit Live Site
-                <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </a>
             )}
           </div>
@@ -333,10 +334,10 @@ export default function ProjectDetailsPage({
                 </p>
                 <Link
                   href="/#contact"
-                  className="group mt-8 inline-flex min-h-13 items-center justify-center gap-3 rounded-full bg-[#D9FF5B] px-6 py-3.5 text-sm font-semibold text-[#111111] transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                  className={marketingButtonOnDark("group mt-8")}
                 >
                   Start Your Project
-                  <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </Link>
               </div>
             </div>
