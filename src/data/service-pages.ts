@@ -3,9 +3,11 @@ export type ServicePage = {
   slug: string;
   badge: string;
   description: string;
+  shortDesc: string;
   features: string[];
   /** Project types used to pick featured work for this service. */
   projectTypes: string[];
+  button: string;
   image: string;
   accent: string;
   accentSoft: string;
@@ -18,6 +20,8 @@ export const servicePages: ServicePage[] = [
     badge: "Digital Storefronts",
     description:
       "Modern websites built to convert visitors into leads and booked calls. We combine stunning aesthetics with high-performance engineering to create digital storefronts that rank well on search engines and drive real business results.",
+    shortDesc:
+      "Modern websites built to convert visitors into leads and booked calls.",
     features: [
       "Custom Business Websites",
       "High-Conversion Landing Pages",
@@ -27,8 +31,8 @@ export const servicePages: ServicePage[] = [
       "Flawless Mobile Design",
     ],
     projectTypes: ["Website"],
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
+    button: "Build My Website",
+    image: "/services/website-development.jpeg",
     accent: "#F24202",
     accentSoft: "#FFD6C7",
   },
@@ -38,6 +42,8 @@ export const servicePages: ServicePage[] = [
     badge: "Custom Solutions",
     description:
       "Custom web and mobile apps designed to streamline your business operations and provide seamless experiences for your clients. We build scalable software that grows with you.",
+    shortDesc:
+      "Custom web and mobile apps for business operations, client portals, and dashboards.",
     features: [
       "Secure Client Portals",
       "Powerful Admin Dashboards",
@@ -47,8 +53,8 @@ export const servicePages: ServicePage[] = [
       "Native-feel Mobile Interfaces",
     ],
     projectTypes: ["App", "SaaS"],
-    image:
-      "https://images.unsplash.com/photo-1558655146-d09347e92766?w=1200&q=80",
+    button: "Start an App Project",
+    image: "/services/app-development.jpeg",
     accent: "#6D5DFB",
     accentSoft: "#DDD9FF",
   },
@@ -58,6 +64,8 @@ export const servicePages: ServicePage[] = [
     badge: "Growth Engine",
     description:
       "Data-driven marketing systems designed to bring qualified leads and aggressively improve conversions. We build comprehensive lead funnels that capture attention and turn prospects into paying customers.",
+    shortDesc:
+      "Marketing systems designed to bring qualified leads and improve conversions.",
     features: [
       "Meta (Facebook/IG) Ads",
       "Google Search & Display Ads",
@@ -67,17 +75,19 @@ export const servicePages: ServicePage[] = [
       "Advanced Conversion Tracking",
     ],
     projectTypes: ["Marketing", "Website"],
-    image:
-      "https://images.unsplash.com/photo-1557838923-2985c318be48?w=1200&q=80",
+    button: "Grow My Business",
+    image: "/services/digital-marketing.jpeg",
     accent: "#F59E0B",
     accentSoft: "#FDE9B8",
   },
   {
-    title: "Automation & CRM",
+    title: "Automation & CRM Systems",
     slug: "automation-crm",
     badge: "Operational Efficiency",
     description:
       "Smart automations that save hours of time, eliminate manual data entry, and keep your business operations perfectly organized. We implement systems that handle the heavy lifting.",
+    shortDesc:
+      "Automations that save time, reduce manual work, and keep business operations organized.",
     features: [
       "Instant Lead Follow-ups",
       "Automated Appointment Reminders",
@@ -87,17 +97,19 @@ export const servicePages: ServicePage[] = [
       "Staff & Client Syncing",
     ],
     projectTypes: ["SaaS", "App"],
-    image:
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&q=80",
+    button: "Automate My Business",
+    image: "/services/custom-crm.jpeg",
     accent: "#1D745C",
     accentSoft: "#CDE9D8",
   },
   {
-    title: "SaaS Development",
+    title: "SaaS Product Development",
     slug: "saas-development",
     badge: "Product Engineering",
     description:
       "We partner with visionary founders to design and build scalable SaaS products from initial idea to MVP, launch, and continuous growth. Focus on your market, we handle the tech.",
+    shortDesc:
+      "We design and build SaaS products from idea to MVP, launch, and growth.",
     features: [
       "Comprehensive Product Strategy",
       "Rapid MVP Development",
@@ -107,8 +119,8 @@ export const servicePages: ServicePage[] = [
       "Secure Admin Panels",
     ],
     projectTypes: ["SaaS"],
-    image:
-      "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1200&q=80",
+    button: "Build My SaaS",
+    image: "/services/sass-development.jpeg",
     accent: "#E95482",
     accentSoft: "#F9D3E0",
   },

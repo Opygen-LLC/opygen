@@ -2,110 +2,12 @@
 
 import Navbar from "@/src/components/marketing/Navbar";
 import Footer from "@/src/components/marketing/Footer";
-import { ArrowRight, ArrowUpRight, CheckCircle2, Sparkles } from "lucide-react";
+import { ArrowRight, ArrowUpRight, CheckCircle2, Sparkles, ArrowDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { marketingButton, marketingButtonOnDark } from "@/lib/marketing-button";
-
-type Service = {
-  title: string;
-  slug: string;
-  badge: string;
-  desc: string;
-  features: string[];
-  image: string;
-  accent: string;
-  accentSoft: string;
-};
-
-const detailedServices: Service[] = [
-  {
-    title: "Website Development",
-    slug: "website-development",
-    badge: "Digital Storefronts",
-    desc: "Modern websites built to convert visitors into leads and booked calls. We combine stunning aesthetics with high-performance engineering to create digital storefronts that rank well on search engines and drive real business results.",
-    features: [
-      "Custom Business Websites",
-      "High-Conversion Landing Pages",
-      "Booking & Scheduling Pages",
-      "Advanced SEO Architecture",
-      "Lightning-Fast Frontend",
-      "Flawless Mobile Design",
-    ],
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
-    accent: "#F24202",
-    accentSoft: "#FFD6C7",
-  },
-  {
-    title: "App Development",
-    slug: "app-development",
-    badge: "Custom Solutions",
-    desc: "Custom web and mobile apps designed to streamline your business operations and provide seamless experiences for your clients. We build scalable software that grows with you.",
-    features: [
-      "Secure Client Portals",
-      "Powerful Admin Dashboards",
-      "Custom Booking Apps",
-      "Internal Operational Tools",
-      "Bespoke CRM Systems",
-      "Native-feel Mobile Interfaces",
-    ],
-    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?w=1200&q=80",
-    accent: "#6D5DFB",
-    accentSoft: "#DDD9FF",
-  },
-  {
-    title: "Digital Marketing",
-    slug: "digital-marketing",
-    badge: "Growth Engine",
-    desc: "Data-driven marketing systems designed to bring qualified leads and aggressively improve conversions. We build comprehensive lead funnels that capture attention and turn prospects into paying customers.",
-    features: [
-      "Meta (Facebook/IG) Ads",
-      "Google Search & Display Ads",
-      "Optimized Landing Pages",
-      "Automated Lead Funnels",
-      "Strategic Content Planning",
-      "Advanced Conversion Tracking",
-    ],
-    image: "https://images.unsplash.com/photo-1557838923-2985c318be48?w=1200&q=80",
-    accent: "#F59E0B",
-    accentSoft: "#FDE9B8",
-  },
-  {
-    title: "Automation & CRM",
-    slug: "automation-crm",
-    badge: "Operational Efficiency",
-    desc: "Smart automations that save hours of time, eliminate manual data entry, and keep your business operations perfectly organized. We implement systems that handle the heavy lifting.",
-    features: [
-      "Instant Lead Follow-ups",
-      "Automated Appointment Reminders",
-      "Full CRM Implementation",
-      "Custom Workflow Automation",
-      "Seamless Payment Flows",
-      "Staff & Client Syncing",
-    ],
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&q=80",
-    accent: "#1D745C",
-    accentSoft: "#CDE9D8",
-  },
-  {
-    title: "SaaS Development",
-    slug: "saas-development",
-    badge: "Product Engineering",
-    desc: "We partner with visionary founders to design and build scalable SaaS products from initial idea to MVP, launch, and continuous growth. Focus on your market, we handle the tech.",
-    features: [
-      "Comprehensive Product Strategy",
-      "Rapid MVP Development",
-      "Robust Subscription Systems",
-      "Intuitive Dashboard Design",
-      "Complex User Role Management",
-      "Secure Admin Panels",
-    ],
-    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1200&q=80",
-    accent: "#E95482",
-    accentSoft: "#F9D3E0",
-  },
-];
+import { servicePages, ServicePage } from "@/src/data/service-pages";
 
 const partnershipSteps = [
   {
@@ -128,7 +30,7 @@ const partnershipSteps = [
   },
 ];
 
-function ServiceDetail({ service, index }: { service: Service; index: number }) {
+function ServiceDetail({ service, index }: { service: ServicePage; index: number }) {
   const isDark = index % 2 !== 0;
 
   return (
@@ -163,7 +65,7 @@ function ServiceDetail({ service, index }: { service: Service; index: number }) 
               {service.badge}
             </div>
             <p className={`mt-7 text-[10px] font-bold uppercase tracking-[0.16em] ${isDark ? "text-white/45" : "text-[#777777]"}`}>
-              0{index + 1} / 05
+              0{index + 1} / 0{servicePages.length}
             </p>
             <h2
               className={`mt-3 text-4xl font-semibold leading-[0.96] tracking-[-0.065em] sm:text-5xl lg:text-6xl ${
@@ -173,7 +75,7 @@ function ServiceDetail({ service, index }: { service: Service; index: number }) 
               {service.title}
             </h2>
             <p className={`mt-6 max-w-xl text-base leading-7 sm:text-lg sm:leading-8 ${isDark ? "text-white/68" : "text-[#626262]"}`}>
-              {service.desc}
+              {service.description}
             </p>
 
             <div className="mt-8 grid gap-x-5 gap-y-3 sm:grid-cols-2">
@@ -330,7 +232,7 @@ export default function ServicesPage() {
                     </span>
                   </div>
                   <div className="relative mt-6 space-y-2">
-                    {detailedServices.map((service, index) => (
+                    {servicePages.map((service, index) => (
                       <Link
                         key={service.slug}
                         href={`/services/${service.slug}`}
@@ -365,7 +267,7 @@ export default function ServicesPage() {
             </header>
 
             <div className="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-5">
-              {detailedServices.map((service, index) => (
+              {servicePages.map((service, index) => (
                 <Link
                   key={service.slug}
                   href={`/services/${service.slug}`}
@@ -428,7 +330,7 @@ export default function ServicesPage() {
 
         <section className="px-5 pb-24 sm:px-8 lg:px-12 lg:pb-32">
           <div className="mx-auto max-w-[1400px] space-y-6">
-            {detailedServices.map((service, index) => (
+            {servicePages.map((service, index) => (
               <ServiceDetail key={service.slug} service={service} index={index} />
             ))}
           </div>
