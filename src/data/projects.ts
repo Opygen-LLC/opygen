@@ -3,11 +3,7 @@ export const projects = [
     id: 1,
     slug: "haven-estate",
     image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-    ],
+      "https://res.cloudinary.com/dr6linfry/image/upload/v1784829005/haven-estate-thumbnil_zuf0r8.jpg",
     project_name: "Haven Estate",
     duration: "1.5 months",
     live_link: "https://haven-estate.vercel.app/",
@@ -53,10 +49,6 @@ export const projects = [
     slug: "bright-smile",
     image:
       "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80",
-    ],
     project_name: "Bright Smile",
     duration: "25 days",
     live_link: "https://bright-smile-fm.vercel.app",
@@ -101,11 +93,7 @@ export const projects = [
     id: 3,
     slug: "realteek",
     image:
-      "https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=1200&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1557838923-2985c318be48?w=800&q=80",
-      "https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=800&q=80",
-    ],
+      "https://res.cloudinary.com/dr6linfry/image/upload/v1784829005/Realtech-thumbil_xm7wdn.jpg",
     project_name: "Realteek",
     duration: "2 months",
     live_link: "https://real-estate-design-one.vercel.app/",
@@ -152,10 +140,6 @@ export const projects = [
     slug: "coach-energy",
     image:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-    ],
     project_name: "Coach Energy",
     duration: "45 days",
     live_link: "https://personal-branding-coach-female.vercel.app/",
@@ -201,10 +185,6 @@ export const projects = [
     slug: "bio-cleaning",
     image:
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1576091160550-2173ff9e9e9c?w=800&q=80",
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
-    ],
     project_name: "BIO Cleaning",
     duration: "20 days",
     live_link: "https://bio-cleaning-llc.vercel.app/",
@@ -247,10 +227,6 @@ export const projects = [
     slug: "dnoin-inc",
     image:
       "https://images.unsplash.com/photo-1526406915894-7bcd65f60845?w=1200&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80",
-      "https://images.unsplash.com/photo-1526406915894-7bcd65f60845?w=800&q=80",
-    ],
     project_name: "DNOIN.INC",
     duration: "30 days",
     live_link: "https://architecture-company-opygen.vercel.app",
@@ -293,10 +269,6 @@ export const projects = [
     slug: "roofora",
     image:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-    ],
     project_name: "Roofora",
     duration: "15 days",
     live_link: "https://roofing-website-design-three.vercel.app/",
@@ -339,10 +311,6 @@ export const projects = [
     slug: "plumbin",
     image:
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-    ],
     project_name: "Plumbin",
     duration: "50 days",
     live_link: "https://plumbing-website-iota.vercel.app/",

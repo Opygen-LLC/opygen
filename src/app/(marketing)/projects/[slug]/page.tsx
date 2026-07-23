@@ -266,33 +266,6 @@ export default function ProjectDetailsPage({
           </div>
         </section>
 
-        <section className="bg-[#EDEDE7] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
-          <div className="mx-auto grid max-w-[1400px] gap-6 md:grid-cols-2 md:gap-8">
-            {project.gallery?.map((img, index) => (
-              <motion.div
-                key={img}
-                initial={{ opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-10%" }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`group relative overflow-hidden rounded-[2rem] bg-[#111111] p-2 shadow-[0_20px_48px_rgba(17,17,17,0.14)] ${
-                  index % 2 !== 0 ? "md:mt-16" : ""
-                }`}
-              >
-                <div className="relative aspect-[4/3] overflow-hidden rounded-[1.55rem]">
-                  <Image
-                    src={img}
-                    alt={`Gallery Image ${index + 1}`}
-                    fill
-                    unoptimized
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
         <section className="px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
           <div className="relative mx-auto max-w-[1400px] overflow-hidden rounded-[2.25rem] bg-[#111111] p-7 shadow-[0_30px_70px_rgba(17,17,17,0.2)] sm:p-10 lg:rounded-[3rem] lg:p-16">
             <div className="absolute -left-24 -top-24 h-80 w-80 rounded-full bg-[#F24202]/60 blur-3xl" />
