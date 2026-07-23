@@ -48,7 +48,7 @@ export const projects = [
     id: 2,
     slug: "bright-smile",
     image:
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&q=80",
+      "https://res.cloudinary.com/dr6linfry/image/upload/v1784833999/Bright-smile-thumbnil_kx2agh.png",
     project_name: "Bright Smile",
     duration: "25 days",
     live_link: "https://bright-smile-fm.vercel.app",
@@ -139,7 +139,7 @@ export const projects = [
     id: 4,
     slug: "coach-energy",
     image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80",
+      "https://res.cloudinary.com/dr6linfry/image/upload/v1784833998/Coach-energy-thumbnil_ucu968.png",
     project_name: "Coach Energy",
     duration: "45 days",
     live_link: "https://personal-branding-coach-female.vercel.app/",
@@ -184,7 +184,7 @@ export const projects = [
     id: 5,
     slug: "bio-cleaning",
     image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80",
+      "https://res.cloudinary.com/dr6linfry/image/upload/v1784833998/bio-cleaning-thumbnil_cyq0ro.png",
     project_name: "BIO Cleaning",
     duration: "20 days",
     live_link: "https://bio-cleaning-llc.vercel.app/",
@@ -226,7 +226,7 @@ export const projects = [
     id: 6,
     slug: "dnoin-inc",
     image:
-      "https://images.unsplash.com/photo-1526406915894-7bcd65f60845?w=1200&q=80",
+      "https://res.cloudinary.com/dr6linfry/image/upload/v1784833997/DNOIN-thumbnil_eiztbp.png",
     project_name: "DNOIN.INC",
     duration: "30 days",
     live_link: "https://architecture-company-opygen.vercel.app",
@@ -268,7 +268,7 @@ export const projects = [
     id: 7,
     slug: "roofora",
     image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80",
+      "https://res.cloudinary.com/dr6linfry/image/upload/v1784834059/roofing-thumbnil_hwlxek.png",
     project_name: "Roofora",
     duration: "15 days",
     live_link: "https://roofing-website-design-three.vercel.app/",
@@ -310,7 +310,7 @@ export const projects = [
     id: 8,
     slug: "plumbin",
     image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
+      "https://res.cloudinary.com/dr6linfry/image/upload/v1784833997/plumbin-thumbnil_w3bzyr.png",
     project_name: "Plumbin",
     duration: "50 days",
     live_link: "https://plumbing-website-iota.vercel.app/",
