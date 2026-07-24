@@ -55,7 +55,7 @@ export default function Features() {
 
           <div className="max-w-xl lg:justify-self-end">
             <p className="text-base font-medium leading-7 sm:text-lg sm:leading-8">
-              We provide complete user flows, polished digital products, powerful automations, and growth-driven marketingâ€”all in one unified partnership.
+              We provide complete user flows, polished digital products, powerful automations, and growth-driven marketing — all in one unified partnership.
             </p>
             <a
               href="#services"
