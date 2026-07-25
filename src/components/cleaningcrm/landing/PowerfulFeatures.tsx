@@ -88,11 +88,10 @@ export default function PowerfulFeatures() {
               >
                 {/* ── Inner Box ── */}
                 <div
-                  className={`relative flex-1 rounded-[18px] p-7 overflow-hidden ${
-                    card.highlight
+                  className={`relative flex-1 rounded-[18px] p-7 overflow-hidden ${card.highlight
                       ? "bg-gradient-to-br from-[#124f3a] to-[#1A7A5E] text-white shadow-inner"
                       : "bg-gradient-to-br from-[#f8faf9] to-[#edf2f0] text-gray-900 border border-gray-50/50"
-                  }`}
+                    }`}
                 >
                   {/* Background effects */}
                   {card.highlight ? (
@@ -118,11 +117,10 @@ export default function PowerfulFeatures() {
 
                   {/* Icon */}
                   <div
-                    className={`w-12 h-12 rounded-full flex items-center justify-center mb-8 relative z-10 ${
-                      card.highlight
+                    className={`w-12 h-12 rounded-full flex items-center justify-center mb-8 relative z-10 ${card.highlight
                         ? "bg-white/20 backdrop-blur-md shadow-[0_4px_12px_rgba(0,0,0,0.1)] text-white"
                         : "bg-[#1A7A5E] shadow-[0_4px_12px_rgba(26,122,94,0.25)] text-white"
-                    }`}
+                      }`}
                   >
                     <Icon strokeWidth={2.5} size={22} />
                   </div>
@@ -133,9 +131,8 @@ export default function PowerfulFeatures() {
                       {card.title}
                     </h3>
                     <p
-                      className={`text-[14px] leading-relaxed ${
-                        card.highlight ? "text-white/85" : "text-gray-500"
-                      }`}
+                      className={`text-[14px] leading-relaxed ${card.highlight ? "text-white/85" : "text-gray-500"
+                        }`}
                     >
                       {card.sub}
                     </p>
