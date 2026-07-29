@@ -130,14 +130,14 @@ export default function TeamSection() {
               ref={(el) => {
                 cardsRef.current[index] = el;
               }}
-              className="group relative h-[450px] w-full max-w-[350px] sm:w-[350px] [perspective:2000px]"
+              className="group relative h-[390px] sm:h-[420px] lg:h-[450px] w-full max-w-[350px] sm:w-[350px] [perspective:2000px]"
             >
               <div
                 className={cn(
                   "relative h-full w-full",
                   "[transform-style:preserve-3d]",
                   "transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]",
-                  "group-hover:[transform:rotateY(180deg)]"
+                  "group-hover:[transform:rotateY(180deg)] group-active:[transform:rotateY(180deg)]"
                 )}
               >
                 {/* FRONT OF CARD */}

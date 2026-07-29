@@ -38,7 +38,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-[#171717] px-5 pb-6 pt-16 text-white sm:px-8 sm:pb-8 sm:pt-20 lg:px-12 lg:pt-24">
+    <footer className="relative overflow-hidden bg-[#171717] px-5 pb-6 pt-16 text-white sm:px-8 sm:pb-8 sm:pt-20 lg:px-12 lg:pt-24 font-space-grotesk">
       <div
         aria-hidden="true"
         className="absolute -right-32 top-0 h-80 w-80 rounded-full bg-[#F24202]/35 blur-3xl"
@@ -55,14 +55,8 @@ export default function Footer() {
               href="#home"
               className="group inline-flex items-center gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9FF5B]"
             >
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-white/10 shadow-[0_10px_22px_rgba(0,0,0,0.16)]">
-                <Image
-                  src={Logo}
-                  alt="Opygen Logo"
-                  width={27}
-                  height={27}
-                  className="object-contain"
-                />
+              <span className="flex h-10 w-10 items-center justify-center rounded-md border border-black/10 bg-white shadow-md shrink-0">
+                <Image src={Logo} alt="Opygen logo" width={24} height={24} className="object-contain" priority />
               </span>
               <span className="text-2xl font-semibold tracking-[-0.05em] text-white">
                 Opygen
@@ -147,7 +141,7 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col gap-5 pt-6 text-[10px] font-bold uppercase tracking-[0.14em] text-white/45 sm:flex-row sm:items-center sm:justify-between">
-          <p>Â© OPYGEN 2026. ALL RIGHTS RESERVED.</p>
+          <p>© OPYGEN 2026. ALL RIGHTS RESERVED.</p>
           <div className="flex flex-wrap gap-x-6 gap-y-3">
             {resourceLinks.map((link) => (
               <Link

@@ -325,26 +325,6 @@ body {
     border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.marketing-page footer [class*="text-black"] {
-    color: #ffffff;
-}
-
-.marketing-page footer [class*="text-gray-"] {
-    color: rgba(255, 255, 255, 0.62);
-}
-
-.marketing-page footer [class*="bg-white"] {
-    background-color: rgba(255, 255, 255, 0.08);
-}
-
-.marketing-page footer [class*="border-gray"] {
-    border-color: rgba(255, 255, 255, 0.14);
-}
-
-.marketing-page footer [class*="bg-black"] {
-    background-color: var(--marketing-accent);
-}
-
 @media (max-width: 767px) {
     .marketing-page main > section h2 {
         letter-spacing: -0.045em;

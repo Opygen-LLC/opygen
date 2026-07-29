@@ -16,6 +16,13 @@ const categories = [
   { name: "SaaS", icon: Cloud },
 ];
 
+const categoryBadgeStyles: Record<string, string> = {
+  Website: "bg-blue-50 text-blue-600 border-blue-200/60",
+  App: "bg-purple-50 text-purple-600 border-purple-200/60",
+  Marketing: "bg-amber-50 text-amber-600 border-amber-200/60",
+  SaaS: "bg-emerald-50 text-emerald-600 border-emerald-200/60",
+};
+
 export default function ProjectsSection() {
   const [activeCategory, setActiveCategory] = useState("All");
 
@@ -35,8 +42,8 @@ export default function ProjectsSection() {
             viewport={{ once: true }}
             className="mb-6 inline-block"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#111111]">
-              <span className="h-2 w-2 rounded-full bg-[#D1FF4F] shadow-[0_0_8px_#D1FF4F]"></span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-gray-900 shadow-2xs">
+              <span className="h-2 w-2 rounded-full bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.6)]"></span>
               Our Portfolio
             </span>
           </motion.div>
@@ -68,7 +75,7 @@ export default function ProjectsSection() {
           transition={{ delay: 0.3 }}
           className="flex justify-center mb-16 px-4"
         >
-          <div className="flex items-center w-full max-w-max mx-auto p-1.5 md:p-2 bg-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100 overflow-x-auto hide-scrollbar gap-1 relative">
+          <div className="flex items-center w-full max-w-max mx-auto p-1.5 md:p-2 bg-white rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-gray-100 overflow-x-auto hide-scrollbar gap-1 relative">
             {categories.map((cat) => {
               const Icon = cat.icon;
               const isActive = activeCategory === cat.name;
@@ -76,14 +83,14 @@ export default function ProjectsSection() {
                 <button
                   key={cat.name}
                   onClick={() => setActiveCategory(cat.name)}
-                  className={`relative flex items-center gap-2 py-2.5 px-5 md:py-3 md:px-7 rounded-full transition-colors duration-300 whitespace-nowrap outline-none ${
+                  className={`relative flex items-center gap-2 py-2.5 px-5 md:py-3 md:px-7 rounded-lg transition-colors duration-300 whitespace-nowrap outline-none ${
                     isActive ? "text-white" : "text-gray-500 hover:text-gray-900"
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeProjectTabBg"
-                      className="absolute inset-0 bg-[#111111] rounded-full"
+                      className="absolute inset-0 bg-[#111111] rounded-lg"
                       transition={{ type: "spring", stiffness: 400, damping: 30 }}
                     />
                   )}
@@ -102,55 +109,60 @@ export default function ProjectsSection() {
         {/* Grid */}
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[400px]">
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-                data-marketing-card
-                className="group relative bg-white rounded-3xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-gray-100 cursor-pointer"
-              >
-                <Link href={`/projects/${project.slug}`} className="block h-full p-4 hover:-translate-y-1 transition-all duration-300">
-                  <div className="relative w-full aspect-[4/3] rounded-[1.5rem] overflow-hidden mb-6 bg-gray-100">
-                    <Image
-                      src={project.image}
-                      alt={project.project_name}
-                      fill
-                      className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
-                      unoptimized
-                    />
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className={marketingButton("pointer-events-none translate-y-4 group-hover:translate-y-0")}>
-                        View Project
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
+            {filteredProjects.map((project) => {
+              const badgeStyle = categoryBadgeStyles[project.project_type] || "bg-blue-50 text-blue-600 border-blue-200/60";
+
+              return (
+                <motion.div
+                  key={project.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
+                  data-marketing-card
+                  className="group relative bg-white rounded-3xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-gray-100 cursor-pointer"
+                >
+                  <Link href={`/projects/${project.slug}`} className="block h-full p-4 hover:-translate-y-1 transition-all duration-300">
+                    <div className="relative w-full aspect-[4/3] rounded-[1.5rem] overflow-hidden mb-6 bg-gray-100">
+                      <Image
+                        src={project.image}
+                        alt={project.project_name}
+                        fill
+                        className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+                        unoptimized
+                      />
+                      {/* Hover Overlay */}
+                      <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div className={marketingButton("pointer-events-none translate-y-4 group-hover:translate-y-0")}>
+                          View Project
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="px-3 pb-4">
-                    <div className="inline-block px-3 py-1 bg-[#111111] text-[#D1FF4F] text-[11px] font-bold uppercase tracking-widest rounded-md mb-4 border border-[#111111]/10">
-                      {project.project_type}
+                    
+                    {/* Content */}
+                    <div className="px-3 pb-4">
+                      <div className={`inline-block px-3 py-1 text-[11px] font-bold uppercase tracking-widest rounded-md mb-4 border ${badgeStyle}`}>
+                        {project.project_type}
+                      </div>
+                      <h3 className="text-xl md:text-[22px] font-bold text-gray-900 mb-3 group-hover:opacity-75 transition-opacity leading-snug tracking-tight">
+                        {project.project_name}
+                      </h3>
+                      <p className="text-gray-500 text-[14px] md:text-[15px] leading-relaxed font-medium line-clamp-3">
+                        {project.project_description || project.description}
+                      </p>
                     </div>
-                    <h3 className="text-xl md:text-[22px] font-bold text-gray-900 mb-3 group-hover:opacity-75 transition-opacity leading-snug tracking-tight">
-                      {project.project_name}
-                    </h3>
-                    <p className="text-gray-500 text-[14px] md:text-[15px] leading-relaxed font-medium line-clamp-3">
-                      {project.project_description || project.description}
-                    </p>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
+                  </Link>
+                </motion.div>
+              );
+            })}
           </AnimatePresence>
         </motion.div>
       </div>
     </section>
   );
 }
+

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Star, Quote, X } from "lucide-react";
+import { motion } from "framer-motion";
 
 export type Review = {
   rating: number;
@@ -23,7 +24,7 @@ export const reviews: Review[] = [
     social: "facebook",
   },
   {
-    rating: 4.0,
+    rating: 5.0,
     quote: "Always does great work. Been working with him for a few months now.",
     name: "M. Brown",
     role: "Marketing Director",
@@ -137,7 +138,7 @@ function StarRating({ rating }: { rating: number }) {
           }`}
         />
       ))}
-      <span className="ml-1 text.xs font-bold text-gray-700 font-mono">
+      <span className="ml-1 text-xs font-bold text-gray-700 font-mono">
         {rating.toFixed(1)}
       </span>
     </div>
@@ -235,19 +236,35 @@ export default function Reviews() {
       className="relative w-full bg-white font-space-grotesk py-20 lg:py-28 overflow-hidden"
     >
       <div className="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 mb-14 text-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-xs font-semibold mb-4 tracking-wide uppercase shadow-2xs">
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-xs font-semibold mb-4 tracking-wide uppercase shadow-2xs"
+        >
           <Quote className="w-3.5 h-3.5 text-blue-600" />
           Wall of Love & Reviews
-        </div>
-        <h2
+        </motion.div>
+        <motion.h2
           id="reviews-title"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
           className="text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight text-gray-900 mb-5 leading-tight"
         >
           What clients say about <br className="hidden sm:block" /> working with Opygen
-        </h2>
-        <p className="text-[17px] md:text-lg text-gray-500 leading-relaxed font-medium max-w-2xl mx-auto">
+        </motion.h2>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-[17px] md:text-lg text-gray-500 leading-relaxed font-medium max-w-2xl mx-auto"
+        >
           Real feedback from founders, product leaders, and marketing teams who trust us to deliver.
-        </p>
+        </motion.p>
       </div>
 
       <div className="relative space-y-6">
@@ -285,3 +302,4 @@ export default function Reviews() {
     </section>
   );
 }
+
