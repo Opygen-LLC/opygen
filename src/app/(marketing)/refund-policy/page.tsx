@@ -1,6 +1,16 @@
 import React from "react";
 import Navbar from "@/src/components/marketing/Navbar";
 import Footer from "@/src/components/marketing/Footer";
+import type { Metadata } from "next";
+import { SITE_CONFIG } from "@/src/lib/seo";
+
+export const metadata: Metadata = {
+  title: "Refund Policy | Opygen",
+  description: "Read Opygen's refund and cancellation policies for digital services and SaaS subscriptions.",
+  alternates: {
+    canonical: `${SITE_CONFIG.url}/refund-policy`,
+  },
+};
 
 export default function RefundPolicy() {
   const lastUpdated = "April 2024";

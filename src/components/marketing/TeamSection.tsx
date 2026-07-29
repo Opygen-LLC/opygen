@@ -6,6 +6,7 @@ import { Globe } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
+import { TEAM_MEMBERS } from "@/src/lib/seo";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -41,40 +42,7 @@ interface TeamMember {
   description: string;
 }
 
-const team: TeamMember[] = [
-  {
-    name: "MD. Sidur Rahaman",
-    role: "Co-founder & CEO",
-    website: "https://iamrupom.netlify.app/",
-    linkedin: "https://www.linkedin.com/in/iamrupom7/",
-    image: "/team/rupom-team.jpeg",
-    description: "Driving Opygen's vision and strategy to empower businesses with impactful digital solutions.",
-  },
-  {
-    name: "MD. Faysal Mridha",
-    role: "Co-founder & CTO",
-    website: "https://faysaldev.vercel.app",
-    linkedin: "https://www.linkedin.com/in/faysaldev/",
-    image: "/team/faysal-team.png",
-    description: "Architecting robust, scalable, and high-performance technology stacks for modern applications.",
-  },
-  {
-    name: "Syed Mohiuddin",
-    role: "Co-founder & COO",
-    website: "https://syedmohiuddinmeshal.me",
-    linkedin: "https://www.linkedin.com/in/10613-meshal",
-    image: "/team/meshal-team.png",
-    description: "Streamlining operations and ensuring seamless delivery of digital products across the board.",
-  },
-  {
-    name: "Mohibbullah Khan",
-    role: "Co-founder & CPO",
-    website: "https://muhibkhan.netlify.app/",
-    linkedin: "https://www.linkedin.com/in/mohibbullahkhan/",
-    image: "/team/mohib-team.jpeg",
-    description: "Crafting intuitive, engaging, and user-centric product experiences that people truly love.",
-  },
-];
+const team: TeamMember[] = TEAM_MEMBERS;
 
 export default function TeamSection() {
   const sectionRef = useRef<HTMLElement>(null);

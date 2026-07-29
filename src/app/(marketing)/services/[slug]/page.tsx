@@ -53,6 +53,56 @@ function getProjectSummary(project: (typeof projects)[number]) {
   );
 }
 
+import type { Metadata } from "next";
+import { SITE_CONFIG, generateBreadcrumbSchema } from "@/src/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const service = servicePages.find((s) => s.slug === slug);
+
+  if (!service) {
+    return {
+      title: "Service Not Found",
+    };
+  }
+
+  const title = `${service.title} | ${SITE_CONFIG.name}`;
+  const description = service.description || service.shortDesc;
+  const url = `${SITE_CONFIG.url}/services/${service.slug}`;
+
+  return {
+    title,
+    description,
+    keywords: [
+      service.title,
+      ...service.features,
+      "Software Development Company",
+      "Opygen",
+      "Digital Oxygen for Business",
+    ],
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: SITE_CONFIG.name,
+      images: [{ url: `${SITE_CONFIG.url}${service.image}`, width: 1200, height: 630 }],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+  };
+}
+
 export function generateStaticParams() {
   return servicePages.map((service) => ({ slug: service.slug }));
 }
@@ -72,9 +122,45 @@ export default async function ServicePage({
   const relatedServices = servicePages.filter((item) => item.slug !== service.slug);
   const featuredProjects = getFeaturedProjects(service.projectTypes, 3);
   const highlightFeatures = service.features.slice(0, 3);
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    serviceType: service.badge,
+    description: service.description,
+    provider: {
+      "@type": "Organization",
+      name: SITE_CONFIG.name,
+      url: SITE_CONFIG.url,
+    },
+    areaServed: "Worldwide",
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: service.title,
+      itemListElement: service.features.map((feat) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: feat,
+        },
+      })),
+    },
+  };
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Services", url: "/services" },
+    { name: service.title, url: `/services/${service.slug}` },
+  ]);
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([serviceSchema, breadcrumbSchema]),
+        }}
+      />
       <Navbar />
       <main className="min-h-screen overflow-hidden bg-[#F7F7F4] font-space-grotesk text-[#111111] selection:bg-[#FFD6C7]">
         {/* Hero */}

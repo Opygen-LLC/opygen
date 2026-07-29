@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import ContactSection from "@/src/components/marketing/ContactSection";
 import Footer from "@/src/components/marketing/Footer";
 import HeroSection1 from "@/src/components/marketing/HeroSection1";
@@ -14,6 +15,26 @@ import TechStackBar from "@/src/components/marketing/TechStackBar";
 import AgencyComparison from "@/src/components/marketing/AgencyComparison";
 import ProjectEstimator from "@/src/components/marketing/ProjectEstimator";
 import FaqSection from "@/src/components/marketing/FaqSection";
+import { SITE_CONFIG, SEO_KEYWORDS } from "@/src/lib/seo";
+
+export const metadata: Metadata = {
+  title: `${SITE_CONFIG.name} | Software Development & Business Automation Solutions`,
+  description:
+    "Opygen helps businesses grow with custom software development, SaaS solutions, CRM platforms, web applications, and digital automation services.",
+  keywords: SEO_KEYWORDS,
+  alternates: {
+    canonical: SITE_CONFIG.url,
+  },
+  openGraph: {
+    title: `${SITE_CONFIG.name} | Software Development & Business Automation Solutions`,
+    description:
+      "Opygen helps businesses grow with custom software development, SaaS solutions, CRM platforms, web applications, and digital automation services.",
+    url: SITE_CONFIG.url,
+    siteName: SITE_CONFIG.name,
+    images: [{ url: SITE_CONFIG.ogImage, width: 1200, height: 630 }],
+    type: "website",
+  },
+};
 
 export default function HomePage() {
   return (

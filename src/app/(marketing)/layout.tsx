@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
+import { SITE_CONFIG } from "@/src/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Opygen — Operations Engine",
-  description:
-    "Opygen helps service businesses run better, grow faster, and stay consistent. One platform for scheduling, clients, payments, and team management.",
+  title: `${SITE_CONFIG.name} | Software Development & Business Automation Solutions`,
+  description: SITE_CONFIG.description,
+  alternates: {
+    canonical: SITE_CONFIG.url,
+  },
 };
 
 export default function MarketingLayout({

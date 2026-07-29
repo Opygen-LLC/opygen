@@ -1,6 +1,16 @@
 import React from "react";
 import Navbar from "@/src/components/marketing/Navbar";
 import Footer from "@/src/components/marketing/Footer";
+import type { Metadata } from "next";
+import { SITE_CONFIG } from "@/src/lib/seo";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | Opygen",
+  description: "Read Opygen's privacy policy regarding user data protection, cookies, and system security.",
+  alternates: {
+    canonical: `${SITE_CONFIG.url}/privacy-policy`,
+  },
+};
 
 export default function PrivacyPolicy() {
   const lastUpdated = "April 2024";

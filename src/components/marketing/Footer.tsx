@@ -97,13 +97,23 @@ export default function Footer() {
               <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/45">
                 Contact Us
               </p>
-              <a
-                href="mailto:opygen.info@gmail.com"
-                className="mt-6 inline-flex items-center gap-2 border-b border-white/20 pb-1 text-[15px] font-medium text-white/75 transition-colors duration-200 hover:border-[#D9FF5B] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9FF5B]"
-              >
-                opygen.info@gmail.com
-                <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
-              </a>
+              <div className="mt-4 space-y-2">
+                <a
+                  href="mailto:opygen.info@gmail.com"
+                  className="inline-flex items-center gap-2 border-b border-white/20 pb-1 text-[14.5px] font-medium text-white/75 transition-colors duration-200 hover:border-[#D9FF5B] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D9FF5B]"
+                >
+                  opygen.info@gmail.com
+                  <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                </a>
+                <div>
+                  <a
+                    href="tel:+8801560004121"
+                    className="inline-flex items-center gap-2 text-[14.5px] font-medium text-white/75 transition-colors duration-200 hover:text-[#D9FF5B]"
+                  >
+                    +880 1560-004121
+                  </a>
+                </div>
+              </div>
 
               <p className="mt-10 text-[10px] font-bold uppercase tracking-[0.16em] text-white/45">
                 Follow Us

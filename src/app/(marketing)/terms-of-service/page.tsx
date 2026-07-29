@@ -1,6 +1,16 @@
 import React from "react";
 import Navbar from "@/src/components/marketing/Navbar";
 import Footer from "@/src/components/marketing/Footer";
+import type { Metadata } from "next";
+import { SITE_CONFIG } from "@/src/lib/seo";
+
+export const metadata: Metadata = {
+  title: "Terms of Service | Opygen",
+  description: "Read Opygen's terms of service regarding project scope, intellectual property, and service agreements.",
+  alternates: {
+    canonical: `${SITE_CONFIG.url}/terms-of-service`,
+  },
+};
 
 export default function TermsOfService() {
   const lastUpdated = "April 2024";

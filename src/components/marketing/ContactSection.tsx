@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { CheckCircle2, Mail, Send, Sparkles, MessageSquare, ShieldCheck, Clock } from "lucide-react";
+import { CheckCircle2, Mail, Phone, Send, Sparkles, MessageSquare, ShieldCheck, Clock } from "lucide-react";
 import { InstagramLogo, TwitterLogo, LinkedinLogo } from "@phosphor-icons/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -129,6 +129,19 @@ export default function ContactSection() {
                   >
                     <Mail className="h-4 w-4 text-[#F24202] shrink-0" />
                     opygen.info@gmail.com
+                  </a>
+                </div>
+
+                <div className="border-t border-black/5 pt-4">
+                  <p className="text-gray-500 text-[10px] font-extrabold tracking-wider uppercase mb-1.5">
+                    Phone & WhatsApp
+                  </p>
+                  <a
+                    href="tel:+8801560004121"
+                    className="text-base font-bold text-gray-900 hover:text-[#F24202] transition-colors flex items-center gap-2"
+                  >
+                    <Phone className="h-4 w-4 text-[#F24202] shrink-0" />
+                    +880 1560-004121
                   </a>
                 </div>
 
