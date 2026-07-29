@@ -70,6 +70,9 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+  verification: {
+    google: SITE_CONFIG.googleVerification,
+  },
 };
 
 export default function RootLayout({

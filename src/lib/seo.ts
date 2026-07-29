@@ -60,6 +60,7 @@ export const SITE_CONFIG = {
     "Opygen helps businesses grow with custom software development, SaaS solutions, CRM platforms, web applications, and digital automation services.",
   url: "https://opygen.com",
   ogImage: "https://opygen.com/og-image.jpg",
+  googleVerification: "vXLOnPDpQAHumeScIhXzCLh4Ecyq_OGhFvfnLbOt70Y",
   founder: {
     name: "MD. Faysal Mridha",
     handle: "@faysaldev",
